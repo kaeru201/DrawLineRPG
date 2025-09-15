@@ -1,38 +1,33 @@
 using UnityEngine;
 
-public class Unit : MonoBehaviour, IDamageable
+public class Unit
 {
-    [Header("Unit Stats")]
-    [SerializeField] private string unitName;
-    [SerializeField] private int maxHP;
-    [SerializeField] private int currentHP;
-    [SerializeField] private int attackPower;
-    [SerializeField] private int defensePower;
+    [SerializeField] UnitBase unitBase;
+    int level;
 
-
-    void Start()
+    public Unit(UnitBase uBase, int uLevel)
     {
-        //最初のHPを最大HPに(あとで消すかも?)
-        currentHP = maxHP;
+        unitBase = uBase;
+        level = uLevel;
     }
 
-
-   
-
-   
-    void Update()
+    //レベルに応じたステータスを返すプロパティ
+    //UnitBaseのプロパティにlevelを掛けて上限の100を割る　5はよくわからないから消すかも
+    public int MaxHP
     {
-        
+        get => Mathf.FloorToInt((unitBase.MaxHP * level) / 100f) + 10;
     }
-
-    public void Damage(int value)
+    public int Attack
     {
-        //ダメージ処理
+        get => Mathf.FloorToInt((unitBase.Attack * level) / 100f) + 5;
     }
-
-    public void Death()
+    public int Defense
     {
-        //死亡処理
+        get => Mathf.FloorToInt((unitBase.Defense * level) / 100f) + 5;
+    }
+    public int Speed
+    {
+        get => Mathf.FloorToInt((unitBase.Speed * level) / 100f) + 5;
     }
 
 }
