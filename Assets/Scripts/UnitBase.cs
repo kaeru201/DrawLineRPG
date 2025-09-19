@@ -1,4 +1,7 @@
+using NUnit.Framework;
 using UnityEngine;
+using System.Collections.Generic;
+using System;
 
 //データを管理するためにScriptableObject
 
@@ -8,7 +11,9 @@ public class UnitBase : ScriptableObject
     //名前、説明、画像、属性、ステータス
 
     [SerializeField] new string name;
+    [TextArea]
     [SerializeField] string description;
+
     [SerializeField] Sprite sprite;
     [SerializeField] Type type;
 
@@ -18,15 +23,40 @@ public class UnitBase : ScriptableObject
     [SerializeField] int defense;
     [SerializeField] int speed;
 
+    //覚える技 list
+    [SerializeField] List<LearnableMove>  learnablemoves;
+
     //値の取得はしたいけど変更はされないプロパティ
+    public string Name { get => name; }
+    public string Description { get => description; }
+    public Sprite Sprite { get => sprite; }
+    public Type Type { get => type; }
+
+
     public int MaxHP { get => maxHP;}
     public int Attack { get => attack; }
     public int Defense { get => defense;}
     public int Speed { get => speed;}
+
+    public List<LearnableMove> Learnablemoves { get => learnablemoves;}
+    
 }
 
+//どのレベルでどの技を覚えるのか
+[Serializable]
+public class LearnableMove
+{
+    [SerializeField]MoveBase moveBase;
+    [SerializeField] int level;
+
+    public MoveBase MoveBase { get => moveBase; }
+    public int Level { get => level;}
+}
+
+//列挙型の属性(属性無し、火、水、草、光、闇)
 public enum Type
 {
+    none,
     Fire,
     Water,
     Grass,
