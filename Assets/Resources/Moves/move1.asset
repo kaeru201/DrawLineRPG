@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: "\u65AC\u308A\u304B\u304B\u308B"
   description: "\u9069\u5F53"
-  type: 0
+  type: 1
   power: 50
   magicPoint: 3

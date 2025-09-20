@@ -6,6 +6,7 @@ public class Unit
 {
     //実際にゲームで使うUnitのデータ
 
+    //PlayerHudの時にunitBaseからUnitを参照するためにpublic (プロバティ)
     [SerializeField] public UnitBase unitBase {get;set;}
     public int level { get; set; }
 
@@ -20,6 +21,7 @@ public class Unit
         level = uLevel;
         hp = MaxHP;
 
+        Moves = new List<Move>();
         //覚える技のレベル以上なら、Movesに追加
         foreach (LearnableMove learnableMove in uBase.Learnablemoves)
         {

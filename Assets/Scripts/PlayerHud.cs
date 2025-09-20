@@ -8,7 +8,7 @@ public class PlayerHud : MonoBehaviour
     [SerializeField] TextMeshProUGUI levelText;
     [SerializeField] Slider hpSlider;
 
-    [SerializeField] void SetData(Unit unit)
+    public void SetData(Unit unit)
     {
         nameText.text = unit.unitBase.Name;//Unit‚Ìpublic‚É‚µ‚½UnitBaseŒ^‚ÌunitBase‚Ìname‚ð‘ã“ü
         levelText.text = "LV"+unit.level;//string + intŒ^
@@ -17,14 +17,5 @@ public class PlayerHud : MonoBehaviour
 
    
 
-    void Start()
-    {
-        
-    }
-
    
-    void Update()
-    {
-        
-    }
 }
