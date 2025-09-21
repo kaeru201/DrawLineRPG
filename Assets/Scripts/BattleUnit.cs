@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 public class BattleUnit : MonoBehaviour
 {
-    //モンスターをセットする
+    //とりあえずインスペクター上でモンスターをセットする
     [SerializeField] UnitBase unitBase;
     [SerializeField] int level;//今の相手のレベル
 

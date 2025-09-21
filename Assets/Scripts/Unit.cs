@@ -19,7 +19,7 @@ public class Unit
     {
         unitBase = uBase;
         level = uLevel;
-        hp = MaxHP;
+        hp = MaxHP;　//参考にした資料だとuBase.MaxHPにしていたよくわからないし、バグってたのでそのままこのクラスのMaxHPを参照している
 
         Moves = new List<Move>();
 
