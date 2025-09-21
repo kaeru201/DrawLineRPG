@@ -4,11 +4,12 @@ using UnityEngine.UI;
 public class HPBar : MonoBehaviour
 {
     Unit unit;
-    int currentHP;
+    [SerializeField] int currentHP;
     [SerializeField] public Slider slider;
     [SerializeField] public int damage = 1;
 
-   
+    public int CurrentHP { get => currentHP; set => currentHP = value; }
+
     void Start()
     {
         //生成したUnit毎の最大をmaxValueに代入する
@@ -22,19 +23,19 @@ public class HPBar : MonoBehaviour
     void Update()
     {
         //ここでやるかは置いといて現在のHPをvalueに代入
-        slider.value = currentHP;
+        slider.value = CurrentHP;
         OnDamage();   
     }
 
     //仮ダメージフラグメソッド
     void OnDamage()
     {
-        if (currentHP > 0)
+        if (CurrentHP > 0)
         {
             if(Input.GetKeyDown(KeyCode.Space) )
             {
-                currentHP = currentHP - damage;
-                Debug.Log(currentHP);
+                CurrentHP = CurrentHP - damage;
+                Debug.Log(CurrentHP);
             }
 
 

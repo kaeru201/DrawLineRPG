@@ -7,7 +7,7 @@ public class MoveBase : ScriptableObject
 {
     //名前,詳細、属性、威力、消費マナ、   効果はあと
 
-    [SerializeField] new string name;
+    [SerializeField] new string name; //nameがObject.nameと被るから一応newをつける
 
     [TextArea]
     [SerializeField] string description;

@@ -2,9 +2,9 @@ using NUnit.Framework;
 using UnityEngine;
 using System.Collections.Generic;
 
+//レベルに応じたステータスを扱うクラス
 public class Unit
 {
-    //実際にゲームで使うUnitのデータ
 
     //PlayerHudの時にunitBaseからUnitを参照するためにpublic (プロバティ)
     [SerializeField] public UnitBase unitBase {get;set;}
@@ -15,13 +15,14 @@ public class Unit
     public List<Move> Moves { get; set; }
 
     //生成時の初期設定
-    public Unit(UnitBase uBase, int uLevel)
+    public Unit(UnitBase uBase, int uLevel) 
     {
         unitBase = uBase;
         level = uLevel;
         hp = MaxHP;
 
         Moves = new List<Move>();
+
         //覚える技のレベル以上なら、Movesに追加
         foreach (LearnableMove learnableMove in uBase.Learnablemoves)
         {

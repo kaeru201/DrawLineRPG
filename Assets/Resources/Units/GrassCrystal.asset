@@ -10,18 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6e14ec13d82b61941968d61c85626b59, type: 3}
-  m_Name: Knihgt
+  m_Name: GrassCrystal
   m_EditorClassIdentifier: 
-  name: "\u9A0E\u58EB"
+  name: "\u8349\u306E\u30AF\u30EA\u30B9\u30BF\u30EB"
   description: 
-  sprite: {fileID: 21300000, guid: d6d1ab7729b363d44b7ad9f9acd04634, type: 3}
-  type: 1
-  maxHP: 100
+  sprite: {fileID: 21300000, guid: e0814bc528d0a554e8b9cbe62913dc1e, type: 3}
+  type: 3
+  maxHP: 60
   attack: 20
-  defense: 30
-  speed: 15
+  defense: 20
+  speed: 20
   learnablemoves:
   - moveBase: {fileID: 11400000, guid: e52a46a2d5769f249bb89335ebec1371, type: 2}
-    level: 1
-  - moveBase: {fileID: 0}
-    level: 1
+    level: 2

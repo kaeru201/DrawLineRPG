@@ -10,7 +10,7 @@ public class BattleUnit : MonoBehaviour
     public Unit unit { get; set; }
 
     //モンスターの生成メソッド
-    [SerializeField]public void SetUp()
+    public void SetUp()
     {
         unit = new Unit(unitBase, level);
         //相手の画像
