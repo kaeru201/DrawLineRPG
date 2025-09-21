@@ -1,7 +1,4 @@
-<<<<<<< HEAD
 using System.Runtime.CompilerServices;
-=======
->>>>>>> origin/master
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -10,16 +7,10 @@ public class DrawLine : MonoBehaviour
 {
     BattleManager battleManager;
     MoveBase moveBase;
-<<<<<<< HEAD
     bool isTrigerPoint = false;
 
 
 
-=======
-    
-
-    
->>>>>>> origin/master
 
     void Start()
     {
@@ -49,7 +40,6 @@ public class DrawLine : MonoBehaviour
             {
                 //線を引く
 
-<<<<<<< HEAD
 
                 //右クリックをしたら
                 if (Input.GetMouseButton(1))
@@ -63,27 +53,12 @@ public class DrawLine : MonoBehaviour
                     //まだ次のキャラクターがいるなら次のキャラクターに移る
 
 
-=======
-                //右クリックをしたら
-                if (Input.GetMouseButton(1))
-                {
-                　　　//線を固定して方向を変更できる
-
-                }
-                //もし右クリックを離す or 技の範囲が0になる　or 敵のPointに触れたら
-                if(Input.GetMouseButtonUp(0) ||  moveBase.LineRange <= 0)//|| OnTriggerEnter2D(Collision collision
-                {
-                       //まだ次のキャラクターがいるなら次のキャラクターに移る
-
-                    　
->>>>>>> origin/master
                 }
 
             }
 
         }
-<<<<<<< HEAD
-                     
+
 
     }
 
@@ -97,8 +72,4 @@ public class DrawLine : MonoBehaviour
         }
     }
 
-=======
-
-    }
->>>>>>> origin/master
 }
