@@ -5,28 +5,26 @@ using UnityEngine;
 public enum BattleState
 
 {
-    Start,
-    Action,
-    Result,
-    Win,
-    Lose,
+    StartTurn,
+    ActionTurn,
+    DrawLinTurn,
+    ResultTurn,
+    WinTurn,
+    LoseTurn
 
 }
 
 public class BattleManager : MonoBehaviour
 {
-   
-   public BattleState state;
 
-   
+    [SerializeField] BattleState state;
 
-   
-
+    public BattleState State { get => state; set => state = value; }
 
     void Start()
     {
         //最初にスタートステートに
-        state = BattleState.Start;
+        State = BattleState.StartTurn;
        SetupBattle();
 
     }
@@ -45,8 +43,9 @@ public class BattleManager : MonoBehaviour
 
     void PlayerAction()
     {
-        state = BattleState.Action;
+        State = BattleState.ActionTurn;
 
+        
 
         Debug.Log("コマンド選択");
         //コマンド選択UIを表示してコマンド選択
@@ -59,7 +58,7 @@ public class BattleManager : MonoBehaviour
 
     IEnumerator BattleResult()
     {
-        state = BattleState.Result;
+        State = BattleState.ResultTurn;
         
 
         yield break;
