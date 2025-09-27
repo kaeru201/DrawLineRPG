@@ -2,70 +2,103 @@ using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
 
-//ü‚ğ‘‚­ƒXƒNƒŠƒvƒg
+//pointã«ã‚¢ã‚¿ãƒƒãƒã™ã‚‹ã‚¹ã‚¯ãƒªãƒ—ãƒˆ
+//ç·šã‚’æ›¸ãã‚¹ã‚¯ãƒªãƒ—ãƒˆ
 public class DrawLine : MonoBehaviour
 {
     BattleManager battleManager;
     MoveBase moveBase;
-    bool isTrigerPoint = false;
+    LineRenderer lineRenderer;
+    CircleCollider2D circleCollider;
+    Transform startPosition;
+
+    bool isTrigerPoint = false;//ãƒ—ãƒ¬ãƒãƒ•åŒ–ã—ãŸæ”»æ’ƒBollã§ã¤ã‘ã‚‹å¤‰æ•°ã‚’ä¸€æ—¦ã¤ã‘ã¦ã‚‹
+    float maxLineRange;//æœ¬å½“ã¯skillã‹ã‚‰å‚ç…§ã—ã¦ãã‚‹å¤‰æ•°
+    int posCount;//
+    bool isDraw = false;
+    bool ready;
+    float currentLineRange;//ç¾åœ¨ã®æ›¸ã‘ã‚‹é•·ã•
+
+
 
 
 
 
     void Start()
     {
+        lineRenderer = GetComponent<LineRenderer>();
+        circleCollider = GetComponent<CircleCollider2D>();
+        startPosition = GetComponent<Transform>();
 
+        lineRenderer.startWidth = 0.1f;
+        lineRenderer.endWidth = 0.1f;
 
     }
 
 
     void Update()
     {
-        //ü‚ğ‘‚­ƒ^[ƒ“‚Å‚Í‚È‚¢‚Ì‚È‚ç‰½‚à‚µ‚È‚¢
+        //ç·šã‚’æ›¸ãã‚¿ãƒ¼ãƒ³ã§ã¯ãªã„ã®ãªã‚‰ä½•ã‚‚ã—ãªã„
         if (battleManager.State != BattleState.DrawLinTurn) return;
 
-        //ü‚ğ‘‚­ƒ^[ƒ“‚È‚ç
-        else
+        //ãƒã‚¦ã‚¹ã®ã‚¹ã‚¯ãƒªãƒ¼ãƒ³åº§æ¨™ã‚’ãƒ¯ãƒ¼ãƒ«ãƒ‰åº§æ¨™ã«å¤‰æ›ã™ã‚‹
+        Vector2 mousePos = Camera.main.ScreenToWorldPoint(new Vector2(Input.mousePosition.x, Input.mousePosition.y));
+
+        if (Input.GetMouseButtonDown(0))
         {
-            LineDrow();
+            //æŠ¼ã—ãŸæ™‚ç¯„å›²å¤–ãªã‚‰æ›¸ã‹ãªã„
+            if (circleCollider.bounds.Contains(mousePos)) return;
+
+
+            isDraw = true;
+            //åˆæœŸåŒ–
+            posCount = 0;
+            lineRenderer.positionCount = 0;
+            currentLineRange = 0;
+
+            AddLine(startPosition.position);
 
         }
 
-
-        //‚Ç‚¤¡g‚Á‚Ä‚¢‚é‹Z‚ÌLineRange‚Æ•R‚Ã‚¯‚é‚©
-        void LineDrow()
+        //å·¦ã‚¯ãƒªãƒƒã‚¯æŠ¼ã—ç¶šã‘ã¦ã„ã‚‹é–“ã‹ã¤isDrawãŒtrueãªã‚‰
+        if (Input.GetMouseButton(0) && isDraw)
         {
-            //¶ƒNƒŠƒbƒN‚ğ‚µ‘±‚¯‚½‚ç
-            if (Input.GetMouseButton(0))
-            {
-                //ü‚ğˆø‚­
 
-
-                //‰EƒNƒŠƒbƒN‚ğ‚µ‚½‚ç
-                if (Input.GetMouseButton(1))
-                {
-                    //ü‚ğŒÅ’è‚µ‚Ä•ûŒü‚ğ•ÏX‚Å‚«‚é
-
-                }
-                //‚à‚µ‰EƒNƒŠƒbƒN‚ğ—£‚· or ‹Z‚Ì”ÍˆÍ‚ª0‚É‚È‚é(moveBase‚©‚çˆø‚¢‚Ä‚«‚Ä‚é‚¯‚ÇŒ»İ‚Ìî•ñ‚¢‚ê‚È‚¢‚Æ)@or ’N‚©‚ÌPoint‚ÉG‚ê‚½‚ç
-                if (Input.GetMouseButtonUp(0) || moveBase.LineRange <= 0 || isTrigerPoint)
-                {
-                    //‚Ü‚¾Ÿ‚ÌƒLƒƒƒ‰ƒNƒ^[‚ª‚¢‚é‚È‚çŸ‚ÌƒLƒƒƒ‰ƒNƒ^[‚ÉˆÚ‚é
-
-
-                }
-
-            }
 
         }
+
+        //å·¦ã‚¯ãƒªãƒƒã‚¯ã‚’é›¢ã—ãŸæ™‚ã‹ã¤READYãŒfalseãªã‚‰
+        if(Input.GetMouseButtonUp(0)) 
+        {
+            isDraw = false;
+            lineRenderer.positionCount = 0;//ã‚„ã‚ŠãªãŠã—
+        }
+
+        //å³ã‚¯ãƒªãƒƒã‚¯ã‚’æŠ¼ã—ãŸæ™‚
+        if(Input.GetMouseButtonDown(1))
+        {
+            ready = true;
+            isDraw=false;
+            //æ¬¡ã®ã‚­ãƒ£ãƒ©Skillã«ç§»å‹•
+            //ã„ãªã„ãªã‚‰READYã®UIã‚’å‡ºã—ã¦è¡Œã‘ã‚‹ãªã‚‰æ•µã®ç·šã‚’å¼•ãã‚¿ãƒ¼ãƒ³ã«ç§»å‹•
+        }
+
 
 
     }
 
-    //ˆê’U‚±‚±‚É‘‚¢‚Ä‚é‚¯‚ÇAƒvƒŒƒnƒu‚Ìü‚ğo‚·ƒXƒNƒŠƒvƒg‚É‘‚­“à—e‚©‚à@‚ ‚Æƒ^ƒO‚Å’T‚µ‚½‚­‚È‚¢
+    void AddLine(Vector2 point)
+    {
+        lineRenderer.positionCount = posCount + 1;//ç¹°ã‚Šè¿”ã™åº¦ã«ç‚¹ã‚’å¢—ã‚„ã—ã¦ã„ã
+        lineRenderer.SetPosition(posCount, point);//ä¸€ã¤å‰ã®ç‚¹ã‹ã‚‰æ¬¡ã®ç‚¹ã«ç·šã‚’æ›¸ã
+        posCount++;
+    }
+
+
+    //ä¸€æ—¦ã“ã“ã«æ›¸ã„ã¦ã‚‹ã‘ã©ã€ãƒ—ãƒ¬ãƒãƒ–ã®ç·šã‚’å‡ºã™ã‚¹ã‚¯ãƒªãƒ—ãƒˆã«æ›¸ãå†…å®¹ã‹ã‚‚ã€€ã‚ã¨ã‚¿ã‚°ã§æ¢ã—ãŸããªã„
     void OnCollisionEnter(Collision collision)
     {
-        //©•ªˆÈŠO‚ÌPoint‚ÉG‚ê‚½‚ç@‰‹}ˆ’u‚Ån“_‚ğPoint‚©‚ç‚¸‚ç‚·
+        //è‡ªåˆ†ä»¥å¤–ã®Pointã«è§¦ã‚ŒãŸã‚‰ã€€å¿œæ€¥å‡¦ç½®ã§å§‹ç‚¹ã‚’Pointã‹ã‚‰ãšã‚‰ã™
         if (collision.gameObject.CompareTag("Point"))
         {
             isTrigerPoint = true;

@@ -13,10 +13,10 @@ public class PlayerHud : MonoBehaviour
     public void SetData(Unit unit)
     {
 
-        nameText.text = unit.unitBase.Name;//Unit‚Ìpublic‚É‚µ‚½UnitBaseŒ^‚ÌunitBase‚Ìname‚ğ‘ã“ü
-        levelText.text = "LV" + unit.level;//string + intŒ^
-        hpSlider.maxValue = unit.hp;
-        hpText.text = unit.hp + "  /  ";
+        nameText.text = unit.UnitBase.Name;//Unitã®publicã«ã—ãŸUnitBaseå‹ã®unitBaseã®nameã‚’ä»£å…¥
+        levelText.text = "LV" + unit.Level;//string + intå‹
+        hpSlider.maxValue = unit.Hp;
+        hpText.text = unit.Hp + "  /  ";
 
     }
 

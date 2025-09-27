@@ -3,18 +3,18 @@ using UnityEngine.UI;
 
 public class BattleUnit : MonoBehaviour
 {
-    //‚Æ‚è‚ ‚¦‚¸ƒCƒ“ƒXƒyƒNƒ^[ã‚Åƒ‚ƒ“ƒXƒ^[‚ğƒZƒbƒg‚·‚é
+    //ã¨ã‚Šã‚ãˆãšã‚¤ãƒ³ã‚¹ãƒšã‚¯ã‚¿ãƒ¼ä¸Šã§ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
     [SerializeField] UnitBase unitBase;
-    [SerializeField] int level;//¡‚Ì‘Šè‚ÌƒŒƒxƒ‹
+    [SerializeField] int level;//ä»Šã®ç›¸æ‰‹ã®ãƒ¬ãƒ™ãƒ«
 
     public Unit unit { get; set; }
 
-    //ƒ‚ƒ“ƒXƒ^[‚Ì¶¬ƒƒ\ƒbƒh
+    //ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®ç”Ÿæˆãƒ¡ã‚½ãƒƒãƒ‰
     public void SetUp()
     {
         unit = new Unit(unitBase, level);
-        //‘Šè‚Ì‰æ‘œ
+        //ç›¸æ‰‹ã®ç”»åƒ
         Image image = GetComponent<Image>();
-        image.sprite =unit.unitBase.Sprite;
+        image.sprite =unit.UnitBase.Sprite;
     }
 }

@@ -2,18 +2,19 @@ using UnityEngine;
 
 public class Move
 {
-    //‹Z‚Ìƒ}ƒXƒ^[ƒf[ƒ^‚ð‚à‚Â
+    //æŠ€ã®ãƒžã‚¹ã‚¿ãƒ¼ãƒ‡ãƒ¼ã‚¿ã‚’ã‚‚ã¤
 
-    //Unit‚ªŽQÆ‚·‚é‚©‚çpublic
-    public MoveBase moveBase { get; set; }
-   // public int mPoint {  get; set; }
+    //UnitãŒå‚ç…§ã™ã‚‹ã‹ã‚‰ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£
+    private MoveBase moveBase;
+    // public int mPoint {  get; set; }
 
-    //‰ŠúÝ’è
-  
+    //åˆæœŸè¨­å®š
+
     public Move(MoveBase mBase)
     {
-        moveBase = mBase;
+        MoveBase = mBase;
       // mPoint = mBase.MagicPoint;
     }
 
+    public MoveBase MoveBase { get => moveBase; set => moveBase = value; }
 }

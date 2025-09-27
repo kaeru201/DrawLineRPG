@@ -2,33 +2,38 @@ using NUnit.Framework;
 using UnityEngine;
 using System.Collections.Generic;
 
-//ƒŒƒxƒ‹‚É‰‚¶‚½ƒXƒe[ƒ^ƒX‚ğˆµ‚¤ƒNƒ‰ƒX
+//ãƒ¬ãƒ™ãƒ«ã«å¿œã˜ãŸã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚’æ‰±ã†ã‚¯ãƒ©ã‚¹
 public class Unit
 {
 
-    //PlayerHud‚Ì‚ÉunitBase‚©‚çUnit‚ğQÆ‚·‚é‚½‚ß‚Épublic (ƒvƒƒoƒeƒB)
-    [SerializeField] public UnitBase unitBase {get;set;}
-    public int level { get; set; }
+    //PlayerHudã®æ™‚ã«unitBaseã‹ã‚‰Unitã‚’å‚ç…§ã™ã‚‹ãŸã‚ã«public (ãƒ—ãƒ­ãƒãƒ†ã‚£)
+    [SerializeField] private UnitBase unitBase;
+    private int level;
 
-    public int hp { get; set; }
-    //g‚¦‚é‹Z
-    public List<Move> Moves { get; set; }
+    private int hp;
+    //ä½¿ãˆã‚‹æŠ€
+    private List<Move> moves;
 
-    //¶¬‚Ì‰Šúİ’è
+    public UnitBase UnitBase { get => unitBase; set => unitBase = value; }
+    public int Level { get => level; set => level = value; }
+    public int Hp { get => hp; set => hp = value; }
+    public List<Move> Moves { get => moves; set => moves = value; }
+
+    //ç”Ÿæˆæ™‚ã®åˆæœŸè¨­å®š
     public Unit(UnitBase uBase, int uLevel) 
-    {
-        unitBase = uBase;
-        level = uLevel;
-        hp = MaxHP;@//Ql‚É‚µ‚½‘—¿‚¾‚ÆuBase.MaxHP‚É‚µ‚Ä‚¢‚½‚æ‚­‚í‚©‚ç‚È‚¢‚µAƒoƒO‚Á‚Ä‚½‚Ì‚Å‚»‚Ì‚Ü‚Ü‚±‚ÌƒNƒ‰ƒX‚ÌMaxHP‚ğQÆ‚µ‚Ä‚¢‚é
+            {
+        UnitBase = uBase;
+        Level = uLevel;
+        Hp = MaxHP;ã€€//å‚è€ƒã«ã—ãŸè³‡æ–™ã ã¨uBase.MaxHPã«ã—ã¦ã„ãŸã‚ˆãã‚ã‹ã‚‰ãªã„ã—ã€ãƒã‚°ã£ã¦ãŸã®ã§ãã®ã¾ã¾ã“ã®ã‚¯ãƒ©ã‚¹ã®MaxHPã‚’å‚ç…§ã—ã¦ã„ã‚‹
 
         Moves = new List<Move>();
 
-        //Šo‚¦‚é‹Z‚ÌƒŒƒxƒ‹ˆÈã‚È‚çAMoves‚É’Ç‰Á
+        //è¦šãˆã‚‹æŠ€ã®ãƒ¬ãƒ™ãƒ«ä»¥ä¸Šãªã‚‰ã€Movesã«è¿½åŠ 
         foreach (LearnableMove learnableMove in uBase.Learnablemoves)
         {
-            if(level >= learnableMove.Level)
+            if(Level >= learnableMove.Level)
             {
-                //‹Z‚ğŠo‚¦‚é
+                //æŠ€ã‚’è¦šãˆã‚‹
                 Moves.Add(new Move(learnableMove.MoveBase));
             }
 
@@ -39,23 +44,23 @@ public class Unit
     
 
 
-    //ƒŒƒxƒ‹‚É‰‚¶‚½ƒXƒe[ƒ^ƒX‚ğ•Ô‚·ƒvƒƒpƒeƒB
-    //UnitBase‚ÌƒvƒƒpƒeƒB‚Élevel‚ğŠ|‚¯‚ÄãŒÀ‚Ì100‚ğŠ„‚é@5‚Í‚æ‚­‚í‚©‚ç‚È‚¢‚©‚çÁ‚·‚©‚à
+    //ãƒ¬ãƒ™ãƒ«ã«å¿œã˜ãŸã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚’è¿”ã™ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£
+    //UnitBaseã®ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã«levelã‚’æ›ã‘ã¦ä¸Šé™ã®100ã‚’å‰²ã‚‹ã€€5ã¯ã‚ˆãã‚ã‹ã‚‰ãªã„ã‹ã‚‰æ¶ˆã™ã‹ã‚‚
     public int MaxHP
     {
-        get => Mathf.FloorToInt((unitBase.MaxHP * level) / 100f) + 10;
+        get => Mathf.FloorToInt((UnitBase.MaxHP * Level) / 100f) + 10;
     }
     public int Attack
     {
-        get => Mathf.FloorToInt((unitBase.Attack * level) / 100f) + 5;
+        get => Mathf.FloorToInt((UnitBase.Attack * Level) / 100f) + 5;
     }
     public int Defense
     {
-        get => Mathf.FloorToInt((unitBase.Defense * level) / 100f) + 5;
+        get => Mathf.FloorToInt((UnitBase.Defense * Level) / 100f) + 5;
     }
     public int Speed
     {
-        get => Mathf.FloorToInt((unitBase.Speed * level) / 100f) + 5;
+        get => Mathf.FloorToInt((UnitBase.Speed * Level) / 100f) + 5;
     }
-
+   
 }

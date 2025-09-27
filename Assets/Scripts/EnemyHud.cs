@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;
 
-//“G‚Ìƒ†ƒjƒbƒg‚ÌHud
+//æ•µã®ãƒ¦ãƒ‹ãƒƒãƒˆã®Hud
 public class EnemyHud : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI nameText;
@@ -9,8 +9,8 @@ public class EnemyHud : MonoBehaviour
 
 public void SetData(Unit unit)
     {
-        nameText.text = unit.unitBase.Name;
-        levelText.text = "LV" + unit.level;
+        nameText.text = unit.UnitBase.Name;
+        levelText.text = "LV" + unit.Level;
     }
     
     
