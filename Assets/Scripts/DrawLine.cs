@@ -48,6 +48,8 @@ public class DrawLine : MonoBehaviour
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 8f));
 
 
+        
+
         if (Input.GetMouseButtonDown(0))
         {
 
@@ -83,10 +85,10 @@ public class DrawLine : MonoBehaviour
                 //ベクトル
                 Vector3 direction = (mousePos - lastAddPoint).normalized;
 
-                //
+                //しきい値の大きさのベクトル分の最後の点を記憶して代わりにそこに点を引く
                 Vector3 newPoint = lastAddPoint + direction * 0.1f;
 
-                //
+                
                 float lengthToAdd = Vector3.Distance(lastAddPoint, newPoint);
 
 
@@ -122,6 +124,7 @@ public class DrawLine : MonoBehaviour
     //線を引くメソッド(点)
     void AddLine(Vector3 point)
     {
+        
         lineRenderer.positionCount = posCount + 1;//繰り返す度に点を増やしていく
         lineRenderer.SetPosition(posCount, point);//一つ前の点から次の点に線を書く
         posCount++;
