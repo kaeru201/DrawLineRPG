@@ -12,36 +12,36 @@ public class Unit
 
     private int hp;
     //使える技
-    private List<Move> moves;
+    private List<Skill> skills;
 
     public UnitBase UnitBase { get => unitBase; set => unitBase = value; }
     public int Level { get => level; set => level = value; }
     public int Hp { get => hp; set => hp = value; }
-    public List<Move> Moves { get => moves; set => moves = value; }
+    public List<Skill> Skills { get => skills; set => skills = value; }
+
+
 
     //生成時の初期設定
-    public Unit(UnitBase uBase, int uLevel) 
-            {
+    public Unit(UnitBase uBase, int uLevel)
+    {
         UnitBase = uBase;
         Level = uLevel;
-        Hp = MaxHP;　//参考にした資料だとuBase.MaxHPにしていたよくわからないし、バグってたのでそのままこのクラスのMaxHPを参照している
+        Hp = MaxHP; //参考にした資料だとuBase.MaxHPにしていたよくわからないし、バグってたのでそのままこのクラスのMaxHPを参照している
 
-        Moves = new List<Move>();
+        Skills = new List<Skill>();
 
-        //覚える技のレベル以上なら、Movesに追加
-        foreach (LearnableMove learnableMove in uBase.Learnablemoves)
+
+        foreach (LearnableSkill learnableSkill in uBase.LearnableSkills)
         {
-            if(Level >= learnableMove.Level)
+            if (Level >= learnableSkill.Level)
             {
-                //技を覚える
-                Moves.Add(new Move(learnableMove.MoveBase));
+                Skills.Add(new Skill(learnableSkill.SkillBase));
             }
-
         }
 
     }
 
-    
+
 
 
     //レベルに応じたステータスを返すプロパティ
@@ -62,5 +62,4 @@ public class Unit
     {
         get => Mathf.FloorToInt((UnitBase.Speed * Level) / 100f) + 5;
     }
-   
 }

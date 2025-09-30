@@ -2,15 +2,33 @@ using UnityEngine;
 
 public class UIController : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
+    [SerializeField] GameObject skillSelection;
+    [SerializeField] GameObject itemSelection;
+    [SerializeField] GameObject escape;
+   // [SerializeField] GameObject attackButton;
+
     void Start()
     {
-        
+
+        // skillSelection.SetActive(true);
     }
 
-    // Update is called once per frame
+
     void Update()
     {
-        
+        //攻撃ボタンを押したらそのキャラが持っているSkillが表示されているSkillUI表示して一番最初のUIを消す
+        // Instantiate(skillSelection);
+
+    }
+
+    public void OnSkillButtonClick()
+    {
+        skillSelection.SetActive(true);
+    }
+
+    public void OnItemButtonClick()
+    {
+        itemSelection.SetActive(true);
     }
 }

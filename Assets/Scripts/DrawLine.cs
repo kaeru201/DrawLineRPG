@@ -8,12 +8,11 @@ using UnityEngine;
 public class DrawLine : MonoBehaviour
 {
     BattleManager battleManager;
-    MoveBase moveBase;
+    SkillBase skillBase;
     [SerializeField] LineRenderer lineRenderer;
     [SerializeField] Transform startPosition;
 
 
-    // bool isTrigerPoint = false;//プレバフ化した攻撃Bollでつける変数を一旦つけてる
     [SerializeField] float maxLineRange = 10f;//本当はskillから参照してくる変数
     int posCount;//
     [SerializeField] bool isDrawing = false;
@@ -47,8 +46,11 @@ public class DrawLine : MonoBehaviour
         //マウスのスクリーン座標をワールド座標に変換する
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 8f));
 
-
+        //mousePosを枠から出ないように
+        mousePos.x = Mathf.Clamp(mousePos.x, -28.28f, -14.733f);
+        mousePos.y = Mathf.Clamp(mousePos.y, -2.279f, 2.307f);
         
+
 
         if (Input.GetMouseButtonDown(0))
         {
@@ -88,7 +90,7 @@ public class DrawLine : MonoBehaviour
                 //しきい値の大きさのベクトル分の最後の点を記憶して代わりにそこに点を引く
                 Vector3 newPoint = lastAddPoint + direction * 0.1f;
 
-                
+
                 float lengthToAdd = Vector3.Distance(lastAddPoint, newPoint);
 
 
@@ -124,7 +126,7 @@ public class DrawLine : MonoBehaviour
     //線を引くメソッド(点)
     void AddLine(Vector3 point)
     {
-        
+
         lineRenderer.positionCount = posCount + 1;//繰り返す度に点を増やしていく
         lineRenderer.SetPosition(posCount, point);//一つ前の点から次の点に線を書く
         posCount++;
@@ -132,14 +134,6 @@ public class DrawLine : MonoBehaviour
     }
 
 
-    //一旦ここに書いてるけど、プレハブの線を出すスクリプトに書く内容かも　あとタグで探したくない
-    //void OnCollisionEnter(Collision collision)
-    //{
-    //    //自分以外のPointに触れたら　応急処置で始点をPointからずらす
-    //    if (collision.gameObject.CompareTag("Point"))
-    //    {
-    //        isTrigerPoint = true;
-    //    }
-    //}
+
 
 }

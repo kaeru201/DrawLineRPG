@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class BattleSystem : MonoBehaviour
 {
-    //‚Æ‚è‚ ‚¦‚¸ƒCƒ“ƒXƒyƒNƒ^[ã‚ÅƒAƒ^ƒbƒ`
+    //ã¨ã‚Šã‚ãˆãšã‚¤ãƒ³ã‚¹ãƒšã‚¯ã‚¿ãƒ¼ä¸Šã§ã‚¢ã‚¿ãƒƒãƒ
     [SerializeField] BattleUnit player1Unit;
     [SerializeField] BattleUnit player2Unit;
     [SerializeField] BattleUnit player3Unit;
@@ -11,7 +11,7 @@ public class BattleSystem : MonoBehaviour
     [SerializeField] BattleUnit Enemy3Unit;
 
 
-    //‚Æ‚è‚ ‚¦‚¸ƒCƒ“ƒXƒyƒNƒ^[ã‚ÅƒAƒ^ƒbƒ`
+    //ã¨ã‚Šã‚ãˆãšã‚¤ãƒ³ã‚¹ãƒšã‚¯ã‚¿ãƒ¼ä¸Šã§ã‚¢ã‚¿ãƒƒãƒ
     [SerializeField] PlayerHud player1Hud;
     [SerializeField] PlayerHud player2Hud;
     [SerializeField] PlayerHud player3Hud;
@@ -23,7 +23,7 @@ public class BattleSystem : MonoBehaviour
 
     private void Start()
     {
-        player1Unit.SetUp();//ƒ‚ƒ“ƒXƒ^[‚Ì¶¬
+        player1Unit.SetUp();//ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®ç”Ÿæˆ
         player2Unit.SetUp();
         player3Unit.SetUp();
         Enemy1Unit.SetUp();
@@ -31,12 +31,12 @@ public class BattleSystem : MonoBehaviour
         Enemy3Unit.SetUp();
        
 
-        player1Hud.SetData(player1Unit.unit);//ƒvƒŒƒCƒ„[‚ÌHud‚ğo‚·
-        player2Hud.SetData(player2Unit.unit);
-        player3Hud.SetData(player3Unit.unit);
-        Enemy1Hud.SetData(Enemy1Unit.unit);
-        Enemy2Hud.SetData(Enemy2Unit.unit);
-        Enemy3Hud.SetData(Enemy3Unit.unit);
+        player1Hud.SetData(player1Unit.Unit);//ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®Hudã‚’å‡ºã™
+        player2Hud.SetData(player2Unit.Unit);
+        player3Hud.SetData(player3Unit.Unit);
+        Enemy1Hud.SetData(Enemy1Unit.Unit);
+        Enemy2Hud.SetData(Enemy2Unit.Unit);
+        Enemy3Hud.SetData(Enemy3Unit.Unit);
         
     }
 

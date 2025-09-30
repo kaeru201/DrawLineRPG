@@ -9,11 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72986b7b6be717a448c829ef06ae07df, type: 3}
-  m_Name: move1
+  m_Script: {fileID: 11500000, guid: d8766d9520f195b4280a611dd2b6fc01, type: 3}
+  m_Name: TestSkill
   m_EditorClassIdentifier: 
-  name: "\u65AC\u308A\u304B\u304B\u308B"
-  description: "\u9069\u5F53"
-  type: 1
-  power: 50
-  magicPoint: 3
+  name: "\u306A\u3050\u308B"
+  description: "\u306A\u3050\u308B"
+  skilType: 0
+  power: 10
+  penetrationPower: 1
+  maxLineRange: 5

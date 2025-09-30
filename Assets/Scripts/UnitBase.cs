@@ -3,31 +3,31 @@ using UnityEngine;
 using System.Collections.Generic;
 using System;
 
-//ƒf[ƒ^‚ğŠÇ—‚·‚é‚½‚ß‚ÉScriptableObject
-//Unit‚ÌŠî–{“I‚Èİ’è
+//ãƒ‡ãƒ¼ã‚¿ã‚’ç®¡ç†ã™ã‚‹ãŸã‚ã«ScriptableObject
+//Unitã®åŸºæœ¬çš„ãªè¨­å®š
 [CreateAssetMenu]
 public class UnitBase : ScriptableObject
 {
-    //Unit‚ÌŠî–{“I‚Èî•ñ‚ğ“ü‚ê‚é•Ï”
-    //–¼‘OAà–¾A‰æ‘œA‘®«AƒXƒe[ƒ^ƒX
+    //Unitã®åŸºæœ¬çš„ãªæƒ…å ±ã‚’å…¥ã‚Œã‚‹å¤‰æ•°
+    //åå‰ã€èª¬æ˜ã€ç”»åƒã€å±æ€§ã€ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹
 
-    [SerializeField] new string name; //name‚ªObject.name‚Æ”í‚é‚©‚çˆê‰new‚ğ‚Â‚¯‚é
+    [SerializeField] new string name; //nameãŒObject.nameã¨è¢«ã‚‹ã‹ã‚‰ä¸€å¿œnewã‚’ã¤ã‘ã‚‹
     [TextArea]
     [SerializeField] string description;
 
     [SerializeField] Sprite sprite;
-    [SerializeField] Type type; //—ñ‹“TypeŒ^‚Ìtype•Ï”
+    [SerializeField] Type type; //åˆ—æŒ™Typeå‹ã®typeå¤‰æ•°
 
-    //ƒXƒe[ƒ^ƒX (‘Ì—ÍAUŒ‚—ÍA–hŒä—ÍA‘¬‚³)
+    //ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ (ä½“åŠ›ã€æ”»æ’ƒåŠ›ã€é˜²å¾¡åŠ›ã€é€Ÿã•)
     [SerializeField] int maxHP;
     [SerializeField] int attack;
     [SerializeField] int defense;
     [SerializeField] int speed;
 
-    //Šo‚¦‚é‹Z list
-    [SerializeField] List<LearnableMove> learnablemoves;
+    //è¦šãˆã‚‹æŠ€ list
+    [SerializeField] List<LearnableSkill> learnableSkills;
 
-    //’l‚Ìæ“¾‚Í‚µ‚½‚¢‚¯‚Ç•ÏX‚Í‚³‚ê‚È‚¢ƒvƒƒpƒeƒB
+    //å€¤ã®å–å¾—ã¯ã—ãŸã„ã‘ã©å¤‰æ›´ã¯ã•ã‚Œãªã„ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£
     public string Name { get => name; }
     public string Description { get => description; }
     public Sprite Sprite { get => sprite; }
@@ -39,12 +39,13 @@ public class UnitBase : ScriptableObject
     public int Defense { get => defense; }
     public int Speed { get => speed; }
 
-    public List<LearnableMove> Learnablemoves { get => learnablemoves; }
+    public List<LearnableSkill> LearnableSkills { get => learnableSkills; }
+
 
 }
 
 
-//—ñ‹“Œ^‚Ì‘®«(‘®«–³‚µA‰ÎA…A‘AŒõAˆÅ)
+//åˆ—æŒ™å‹ã®å±æ€§(å±æ€§ç„¡ã—ã€ç«ã€æ°´ã€è‰ã€å…‰ã€é—‡)
 public enum Type
 {
     none,
@@ -55,13 +56,14 @@ public enum Type
     Darkness,
 }
 
-//‚Ç‚ÌƒŒƒxƒ‹‚Å‚Ç‚Ì‹Z‚ğŠo‚¦‚é‚Ì‚©
+
+//ã©ã®ãƒ¬ãƒ™ãƒ«ã§ã©ã®æŠ€ã‚’è¦šãˆã‚‹ã®ã‹
 [Serializable]
-public class LearnableMove
+public class LearnableSkill
 {
-    [SerializeField] MoveBase moveBase;
+    [SerializeField] SkillBase skillBase;
     [SerializeField] int level;
 
-    public MoveBase MoveBase { get => moveBase; }
+    public SkillBase SkillBase { get => skillBase; }
     public int Level { get => level; }
 }
