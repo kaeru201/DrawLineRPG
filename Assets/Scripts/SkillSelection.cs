@@ -1,16 +1,42 @@
+using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class SkillSelection : MonoBehaviour
+
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    [SerializeField] Unit aunit;
+
+
+    [SerializeField] TextMeshProUGUI skill1;
+    //[SerializeField] TextMeshProUGUI skill2;
+    //[SerializeField] TextMeshProUGUI skill3;
+    //[SerializeField] TextMeshProUGUI skill4;
+    //[SerializeField] TextMeshProUGUI skill5;
+    //[SerializeField] TextMeshProUGUI skill6;
+
+    //[SerializeField] PlayerHud player1Hud;
+
+    public void SetSkillName(List<Skill> skills)
     {
+
+        skill1.text = skills[0].Skillbase.Name;
         
+
     }
 
-    // Update is called once per frame
+
+
+    void Start()
+    {
+
+    }
+
+
+
+
     void Update()
     {
-        
+
     }
 }

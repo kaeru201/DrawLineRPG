@@ -6,18 +6,20 @@ public class BattleSystem : MonoBehaviour
     [SerializeField] BattleUnit player1Unit;
     [SerializeField] BattleUnit player2Unit;
     [SerializeField] BattleUnit player3Unit;
-    [SerializeField] BattleUnit Enemy1Unit;
-    [SerializeField] BattleUnit Enemy2Unit;
-    [SerializeField] BattleUnit Enemy3Unit;
+    [SerializeField] BattleUnit enemy1Unit;
+    [SerializeField] BattleUnit enemy2Unit;
+    [SerializeField] BattleUnit enemy3Unit;
 
 
     //とりあえずインスペクター上でアタッチ
     [SerializeField] PlayerHud player1Hud;
     [SerializeField] PlayerHud player2Hud;
     [SerializeField] PlayerHud player3Hud;
-    [SerializeField] EnemyHud Enemy1Hud;
-    [SerializeField] EnemyHud Enemy2Hud;
-    [SerializeField] EnemyHud Enemy3Hud;
+    [SerializeField] EnemyHud enemy1Hud;
+    [SerializeField] EnemyHud enemy2Hud;
+    [SerializeField] EnemyHud enemy3Hud;
+
+    [SerializeField] SkillSelection player1Skill;
 
 
 
@@ -26,18 +28,21 @@ public class BattleSystem : MonoBehaviour
         player1Unit.SetUp();//モンスターの生成
         player2Unit.SetUp();
         player3Unit.SetUp();
-        Enemy1Unit.SetUp();
-        Enemy2Unit.SetUp();
-        Enemy3Unit.SetUp();
+        enemy1Unit.SetUp();
+        enemy2Unit.SetUp();
+        enemy3Unit.SetUp();
        
 
         player1Hud.SetData(player1Unit.Unit);//プレイヤーのHudを出す
         player2Hud.SetData(player2Unit.Unit);
         player3Hud.SetData(player3Unit.Unit);
-        Enemy1Hud.SetData(Enemy1Unit.Unit);
-        Enemy2Hud.SetData(Enemy2Unit.Unit);
-        Enemy3Hud.SetData(Enemy3Unit.Unit);
-        
+        enemy1Hud.SetData(enemy1Unit.Unit);
+        enemy2Hud.SetData(enemy2Unit.Unit);
+        enemy3Hud.SetData(enemy3Unit.Unit);
+
+         player1Skill.SetSkillName(player1Unit.Unit.Skills);
+
+        Debug.Log(player1Unit.Unit.Skills.Count);
     }
 
 }
