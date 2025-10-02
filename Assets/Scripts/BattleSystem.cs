@@ -21,7 +21,9 @@ public class BattleSystem : MonoBehaviour
 
     [SerializeField] SkillSelection player1Skill;
 
+    public int skill1Range;
 
+    //public int Skill1Range { get => skill1Range; }
 
     private void Start()
     {
@@ -40,9 +42,19 @@ public class BattleSystem : MonoBehaviour
         enemy2Hud.SetData(enemy2Unit.Unit);
         enemy3Hud.SetData(enemy3Unit.Unit);
 
-         player1Skill.SetSkillName(player1Unit.Unit.Skills);
+         player1Skill.SetSkill(player1Unit.Unit.Skills);
 
-        Debug.Log(player1Unit.Unit.Skills.Count);
+       
+
+
+
+
+    }
+
+    private void Update()
+    {
+       // Debug.Log(skill1Range);
+
     }
 
 }

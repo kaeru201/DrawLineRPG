@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8766d9520f195b4280a611dd2b6fc01, type: 3}
   m_Name: TestSkill 1
   m_EditorClassIdentifier: 
-  name: "\u306A\u3050\u308B"
+  name: "\u306A\u3050\u308B 5m"
   description: "\u306A\u3050\u308B"
   skilType: 0
   power: 10

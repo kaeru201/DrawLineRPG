@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8766d9520f195b4280a611dd2b6fc01, type: 3}
   m_Name: TestSkill
   m_EditorClassIdentifier: 
-  name: "\u306A\u3050\u308B"
+  name: "\u306A\u3050\u308B 1m"
   description: "\u306A\u3050\u308B"
   skilType: 0
   power: 10
   penetrationPower: 1
-  maxLineRange: 5
+  maxLineRange: 1

@@ -1,30 +1,38 @@
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class SkillSelection : MonoBehaviour
 
 {
-    [SerializeField] Unit aunit;
+    
 
+    [SerializeField] List<TextMeshProUGUI> skill;
 
-    [SerializeField] TextMeshProUGUI skill1;
-    //[SerializeField] TextMeshProUGUI skill2;
-    //[SerializeField] TextMeshProUGUI skill3;
-    //[SerializeField] TextMeshProUGUI skill4;
-    //[SerializeField] TextMeshProUGUI skill5;
-    //[SerializeField] TextMeshProUGUI skill6;
+    [SerializeField] SkillButton skillButton;
+   
 
-    //[SerializeField] PlayerHud player1Hud;
-
-    public void SetSkillName(List<Skill> skills)
+    //スキルの情報を入れるメソッド
+    public void SetSkill(List<Skill> skills)
     {
+        for (int i = 0; i < skills.Count; i++)
+        {
+            skill[i].text = "・" + skills[i].Skillbase.Name;
 
-        skill1.text = skills[0].Skillbase.Name;
-        
+            skillButton.Skill[i]  = skills[i].Skillbase.MaxLineRange; 
 
+           
+
+    
+
+
+
+           
+        }
     }
 
+    
 
 
     void Start()
