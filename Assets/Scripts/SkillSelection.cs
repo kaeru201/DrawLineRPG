@@ -6,7 +6,7 @@ using UnityEngine;
 public class SkillSelection : MonoBehaviour
 
 {
-    
+    List<int> range;
 
     [SerializeField] List<TextMeshProUGUI> skill;
 
@@ -18,17 +18,15 @@ public class SkillSelection : MonoBehaviour
     {
         for (int i = 0; i < skills.Count; i++)
         {
-            skill[i].text = "・" + skills[i].Skillbase.Name;
+            
+            
+                skill[i].text = "・" + skills[i].Skillbase.Name;
 
-            skillButton.Skill[i]  = skills[i].Skillbase.MaxLineRange; 
+                skillButton.skill[i]  = skills[i].Skillbase.MaxLineRange; 
 
-           
+                //range[i] = skills[i].Skillbase.MaxLineRange; 
+            
 
-    
-
-
-
-           
         }
     }
 

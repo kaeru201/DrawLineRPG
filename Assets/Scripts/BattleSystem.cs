@@ -21,7 +21,7 @@ public class BattleSystem : MonoBehaviour
 
     [SerializeField] SkillSelection player1Skill;
 
-    public int skill1Range;
+    
 
     //public int Skill1Range { get => skill1Range; }
 

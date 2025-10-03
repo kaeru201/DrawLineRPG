@@ -20,12 +20,7 @@ public class DrawLine : MonoBehaviour
     float currentLineRange;//現在の書いた長さ
     Vector3 lastAddPoint;//最後に追加した点を記憶しておく変数
 
-
-
-
-
-
-
+    public float MaxLineRange { get => maxLineRange; set => maxLineRange = value; }
 
     void Start()
     {
@@ -71,7 +66,7 @@ public class DrawLine : MonoBehaviour
         //左クリック押し続けている間かつisDrawがtrueなら
         if (Input.GetMouseButton(0) && isDrawing)
         {
-            if (currentLineRange >= maxLineRange)
+            if (currentLineRange >= MaxLineRange)
             {
 
                 isDrawing = false;

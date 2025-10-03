@@ -4,29 +4,35 @@ using UnityEngine.UI;
 
 public class SkillButton : MonoBehaviour
 {
-    [SerializeField] GameObject skillButton1;
-    [SerializeField] GameObject skillButton2;
+   
 
-    List<int> skill;
+    public List<int> skill;
+    
 
     [SerializeField] BattleSystem battleSystem;
+    [SerializeField] DrawLine player1;
 
-    public List<int> Skill { get => skill; set => skill = value; }
-
+   
+    public void DrowLine()
+    {
+        //player1のDrowLineを起動
+        player1.enabled = true;
+        player1.MaxLineRange = skill[1];
+    }
 
     //合ってるか分からないけど
     //もし押したのがスキルボタン1なら配列0番目のMaxLineRageの値を代入
-    private void OnMouseDown()
-    {
-       if(skillButton1)
-        {
-            int x = Skill[0];
-        }
-        if (skillButton2)
-        {
-            int x = skill[1];
-        }
-    }
+    //private void OnMouseDown()
+    //{
+    //   if(skillButton1)
+    //    {
+    //        int x = Skill[0];
+    //    }
+    //    if (skillButton2)
+    //    {
+    //        int x = skill[1];
+    //    }
+    //}
 
 
 
@@ -40,7 +46,7 @@ public class SkillButton : MonoBehaviour
     void Update()
     {
         //iを押したらiのレンジを参照して線を引く(DrawLineクラス起動)
-
+       
         
     }
 }
