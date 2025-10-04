@@ -26,9 +26,9 @@ public class SkillSelection : MonoBehaviour
 
             // skillButton.skill[i]  = skills[i].Skillbase.MaxLineRange; 
 
-            intelligence.Skill[i] = skills[i].Skillbase.MaxLineRange;
+            intelligence.SkillRange[i] = skills[i].Skillbase.MaxLineRange;
 
-                //range[i] = skills[i].Skillbase.MaxLineRange; 
+            intelligence.SkillDescription[i] = skills[i].Skillbase.Description;    
             
 
         }

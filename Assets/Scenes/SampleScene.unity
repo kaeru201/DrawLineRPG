@@ -1783,8 +1783,6 @@ GameObject:
   - component: {fileID: 286176897}
   - component: {fileID: 286176896}
   - component: {fileID: 286176898}
-  - component: {fileID: 286176900}
-  - component: {fileID: 286176899}
   m_Layer: 0
   m_Name: Skill (2)
   m_TagString: Untagged
@@ -1922,111 +1920,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee7a76a6719179447910b210f5d5b683, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skill: 000000000000000000000000000000000000000000000000
   battleSystem: {fileID: 716765375}
   player1: {fileID: 171655042}
---- !u!114 &286176899
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 286176894}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Navigation:
-    m_Mode: 3
-    m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
-  m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
-    m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
-  m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
-  m_AnimationTriggers:
-    m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highlighted
-    m_PressedTrigger: Pressed
-    m_SelectedTrigger: Selected
-    m_DisabledTrigger: Disabled
-  m_Interactable: 1
-  m_TargetGraphic: {fileID: 286176896}
-  m_OnClick:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 286176898}
-        m_TargetAssemblyTypeName: SkillButton, Assembly-CSharp
-        m_MethodName: DrowLine
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!61 &286176900
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 286176894}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0.16719055, y: 0.6660538}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Size: {x: 212.46933, y: 60.94432}
-  m_EdgeRadius: 0
+  intelligence: {fileID: 444233897}
+  instruction: {fileID: 1786095562}
 --- !u!1 &310502077
 GameObject:
   m_ObjectHideFlags: 0
@@ -2515,6 +2412,7 @@ GameObject:
   - component: {fileID: 444233894}
   - component: {fileID: 444233896}
   - component: {fileID: 444233895}
+  - component: {fileID: 444233897}
   m_Layer: 0
   m_Name: DrawLinePlase
   m_TagString: Untagged
@@ -2580,6 +2478,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 444233893}
   m_CullTransparentMesh: 1
+--- !u!114 &444233897
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 444233893}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f6fde46211f91f4ebfddc00f455fd5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillButton: {fileID: 0}
+  skillRange: 000000000000000000000000000000000000000000000000
+  skillDescription:
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
 --- !u!1 &452939535
 GameObject:
   m_ObjectHideFlags: 0
@@ -2863,6 +2782,7 @@ GameObject:
   - component: {fileID: 489941483}
   - component: {fileID: 489941485}
   - component: {fileID: 489941484}
+  - component: {fileID: 489941486}
   m_Layer: 0
   m_Name: Skill (4)
   m_TagString: Untagged
@@ -2988,6 +2908,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 489941482}
   m_CullTransparentMesh: 1
+--- !u!114 &489941486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 489941482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee7a76a6719179447910b210f5d5b683, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  battleSystem: {fileID: 716765375}
+  player1: {fileID: 171655042}
+  intelligence: {fileID: 444233897}
+  instruction: {fileID: 1786095562}
 --- !u!1 &495678271
 GameObject:
   m_ObjectHideFlags: 0
@@ -3782,6 +3718,7 @@ GameObject:
   - component: {fileID: 714286605}
   - component: {fileID: 714286607}
   - component: {fileID: 714286606}
+  - component: {fileID: 714286608}
   m_Layer: 0
   m_Name: Skill (3)
   m_TagString: Untagged
@@ -3907,6 +3844,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 714286604}
   m_CullTransparentMesh: 1
+--- !u!114 &714286608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 714286604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee7a76a6719179447910b210f5d5b683, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  battleSystem: {fileID: 716765375}
+  player1: {fileID: 171655042}
+  intelligence: {fileID: 444233897}
+  instruction: {fileID: 1786095562}
 --- !u!1 &716765373
 GameObject:
   m_ObjectHideFlags: 0
@@ -5022,6 +4975,7 @@ GameObject:
   - component: {fileID: 1040175959}
   - component: {fileID: 1040175961}
   - component: {fileID: 1040175960}
+  - component: {fileID: 1040175962}
   m_Layer: 0
   m_Name: Skill (5)
   m_TagString: Untagged
@@ -5147,6 +5101,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1040175958}
   m_CullTransparentMesh: 1
+--- !u!114 &1040175962
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1040175958}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee7a76a6719179447910b210f5d5b683, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  battleSystem: {fileID: 716765375}
+  player1: {fileID: 171655042}
+  intelligence: {fileID: 444233897}
+  instruction: {fileID: 1786095562}
 --- !u!1 &1063377622
 GameObject:
   m_ObjectHideFlags: 0
@@ -5936,8 +5906,6 @@ GameObject:
   - component: {fileID: 1378394733}
   - component: {fileID: 1378394732}
   - component: {fileID: 1378394734}
-  - component: {fileID: 1378394735}
-  - component: {fileID: 1378394736}
   m_Layer: 0
   m_Name: Skill (1)
   m_TagString: Untagged
@@ -6075,111 +6043,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee7a76a6719179447910b210f5d5b683, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skill: 00000000000000000000000000000000000000000000000000000000
   battleSystem: {fileID: 716765375}
   player1: {fileID: 171655042}
---- !u!114 &1378394735
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1378394730}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Navigation:
-    m_Mode: 3
-    m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
-  m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
-    m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
-  m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
-  m_AnimationTriggers:
-    m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highlighted
-    m_PressedTrigger: Pressed
-    m_SelectedTrigger: Selected
-    m_DisabledTrigger: Disabled
-  m_Interactable: 1
-  m_TargetGraphic: {fileID: 1378394732}
-  m_OnClick:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1378394734}
-        m_TargetAssemblyTypeName: SkillButton, Assembly-CSharp
-        m_MethodName: DrowLine
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!61 &1378394736
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1378394730}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0.000118255615, y: 6.1770744}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Size: {x: 209.89722, y: 67.26312}
-  m_EdgeRadius: 0
+  intelligence: {fileID: 444233897}
+  instruction: {fileID: 1786095562}
 --- !u!1 &1438374517
 GameObject:
   m_ObjectHideFlags: 0
@@ -7839,6 +7706,7 @@ GameObject:
   - component: {fileID: 1786391444}
   - component: {fileID: 1786391446}
   - component: {fileID: 1786391445}
+  - component: {fileID: 1786391447}
   m_Layer: 0
   m_Name: Skill (6)
   m_TagString: Untagged
@@ -7964,6 +7832,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1786391443}
   m_CullTransparentMesh: 1
+--- !u!114 &1786391447
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1786391443}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee7a76a6719179447910b210f5d5b683, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  battleSystem: {fileID: 716765375}
+  player1: {fileID: 171655042}
+  intelligence: {fileID: 444233897}
+  instruction: {fileID: 1786095562}
 --- !u!1 &1819301298
 GameObject:
   m_ObjectHideFlags: 0
@@ -9605,6 +9489,7 @@ MonoBehaviour:
   - {fileID: 1040175960}
   - {fileID: 1786391445}
   skillButton: {fileID: 1378394734}
+  intelligence: {fileID: 444233897}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

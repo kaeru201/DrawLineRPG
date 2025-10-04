@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TestSkill 1
   m_EditorClassIdentifier: 
   name: "\u306A\u3050\u308B 5m"
-  description: "\u306A\u3050\u308B"
+  description: "\u306A\u3050\u308B1"
   skilType: 0
   power: 10
   penetrationPower: 1

@@ -6,9 +6,18 @@ using System.Collections.Generic;
 //DrawLinePlaseにアタッチしておく
 public class DrawIntelligence : MonoBehaviour
 {
-    [SerializeField] int[] skill = new int[6];
+    [SerializeField] SkillButton skillButton;
 
-    public int[] Skill { get => skill; set => skill = value; }
+    [SerializeField] int[] skillRange = new int[6];
+    [SerializeField] string[] skillDescription = new string[6];
+
+    
+
+
+    public int[] SkillRange { get => skillRange; set => skillRange = value; }
+    public string[] SkillDescription { get => skillDescription; set => skillDescription = value; }
+
+    //swich
 
     void Start()
     {
