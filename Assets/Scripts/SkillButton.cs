@@ -17,9 +17,9 @@ public class SkillButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
     [SerializeField] DrawIntelligence intelligence;
     [SerializeField] TextMeshProUGUI instruction;
 
-    int number;//なんの技が選ばれたかを判別する変数
 
-    public int Number { get => number; set => number = value; }
+
+
 
     void Start()
     {
@@ -53,35 +53,33 @@ public class SkillButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
     }
 
     //引数になにか
-    public void DrawLine()
+    public void DrawLine()//あとでメソッド名変更
     {
+
+
         //player1のDrowLineを起動
         player1.enabled = true;
 
+        //どのスキルをクリックしたかによって識別変数を変えて、クリックしたスキルの情報を覚えておく。
         switch (gameObject.name)
         {
             case ("Skill (1)"):
-                player1.MaxLineRange = intelligence.SkillRange[0];
-                //攻撃力、貫通力も持っていたい。
-                number = 1;
-                
+                intelligence.Number = 1;
                 break;
             case ("Skill (2)"):
-                player1.MaxLineRange = intelligence.SkillRange[1];
-
-                number = 2;
+                intelligence.Number = 2;
                 break;
             case ("Skill (3)"):
-                player1.MaxLineRange = intelligence.SkillRange[2];
+                intelligence.Number = 3;
                 break;
             case ("Skill (4)"):
-                player1.MaxLineRange = intelligence.SkillRange[3];
+                intelligence.Number = 4;
                 break;
             case ("Skill (5)"):
-                player1.MaxLineRange = intelligence.SkillRange[4];
+                intelligence.Number = 5;
                 break;
             case ("Skill (6)"):
-                player1.MaxLineRange = intelligence.SkillRange[5];
+                intelligence.Number = 6;
                 break;
 
         }
@@ -89,27 +87,28 @@ public class SkillButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 
     }
 
+    //カーソルを合わせると対応したスキルの情報を出すメソッド
     void Set()
     {
         switch (gameObject.name)
         {
             case ("Skill (1)"):
-                instruction.text = intelligence.SkillDescription[0];
+                instruction.text = intelligence.SkillDescriptions[0];
                 break;
             case ("Skill (2)"):
-                instruction.text = intelligence.SkillDescription[1];
+                instruction.text = intelligence.SkillDescriptions[1];
                 break;
             case ("Skill (3)"):
-                instruction.text = intelligence.SkillDescription[2];
+                instruction.text = intelligence.SkillDescriptions[2];
                 break;
             case ("Skill (4)"):
-                instruction.text = intelligence.SkillDescription[3];
+                instruction.text = intelligence.SkillDescriptions[3];
                 break;
             case ("Skill (5)"):
-                instruction.text = intelligence.SkillDescription[4];
+                instruction.text = intelligence.SkillDescriptions[4];
                 break;
             case ("Skill (6)"):
-                instruction.text = intelligence.SkillDescription[5];
+                instruction.text = intelligence.SkillDescriptions[5];
                 break;
 
         }

@@ -9481,7 +9481,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfdc72f98b7f6ed4e875199924bf372a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skill:
+  skillNames:
   - {fileID: 1378394732}
   - {fileID: 286176896}
   - {fileID: 714286606}
