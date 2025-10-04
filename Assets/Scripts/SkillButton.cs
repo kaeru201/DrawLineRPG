@@ -1,23 +1,56 @@
 using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using Unity.VisualScripting;
 
 public class SkillButton : MonoBehaviour
 {
-   
 
-    public List<int> skill;
-    
+
+    //public List<int> skill;
+
+  
 
     [SerializeField] BattleSystem battleSystem;
     [SerializeField] DrawLine player1;
+    [SerializeField] DrawIntelligence intelligence;
 
-   
+
+    
+
+    //引数になにか
     public void DrowLine()
     {
         //player1のDrowLineを起動
         player1.enabled = true;
-        player1.MaxLineRange = skill[1];
+
+        switch (gameObject.name)
+        {
+            case ("Skill (1)"):
+                player1.MaxLineRange = intelligence.Skill[0];
+                break;
+            case ("Skill (2)"):
+                player1.MaxLineRange = intelligence.Skill[1];
+                break;
+            case ("Skill (3)"):
+                player1.MaxLineRange = intelligence.Skill[2];
+                break;
+            case ("Skill (4)"):
+                player1.MaxLineRange = intelligence.Skill[3];
+                break;
+            case ("Skill (5)"):
+                player1.MaxLineRange = intelligence.Skill[4];
+                break;
+            case ("Skill (6)"):
+                player1.MaxLineRange = intelligence.Skill[5];
+                break;
+
+        }
+
+
+
+
+        //player1.MaxLineRange = skill[1];
     }
 
     //合ってるか分からないけど
@@ -32,21 +65,9 @@ public class SkillButton : MonoBehaviour
     //    {
     //        int x = skill[1];
     //    }
-    //}
 
 
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-      
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        //iを押したらiのレンジを参照して線を引く(DrawLineクラス起動)
-       
-        
-    }
+
 }

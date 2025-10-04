@@ -11,6 +11,8 @@ public class SkillSelection : MonoBehaviour
     [SerializeField] List<TextMeshProUGUI> skill;
 
     [SerializeField] SkillButton skillButton;
+
+    [SerializeField] DrawIntelligence intelligence;
    
 
     //スキルの情報を入れるメソッド
@@ -22,7 +24,9 @@ public class SkillSelection : MonoBehaviour
             
                 skill[i].text = "・" + skills[i].Skillbase.Name;
 
-                skillButton.skill[i]  = skills[i].Skillbase.MaxLineRange; 
+            // skillButton.skill[i]  = skills[i].Skillbase.MaxLineRange; 
+
+            intelligence.Skill[i] = skills[i].Skillbase.MaxLineRange;
 
                 //range[i] = skills[i].Skillbase.MaxLineRange; 
             
