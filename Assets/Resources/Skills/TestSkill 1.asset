@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: "\u306A\u3050\u308B 5m"
   description: "\u306A\u3050\u308B1"
-  skilType: 0
+  skilType: 1
   power: 10
   penetrationPower: 1
   maxLineRange: 5

@@ -112,6 +112,12 @@ public class DrawLine : MonoBehaviour
             isDrawing = false;
             //次のキャラSkillに移動
             //いないならREADYのUIを出して行けるなら敵の線を引くターンに移動
+            
+            if(ready)
+            {
+                enabled = false;
+            }
+
         }
 
 

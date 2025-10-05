@@ -12,8 +12,8 @@ public class SkillButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 
     TextMeshProUGUI text;
 
+
     [SerializeField] BattleSystem battleSystem;
-    [SerializeField] DrawLine player1;
     [SerializeField] DrawIntelligence intelligence;
     [SerializeField] TextMeshProUGUI instruction;
 
@@ -24,6 +24,7 @@ public class SkillButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
     void Start()
     {
         text = GetComponent<TextMeshProUGUI>();
+
     }
 
     //Skillにマウスが触れたら
@@ -50,15 +51,13 @@ public class SkillButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
     public void OnPointerClick(PointerEventData eventData)
     {
         DrawLine();
+        battleSystem.ClickSkill = true;
     }
 
     //引数になにか
     public void DrawLine()//あとでメソッド名変更
     {
 
-
-        //player1のDrowLineを起動
-        player1.enabled = true;
 
         //どのスキルをクリックしたかによって識別変数を変えて、クリックしたスキルの情報を覚えておく。
         switch (gameObject.name)

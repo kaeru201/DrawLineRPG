@@ -1921,7 +1921,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   battleSystem: {fileID: 716765375}
-  player1: {fileID: 171655042}
   intelligence: {fileID: 444233897}
   instruction: {fileID: 1786095562}
 --- !u!1 &310502077
@@ -2490,15 +2489,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f6fde46211f91f4ebfddc00f455fd5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillButton: {fileID: 0}
-  skillRange: 000000000000000000000000000000000000000000000000
-  skillDescription:
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  player1Point: {fileID: 171655042}
+  player2Point: {fileID: 221090311}
+  player3Point: {fileID: 1719090530}
 --- !u!1 &452939535
 GameObject:
   m_ObjectHideFlags: 0
@@ -2921,7 +2914,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   battleSystem: {fileID: 716765375}
-  player1: {fileID: 171655042}
   intelligence: {fileID: 444233897}
   instruction: {fileID: 1786095562}
 --- !u!1 &495678271
@@ -3857,7 +3849,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   battleSystem: {fileID: 716765375}
-  player1: {fileID: 171655042}
   intelligence: {fileID: 444233897}
   instruction: {fileID: 1786095562}
 --- !u!1 &716765373
@@ -3909,6 +3900,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72855a123c333514aa85ea256a464cfa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  drawIntelligence: {fileID: 444233897}
   player1Unit: {fileID: 2004991183}
   player2Unit: {fileID: 1198002762}
   player3Unit: {fileID: 905964330}
@@ -3921,7 +3913,8 @@ MonoBehaviour:
   enemy1Hud: {fileID: 893104684}
   enemy2Hud: {fileID: 415948935}
   enemy3Hud: {fileID: 1090258417}
-  player1Skill: {fileID: 8593206579224478605}
+  playerSkill: {fileID: 8593206579224478605}
+  clickSkillCount: 0
 --- !u!1 &783698283
 GameObject:
   m_ObjectHideFlags: 0
@@ -5114,7 +5107,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   battleSystem: {fileID: 716765375}
-  player1: {fileID: 171655042}
   intelligence: {fileID: 444233897}
   instruction: {fileID: 1786095562}
 --- !u!1 &1063377622
@@ -6044,7 +6036,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   battleSystem: {fileID: 716765375}
-  player1: {fileID: 171655042}
   intelligence: {fileID: 444233897}
   instruction: {fileID: 1786095562}
 --- !u!1 &1438374517
@@ -6965,37 +6956,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1491008063}
   m_CullTransparentMesh: 1
---- !u!1 &1556757368
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1556757369}
-  m_Layer: 0
-  m_Name: GameObject
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1556757369
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1556757368}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -14.818, y: -2.2797, z: -3.6527379}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1590857181
 GameObject:
   m_ObjectHideFlags: 0
@@ -7845,7 +7805,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   battleSystem: {fileID: 716765375}
-  player1: {fileID: 171655042}
   intelligence: {fileID: 444233897}
   instruction: {fileID: 1786095562}
 --- !u!1 &1819301298
@@ -9297,7 +9256,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &3136565300604745936
 GameObject:
   m_ObjectHideFlags: 0
@@ -9498,4 +9457,3 @@ SceneRoots:
   - {fileID: 619394802}
   - {fileID: 716765374}
   - {fileID: 495678274}
-  - {fileID: 1556757369}
