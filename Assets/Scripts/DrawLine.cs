@@ -17,10 +17,12 @@ public class DrawLine : MonoBehaviour
     int posCount;//
     [SerializeField] bool isDrawing = false;
     [SerializeField] bool ready = false;
+    bool next = false;//線を引き終わったかどうか
     float currentLineRange;//現在の書いた長さ
     Vector3 lastAddPoint;//最後に追加した点を記憶しておく変数
 
     public float MaxLineRange { get => maxLineRange; set => maxLineRange = value; }
+    public bool Next { get => next; set => next = value; }
 
     void Start()
     {
@@ -115,6 +117,7 @@ public class DrawLine : MonoBehaviour
             
             if(ready)
             {
+                Next = true;
                 enabled = false;
             }
 

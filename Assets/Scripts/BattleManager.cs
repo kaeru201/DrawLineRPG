@@ -29,7 +29,10 @@ public class BattleManager : MonoBehaviour
     [SerializeField] DrawLine plyaer3Point;
 
     public BattleState State { get => state; set => state = value; }
+
    
+
+
 
     //void Start()
     //{
@@ -82,7 +85,7 @@ public class BattleManager : MonoBehaviour
     //            clickSkill = false;
     //            clickSkillCount++;
     //        }
-            
+
     //    }
 
     //    //if() もしアイテムを押したら
@@ -121,12 +124,12 @@ public class BattleManager : MonoBehaviour
     //        //skillがクリックされるまで待つ
 
     //        //線を書く
-            
+
     //        yield break;
     //    }
     //    else yield break;
 
-        
+
     //}
 
     //void Draw2()
