@@ -4,6 +4,7 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.EventSystems;
 using Unity.VisualScripting;
+using System.Collections;
 
 //実際に押すSkillのスクリプト
 public class SkillButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
@@ -16,15 +17,23 @@ public class SkillButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
     [SerializeField] BattleSystem battleSystem;
     [SerializeField] DrawIntelligence intelligence;
     [SerializeField] TextMeshProUGUI instruction;
+    GameObject skillSelection;
 
+    bool player1Select = false;
+    bool player2Select = false;
+    bool player3Select = false;
 
-
+    bool player1Survival = true;  //とりあえずバグらないために置いてるけど、多分違う場所で宣言します
+    bool player2Survival = true;  //どうやって判別するかも一旦保留
+    bool player3Survival = true;　//でもSetUpでtrue + 戦闘中死んだらfalseにするのは確定
 
 
     void Start()
     {
-        text = GetComponent<TextMeshProUGUI>();
+        skillSelection = transform.parent.gameObject;
 
+
+        text = GetComponent<TextMeshProUGUI>();
     }
 
     //Skillにマウスが触れたら
@@ -44,18 +53,44 @@ public class SkillButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
     {
         text.color = Color.black;//文字を黒に戻す
 
-        //スキルの内容を空白にする
+
 
     }
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        DrawLine();
-        battleSystem.ClickSkill = true;
+
+        //押したときplayer1が生きていて、まだスキルを選択していないなら
+        if (player1Survival && !player1Select)
+        {
+            skillSelection.SetActive(false);
+            DrawNumberSet();
+            intelligence.DrawIn(1);
+            player1Select = true;
+        }
+        //プレイヤー1が終わっていて、2が生きていて、選択していないなら
+        else if (player2Survival && !player2Select)
+        {
+            skillSelection.SetActive(false);
+            DrawNumberSet();
+            intelligence.DrawIn(2);
+            player2Select = true;
+        }
+        else if (player3Survival && !player3Select)
+        {
+            skillSelection.SetActive(false);
+            DrawNumberSet();
+            intelligence.DrawIn(3);
+            player3Select = true;
+        }
+
+
     }
 
+
+
     //引数になにか
-    public void DrawLine()//あとでメソッド名変更
+    public void DrawNumberSet()//あとでメソッド名変更
     {
 
 
@@ -82,6 +117,7 @@ public class SkillButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
                 break;
 
         }
+
 
 
     }
