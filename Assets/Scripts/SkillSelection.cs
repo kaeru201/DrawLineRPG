@@ -20,10 +20,15 @@ public class SkillSelection : MonoBehaviour
     {
         for (int i = 0; i < skills.Count; i++)
         {
-
-            //スキル選択画面のテキストを対応したスキル名に変更
-            skillNames[i].text = "・" + skills[i].Skillbase.Name;
-
+            if (i < skills.Count)
+            {
+                //スキル選択画面のテキストを対応したスキル名に変更
+                skillNames[i].text = "・" + skills[i].Skillbase.Name;
+            }
+            else
+            {
+                skillNames[i].text = ".";
+            }
 
             // スキルの情報をDrawIntelligenceの配列の変数に代入
             intelligence.SkillRanges[i] = skills[i].Skillbase.MaxLineRange;

@@ -7,22 +7,24 @@ using UnityEngine;
 //線を書くスクリプト
 public class DrawLine : MonoBehaviour
 {
-    BattleManager battleManager;
     SkillBase skillBase;
+    [SerializeField] BattleSystem battleSystem;
+
     [SerializeField] LineRenderer lineRenderer;
     [SerializeField] Transform startPosition;
+
 
 
     [SerializeField] float maxLineRange = 10f;//本当はskillから参照してくる変数
     int posCount;//
     [SerializeField] bool isDrawing = false;
     [SerializeField] bool ready = false;
-    bool next = false;//線を引き終わったかどうか
+    
     float currentLineRange;//現在の書いた長さ
     Vector3 lastAddPoint;//最後に追加した点を記憶しておく変数
 
     public float MaxLineRange { get => maxLineRange; set => maxLineRange = value; }
-    public bool Next { get => next; set => next = value; }
+    
 
     void Start()
     {
@@ -46,7 +48,7 @@ public class DrawLine : MonoBehaviour
         //mousePosを枠から出ないように
         mousePos.x = Mathf.Clamp(mousePos.x, -28.28f, -14.733f);
         mousePos.y = Mathf.Clamp(mousePos.y, -2.279f, 2.307f);
-        
+
 
 
         if (Input.GetMouseButtonDown(0))
@@ -114,10 +116,10 @@ public class DrawLine : MonoBehaviour
             isDrawing = false;
             //次のキャラSkillに移動
             //いないならREADYのUIを出して行けるなら敵の線を引くターンに移動
-            
-            if(ready)
+
+            if (ready)
             {
-                Next = true;
+                battleSystem.Next = true;
                 enabled = false;
             }
 

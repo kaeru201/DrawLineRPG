@@ -8,7 +8,7 @@ public class BattleSystem : MonoBehaviour
 {
 
     [SerializeField] DrawIntelligence drawIntelligence;
-    [SerializeField] DrawLine drawLine;
+   
 
     //とりあえずインスペクター上でアタッチ
     [SerializeField] BattleUnit player1Unit;
@@ -30,8 +30,8 @@ public class BattleSystem : MonoBehaviour
     [SerializeField] SkillSelection playerSkill;
 
     BattleState battleState;
-
-
+    
+    bool next = false;//線を引き終わったかどうか
     bool clickSkill = false;//クリックした後か
     bool cliclItem = false;//アイテムをクリックしたかどうか
     [SerializeField] int clickSkillCount;//どのプレイヤーのスキルか
@@ -39,12 +39,15 @@ public class BattleSystem : MonoBehaviour
 
 
     public bool ClickSkill { get => clickSkill; set => clickSkill = value; }
+    public bool Next { get => next; set => next = value; }
 
 
 
     //バトルが始まったら
     private void Start()
     {
+        
+
         player1Unit.SetUp();//モンスターの生成
         player2Unit.SetUp();
         player3Unit.SetUp();
@@ -90,18 +93,18 @@ public class BattleSystem : MonoBehaviour
     IEnumerator Draw()
     {
         yield return StartCoroutine(Line(1));//プレイヤー1がいるか確かめていたら線を書く
-        yield return new WaitUntil(() => drawLine.Next == true);//線を書き終わるまで待機
-        drawLine.Next = false;//リセット
+        yield return new WaitUntil(() => Next == true);//線を書き終わるまで待機
+        Next = false;//リセット
         playerSkill.SetSkill(player2Unit.Unit.Skills);//スキル欄をplayer2のものに変化
 
         yield return StartCoroutine(Line(2));
-        yield return new WaitUntil(() => drawLine.Next == true);
-        drawLine.Next = false;
+        yield return new WaitUntil(() => Next == true);
+        Next = false;
         playerSkill.SetSkill(player3Unit.Unit.Skills);
 
         yield return StartCoroutine(Line(3));
-        yield return new WaitUntil(() => drawLine.Next == true);
-        drawLine.Next = false;
+        yield return new WaitUntil(() => Next == true);
+        Next = false;
 
         //敵の線を引く
 
@@ -111,12 +114,12 @@ public class BattleSystem : MonoBehaviour
     IEnumerator Line(int x)//引数にplayer1、2、3が入るように
     {
         //もしプレイヤー1，2，3がいるなら(メソッドの引数から)
-        if ()
-        {
-            drawIntelligence.DrawIn(x);
-            yield break;
-        }
-        else yield break;
+        //if ()
+        //{
+        drawIntelligence.DrawIn(x);
+        yield break;
+        ////}
+        //else yield break;
     }
 
     //private void Update()
