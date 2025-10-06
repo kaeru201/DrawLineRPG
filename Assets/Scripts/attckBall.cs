@@ -2,7 +2,7 @@ using UnityEngine;
 
 //インスタンス化したら線にそって動く
 //もしpointに当たったら攻撃メソッドを発動()
-public class attckBall : MonoBehaviour
+public class AttckBall : MonoBehaviour
 {
     
     void Start()

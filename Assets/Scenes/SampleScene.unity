@@ -2491,6 +2491,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f6fde46211f91f4ebfddc00f455fd5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  battleSystem: {fileID: 716765375}
   player1Point: {fileID: 171655042}
   player2Point: {fileID: 221090311}
   player3Point: {fileID: 1719090530}
@@ -3902,7 +3903,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72855a123c333514aa85ea256a464cfa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  drawIntelligence: {fileID: 444233897}
   player1Unit: {fileID: 2004991183}
   player2Unit: {fileID: 1198002762}
   player3Unit: {fileID: 905964330}
@@ -4380,7 +4380,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51cbe614ab4dd044b89d56552ec40a10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitBase: {fileID: 11400000, guid: de94640f923dc1843a27e2fd86935da6, type: 2}
+  unitBase: {fileID: 11400000, guid: 77b647debca9b684eae29a774b8feb5b, type: 2}
   level: 2
 --- !u!1 &931761811
 GameObject:

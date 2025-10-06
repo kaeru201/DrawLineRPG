@@ -65,161 +65,36 @@ public class DrawIntelligence : MonoBehaviour
         {
             PlayerPointON(player1Point);//プレイヤー1の線を引くスクリプトをつける
 
-            WhoClick(player1Point,player1SkillType,player1Power,player1PenetionPower);//プレイヤー1が何のスキルを打ったか
+            WhoClick(player1Point, player1SkillType, player1Power, player1PenetionPower);//プレイヤー1が何のスキルを打ったか
 
             StartCoroutine(PlayerPointOFF(player1Point));//プレイヤー1のスクリプトを消す
         }
         //Unitがplayer2なら
-        if(pUnit == 2)
+        if (pUnit == 2)
         {
             PlayerPointON(player2Point);//プレイヤー2の線を引くスクリプトをつける
 
-            WhoClick(player2Point,player2SkillType,player2Power,player2PenetionPower);//プレイヤー2が何のスキルを打ったか
+            WhoClick(player2Point, player2SkillType, player2Power, player2PenetionPower);//プレイヤー2が何のスキルを打ったか
 
-            StartCoroutine (PlayerPointOFF(player2Point));//プレイヤー2のスクリプトを消す
+            StartCoroutine(PlayerPointOFF(player2Point));//プレイヤー2のスクリプトを消す
         }
         //Unitがplayer3なら
-        if(pUnit == 3)
+        if (pUnit == 3)
         {
             PlayerPointON(player3Point);//プレイヤー3の線を引くスクリプトをつける
 
-            WhoClick(player3Point,player3SkillType,player3Power,player3PenetionPower);//プレイヤー3が何のスキルを打ったか
+            WhoClick(player3Point, player3SkillType, player3Power, player3PenetionPower);//プレイヤー3が何のスキルを打ったか
 
             StartCoroutine(PlayerPointOFF(player3Point));//プレイヤー3のスクリプトを消す
         }
 
-            //        //クリックされたら対応する識別番号の変数を代入する
-            //        switch (Number)
-            //        {
-            //            case 0:
-            //                return;
-            //            //スキルの情報
-            //            case 1:
-            //                //playerPower = SkillPower[0]
-            //                player1Point.MaxLineRange = SkillRanges[0];
-            //                break;
-            //            case 2:
-            //                //
-            //                player1Point.MaxLineRange = SkillRanges[1];
-            //                player1SkillType = SkillTypes[1];
 
-            //                break;
-            //            case 3:
-            //                //
-            //                player1Point.MaxLineRange = SkillRanges[2];
 
-            //                break;
-            //            case 4:
-            //                // 
-            //                player1Point.MaxLineRange = SkillRanges[3];
-
-            //                break;
-            //            case 5:
-            //                //
-            //                player1Point.MaxLineRange = SkillRanges[4];
-
-            //                break;
-            //            case 6:
-
-            //                player1Point.MaxLineRange = SkillRanges[5];
-
-            //                break;
-
-            //        }
-
-            //        player1Point.enabled = false;
-            //    }
-            //    if (pUnit == 2)
-            //    {
-            //        player2Point.enabled = true;
-
-            //        switch (Number)
-            //        {
-            //            case 0:
-            //                return;
-            //            //スキルの情報
-            //            case 1:
-            //                //playerPower = SkillPower[0]
-            //                player2Point.MaxLineRange = SkillRanges[0];
-            //                break;
-            //            case 2:
-            //                //
-            //                player2Point.MaxLineRange = SkillRanges[1];
-            //                player2SkillType = SkillTypes[1];
-
-            //                break;
-            //            case 3:
-            //                //
-            //                player2Point.MaxLineRange = SkillRanges[2];
-
-            //                break;
-            //            case 4:
-            //                // 
-            //                player2Point.MaxLineRange = SkillRanges[3];
-
-            //                break;
-            //            case 5:
-            //                //
-            //                player2Point.MaxLineRange = SkillRanges[4];
-
-            //                break;
-            //            case 6:
-
-            //                player2Point.MaxLineRange = SkillRanges[5];
-
-            //                break;
-
-            //        }
-
-            //        player2Point.enabled = false;
-            //    }
-            //    if (pUnit == 3)
-            //    {
-            //        player3Point.enabled = true;
-
-            //        switch (Number)
-            //        {
-            //            case 0:
-            //                return;
-            //            //スキルの情報
-            //            case 1:
-            //                //playerPower = SkillPower[0]
-            //                player3Point.MaxLineRange = SkillRanges[0];
-            //                break;
-            //            case 2:
-            //                //
-            //                player3Point.MaxLineRange = SkillRanges[1];
-            //                player3SkillType = SkillTypes[1];
-
-            //                break;
-            //            case 3:
-            //                //
-            //                player3Point.MaxLineRange = SkillRanges[2];
-
-            //                break;
-            //            case 4:
-            //                // 
-            //                player3Point.MaxLineRange = SkillRanges[3];
-
-            //                break;
-            //            case 5:
-            //                //
-            //                player3Point.MaxLineRange = SkillRanges[4];
-
-            //                break;
-            //            case 6:
-
-            //                player3Point.MaxLineRange = SkillRanges[5];
-
-            //                break;
-            //        }
-
-            //        player3Point.enabled = false;
-        
         else return;
 
     }
 
+    //どのスキルをクリックしたか
     void WhoClick(DrawLine pPoint, SkillType pSkillType, int pPower, int pPenetion)
     {
         //クリックされたら対応する識別番号の変数を代入する
@@ -229,11 +104,11 @@ public class DrawIntelligence : MonoBehaviour
                 return;
             //スキルの情報
             case 1:
-                 pPoint.MaxLineRange = SkillRanges[0];
+                pPoint.MaxLineRange = SkillRanges[0];
                 pSkillType = SkillTypes[0];
                 pPower = SkillPowers[0];
                 pPenetion = SkillPenetionPowers[0];
-                
+
                 break;
             case 2:
                 //
@@ -248,7 +123,7 @@ public class DrawIntelligence : MonoBehaviour
                 pPoint.MaxLineRange = SkillRanges[2];
                 pSkillType = SkillTypes[2];
                 pPower = SkillPowers[2];
-                pPenetion= SkillPenetionPowers[2];
+                pPenetion = SkillPenetionPowers[2];
 
                 break;
             case 4:
@@ -256,7 +131,7 @@ public class DrawIntelligence : MonoBehaviour
                 pPoint.MaxLineRange = SkillRanges[3];
                 pSkillType = SkillTypes[3];
                 pPower = SkillPowers[3];
-                pPenetion= SkillPenetionPowers[4];
+                pPenetion = SkillPenetionPowers[4];
 
                 break;
             case 5:
@@ -291,7 +166,7 @@ public class DrawIntelligence : MonoBehaviour
     {
         yield return new WaitUntil(() => battleSystem.Next == true);//書き終わるまで待つ
         pPoint.enabled = false;
-        //battleSystem.Next = false;
+        battleSystem.Next = false;
         yield break;
     }
 
