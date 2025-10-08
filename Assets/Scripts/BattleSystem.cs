@@ -10,6 +10,7 @@ public enum BattleState //列挙型の現在どのターンなのか
     Player1Turn,
     Player2Turn,
     Player3Turn,
+    EnemyTimeTurn,　//後で消すかも
     EnemyTurn,
     BattleTurn,
     WinTurn,
@@ -89,7 +90,15 @@ public class BattleSystem : MonoBehaviour
 
     }
 
-   
+    private void Update()
+    {
+        //もしEnemyTimeTurn以外なら何もしない
+        if (currentBState != BattleState.EnemyTimeTurn) return;
+
+        StartCoroutine(WaitEnemyTurn());//待ってからEnemyTurnに　後で消すかも
+    }
+
+
     //currentBstateのplayerTurnのどれかに変更するメソッド
     //引数の数字によってどのプレイヤーTurnにするか決める
     public void PlayerTurnCng(int playerX)
@@ -112,6 +121,14 @@ public class BattleSystem : MonoBehaviour
             CurrentBState = BattleState.Player3Turn;
             playerSkill.SetSkill(player3Unit.Unit.Skills);
         }
+    }
+
+    //線を描くのを待ってからEnemyターンにするコルーチン　後で消すかも
+    IEnumerator WaitEnemyTurn()
+    {
+        yield return new WaitUntil(() => Next == true);
+        currentBState = BattleState.EnemyTurn;
+        yield break;
     }
 
 }

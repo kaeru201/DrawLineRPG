@@ -93,14 +93,14 @@ public class DrawIntelligence : MonoBehaviour
                 return;
             //スキルの情報
             case 1:
-                pPoint.MaxLineRange = SkillRanges[0];
-                pSkillType = SkillTypes[0];
-                pPower = SkillPowers[0];
-                pPenetion = SkillPenetionPowers[0];
+                pPoint.MaxLineRange = SkillRanges[0];//距離
+                pSkillType = SkillTypes[0];//スキルタイプ
+                pPower = SkillPowers[0];//攻撃力
+                pPenetion = SkillPenetionPowers[0];//貫通力
 
                 break;
             case 2:
-                //
+                
                 pPoint.MaxLineRange = SkillRanges[1];
                 pSkillType = SkillTypes[1];
                 pPower = SkillPowers[1];
@@ -108,7 +108,7 @@ public class DrawIntelligence : MonoBehaviour
 
                 break;
             case 3:
-                //
+                
                 pPoint.MaxLineRange = SkillRanges[2];
                 pSkillType = SkillTypes[2];
                 pPower = SkillPowers[2];
@@ -116,7 +116,7 @@ public class DrawIntelligence : MonoBehaviour
 
                 break;
             case 4:
-                // 
+                 
                 pPoint.MaxLineRange = SkillRanges[3];
                 pSkillType = SkillTypes[3];
                 pPower = SkillPowers[3];
@@ -124,7 +124,7 @@ public class DrawIntelligence : MonoBehaviour
 
                 break;
             case 5:
-                //
+                
                 pPoint.MaxLineRange = SkillRanges[4];
                 pSkillType = SkillTypes[4];
                 pPower = SkillPowers[4];

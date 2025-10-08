@@ -89,13 +89,16 @@ public class SkillButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
         //もしplayer3Tuneなら
         else if (battleSystem.CurrentBState == BattleState.Player3Turn)
         {
-            //プレイヤー2が生きているなら
+            //プレイヤー3が生きているなら
             if (player3Survival)
             {
                 skillSelection.SetActive(false);
                 DrawNumberSet();
                 intelligence.DrawIn(3);
+                battleSystem.CurrentBState = BattleState.EnemyTimeTurn;
             }
+            //生きていなくてもBattleStateをEnemyTimeTurnに
+            else battleSystem.CurrentBState = BattleState.EnemyTimeTurn;
         }
 
     }
@@ -154,7 +157,7 @@ public class SkillButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 
     }
 
-
+    
 }
 
 

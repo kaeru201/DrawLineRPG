@@ -15,7 +15,7 @@ public class DrawLine : MonoBehaviour
 
 
 
-    [SerializeField] float maxLineRange = 10f;//本当はskillから参照してくる変数
+    [SerializeField] float maxLineRange;//DrawIntelligenceから値を代入
     int posCount;//
     [SerializeField] bool isDrawing = false;
     [SerializeField] bool ready = false;
@@ -39,9 +39,6 @@ public class DrawLine : MonoBehaviour
 
     void Update()
     {
-        //線を書くターンではないのなら何もしない
-        // if (battleManager.State != BattleState.DrawLinTurn) return;
-
         //マウスのスクリーン座標をワールド座標に変換する
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 8f));
 
@@ -53,16 +50,13 @@ public class DrawLine : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-
-
-
             isDrawing = true;
             //初期化
             posCount = 0;
             lineRenderer.positionCount = 0;
             currentLineRange = 0;
             ready = false;
-
+            //Z軸は適当
             AddLine(new Vector3(startPosition.position.x, startPosition.position.y + 0.5f, 8f));
 
         }
