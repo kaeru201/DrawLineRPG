@@ -8,29 +8,31 @@ public class SkillSelection : MonoBehaviour
 {
     List<int> range;
 
+    [SerializeField] GameObject[] skillNameObjs = new GameObject[6];
     [SerializeField] List<TextMeshProUGUI> skillNames;
 
     [SerializeField] SkillButton skillButton;
-
     [SerializeField] DrawIntelligence intelligence;
 
 
     //スキルの情報を入れるメソッド
     public void SetSkill(List<Skill> skills)
     {
-        for (int i = 0; i < skills.Count; i++)
+        for (int j = 0; j < 6; j++)//一旦すべてのスキル名オブジェクトを停止
+        {
+            skillNameObjs[j].SetActive(false);
+        }
+
+        for (int i = 0; i < skills.Count; i++)//持ってるスキル分だけオブジェクトを起動して、スキル名変更
         {
             if (i < skills.Count)
             {
+                skillNameObjs[i].SetActive(true);
                 //スキル選択画面のテキストを対応したスキル名に変更
                 skillNames[i].text = "・" + skills[i].Skillbase.Name;
             }
-            else
-            {
-                skillNames[i].text = ".";
-            }
-
-            // スキルの情報をDrawIntelligenceの配列の変数に代入
+           
+            //それぞれののi毎に記憶しておく
             intelligence.SkillRanges[i] = skills[i].Skillbase.MaxLineRange;
 
             intelligence.SkillDescriptions[i] = skills[i].Skillbase.Description;
@@ -44,18 +46,4 @@ public class SkillSelection : MonoBehaviour
     }
 
 
-
-
-    void Start()
-    {
-
-    }
-
-
-
-
-    void Update()
-    {
-
-    }
 }
