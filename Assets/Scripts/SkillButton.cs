@@ -6,14 +6,6 @@ using UnityEngine.EventSystems;
 using Unity.VisualScripting;
 using System.Collections;
 
-public enum DrawState
-{
-    Player1Turn,
-    Player2Turn,
-    Player3Turn,
-    End
-}
-
 
 //実際に押すSkillのスクリプト
 public class SkillButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
@@ -22,15 +14,14 @@ public class SkillButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 
     TextMeshProUGUI text;
 
-
     [SerializeField] BattleSystem battleSystem;
     [SerializeField] DrawIntelligence intelligence;
     [SerializeField] TextMeshProUGUI instruction;
     GameObject skillSelection;
 
-    bool player1Select = false;
-    bool player2Select = false;
-    bool player3Select = false;
+    //bool player1Select = false;
+    //bool player2Select = false;
+    //bool player3Select = false;
 
     bool player1Survival = true;  //とりあえずバグらないために置いてるけど、多分違う場所で宣言します
     bool player2Survival = true;  //どうやって判別するかも一旦保留
@@ -41,8 +32,9 @@ public class SkillButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
     {
         skillSelection = transform.parent.gameObject;
 
-
         text = GetComponent<TextMeshProUGUI>();
+
+
     }
 
     //Skillにマウスが触れたら
@@ -62,42 +54,55 @@ public class SkillButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        //もしplayer1Tuneなら
+        if (battleSystem.CurrentBState == BattleState.Player1Turn)
+        {
+            //押したときplayer1が生きていているなら
+            if (player1Survival)
+            {
+                skillSelection.SetActive(false);//SkillSelectionを停止
+                DrawNumberSet();//どれを押したか
+                intelligence.DrawIn(1);//線を描く
+                battleSystem.PlayerTurnCng(2);//BattleStetaをplayer2Turnに
 
-        //押したときplayer1が生きていて、まだスキルを選択していないなら
-        if (player1Survival && !player1Select)
-        {
-            skillSelection.SetActive(false);
-            DrawNumberSet();
-            intelligence.DrawIn(1);
-            player1Select = true;
-        }
-        //プレイヤー1が終わっていて、2が生きていて、選択していないなら
-        else if (player2Survival && !player2Select)
-        {
-            skillSelection.SetActive(false);
-            DrawNumberSet();
-            intelligence.DrawIn(2);
-            player2Select = true;
-        }
-        else if (player3Survival && !player3Select)
-        {
-            skillSelection.SetActive(false);
-            DrawNumberSet();
-            intelligence.DrawIn(3);
-            player3Select = true;
-        }
+            }
+            //生きていなくてもBattleStateをplayer2Turnに
+            else battleSystem.PlayerTurnCng(2);
 
+        }
+        //もしplayer2Turnなら
+        else if (battleSystem.CurrentBState == BattleState.Player2Turn)
+        {
+            //プレイヤー2が生きているなら
+            if (player2Survival)
+            {
+                skillSelection.SetActive(false);
+                DrawNumberSet();
+                intelligence.DrawIn(2);
+                battleSystem.PlayerTurnCng(3);
+
+            }
+            //生きていなくてもBattleStateをplayer3Turnに
+            else battleSystem.PlayerTurnCng(3);
+
+        }
+        //もしplayer3Tuneなら
+        else if (battleSystem.CurrentBState == BattleState.Player3Turn)
+        {
+            //プレイヤー2が生きているなら
+            if (player3Survival)
+            {
+                skillSelection.SetActive(false);
+                DrawNumberSet();
+                intelligence.DrawIn(3);
+            }
+        }
 
     }
 
-
-
-    //引数になにか
-    public void DrawNumberSet()//あとでメソッド名変更
+    //どのスキルをクリックしたかによって識別変数を変えて、クリックしたスキルの情報を覚えておメソッド
+    public void DrawNumberSet()
     {
-
-
-        //どのスキルをクリックしたかによって識別変数を変えて、クリックしたスキルの情報を覚えておく。
         switch (gameObject.name)
         {
             case ("Skill (1)"):
@@ -120,9 +125,6 @@ public class SkillButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
                 break;
 
         }
-
-
-
     }
 
     //カーソルを合わせると対応したスキルの情報を出すメソッド
@@ -148,14 +150,9 @@ public class SkillButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
             case ("Skill (6)"):
                 instruction.text = intelligence.SkillDescriptions[5];
                 break;
-
         }
 
-        
     }
-
-
-    
 
 
 }

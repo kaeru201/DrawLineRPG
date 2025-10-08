@@ -20,8 +20,6 @@ MonoBehaviour:
   attack: 20
   defense: 20
   speed: 20
-  learnablemoves:
-  - moveBase: {fileID: 11400000, guid: e52a46a2d5769f249bb89335ebec1371, type: 2}
-    level: 2
-  - moveBase: {fileID: 11400000, guid: 1f3d28a0fceb66547994abef5f7cefd3, type: 2}
-    level: 2
+  learnableSkills:
+  - skillBase: {fileID: 11400000, guid: 4adc2787c8ea2014c92acca85f987234, type: 2}
+    level: 0

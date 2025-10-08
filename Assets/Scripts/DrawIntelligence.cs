@@ -46,18 +46,7 @@ public class DrawIntelligence : MonoBehaviour
     public int[] SkillPenetionPowers { get => skillPenetionPowers; set => skillPenetionPowers = value; }
     internal SkillType[] SkillTypes { get => skillTypes; set => skillTypes = value; }
 
-    void Start()
-    {
-
-    }
-
-
-    void Update()
-    {
-
-
-    }
-
+   //線を描くメソッド
     public void DrawIn(int pUnit)//引数にどのプレイヤーに対してか
     {
         //Unitがplayer1なら

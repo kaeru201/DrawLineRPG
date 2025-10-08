@@ -117,6 +117,7 @@ public class DrawLine : MonoBehaviour
             //次のキャラSkillに移動
             //いないならREADYのUIを出して行けるなら敵の線を引くターンに移動
 
+            //もう一度右クリックを押したら
             if (ready)
             {
                 battleSystem.Next = true;
