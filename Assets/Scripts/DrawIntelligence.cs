@@ -4,14 +4,14 @@ using Unity.VisualScripting;
 using System.Collections;
 
 
-//線を描くための情報を持っておくスクリプト
+//線を描くための情報を持っておき、描く命令をするスクリプト
 //DrawLinePlaseにアタッチしておく
 public class DrawIntelligence : MonoBehaviour
 {
-
+    [SerializeField] GameObject selectAction;
 
     [SerializeField] BattleSystem battleSystem;
-
+    
     [SerializeField] DrawLine player1Point;
     [SerializeField] DrawLine player2Point;
     [SerializeField] DrawLine player3Point;
@@ -164,9 +164,10 @@ public class DrawIntelligence : MonoBehaviour
     //対応したUnitの線を書くスクリプトをOFFにするメソッド
     IEnumerator PlayerPointOFF(DrawLine pPoint)
     {
-        yield return new WaitUntil(() => battleSystem.Next == true);//書き終わるまで待つ
-        pPoint.enabled = false;
-        battleSystem.Next = false;
+        yield return new WaitUntil(() => battleSystem.Next == true);//描き終わるまで待つ
+        pPoint.enabled = false;//描いたPointのDrawスクリプトを停止
+        battleSystem.Next = false;//描き終わるフラグをリセット
+        selectAction.SetActive(true);//SelectAction復活
         yield break;
     }
 

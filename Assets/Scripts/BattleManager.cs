@@ -15,22 +15,19 @@ public enum BattleState
 
 }
 
+
 public class BattleManager : MonoBehaviour
 {
 
     [SerializeField] BattleState state;
 
-    
-    
+   
 
-    //どのオブジェクトが線を引くか分ける変数
-    [SerializeField] DrawLine plyaer1Point;
-    [SerializeField] DrawLine plyaer2Point;
-    [SerializeField] DrawLine plyaer3Point;
 
     public BattleState State { get => state; set => state = value; }
-
    
+
+
 
 
 

@@ -6,6 +6,15 @@ using UnityEngine.EventSystems;
 using Unity.VisualScripting;
 using System.Collections;
 
+public enum DrawState
+{
+    Player1Turn,
+    Player2Turn,
+    Player3Turn,
+    End
+}
+
+
 //実際に押すSkillのスクリプト
 public class SkillButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
@@ -43,18 +52,12 @@ public class SkillButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 
         //Skillの内容をInstructionに出す
         Set();
-
-
-
     }
 
     //Skillからマウスが離れたら
     public void OnPointerExit(PointerEventData eventData)
     {
         text.color = Color.black;//文字を黒に戻す
-
-
-
     }
 
     public void OnPointerClick(PointerEventData eventData)
@@ -147,10 +150,12 @@ public class SkillButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
                 break;
 
         }
+
+        
     }
 
 
-
+    
 
 
 }
