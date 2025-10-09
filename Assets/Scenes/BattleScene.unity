@@ -3925,12 +3925,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   battleSystem: {fileID: 716765375}
-  Player1Point: {fileID: 171655039}
-  Player2Point: {fileID: 1996896223}
-  Player3Point: {fileID: 674949504}
   Enemy1Point: {fileID: 1406926961}
   Enemy2Point: {fileID: 1996896223}
   Enemy3Point: {fileID: 674949504}
+  PlayerPoint:
+  - {fileID: 171655039}
+  - {fileID: 221090308}
+  - {fileID: 1719090527}
 --- !u!1 &714286604
 GameObject:
   m_ObjectHideFlags: 0
@@ -6465,12 +6466,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   battleSystem: {fileID: 716765375}
-  Player1Point: {fileID: 171655039}
-  Player2Point: {fileID: 221090308}
-  Player3Point: {fileID: 1719090527}
   Enemy1Point: {fileID: 1406926961}
   Enemy2Point: {fileID: 1996896223}
   Enemy3Point: {fileID: 674949504}
+  PlayerPoint:
+  - {fileID: 171655039}
+  - {fileID: 221090308}
+  - {fileID: 1719090527}
 --- !u!1 &1438374517
 GameObject:
   m_ObjectHideFlags: 0
@@ -8844,12 +8846,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   battleSystem: {fileID: 716765375}
-  Player1Point: {fileID: 171655039}
-  Player2Point: {fileID: 221090308}
-  Player3Point: {fileID: 1719090527}
   Enemy1Point: {fileID: 1406926961}
   Enemy2Point: {fileID: 1996896223}
   Enemy3Point: {fileID: 674949504}
+  PlayerPoint:
+  - {fileID: 171655039}
+  - {fileID: 221090308}
+  - {fileID: 1719090527}
 --- !u!1 &2004991179
 GameObject:
   m_ObjectHideFlags: 0
