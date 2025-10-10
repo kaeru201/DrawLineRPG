@@ -19,7 +19,7 @@ public class EnemyDraw : MonoBehaviour
     void Start()
     {
         lineRenderer = GetComponent<LineRenderer>();
-        startPosition = GetComponent<Transform>();
+       startPosition = GetComponent<Transform>();
 
         lineRenderer.startWidth = 0.1f;
         lineRenderer.endWidth = 0.1f;
@@ -33,11 +33,18 @@ public class EnemyDraw : MonoBehaviour
     {
         if (battleSystem.CurrentBState != BattleState.EnemyTurn) return;
 
+        //Transform y = RandomPoint();
+        //lineRenderer.SetPosition(0, transform.position);
+        //lineRenderer.SetPosition(1, y.position);
+        battleSystem.CurrentBState = BattleState.BattleTurn;//これだと一人しかかけないから用調整
+
+    }
+    //死んでたら描かないという仕様にしないと
+    public void DrawEnemy()
+    {
         Transform y = RandomPoint();
         lineRenderer.SetPosition(0, transform.position);
         lineRenderer.SetPosition(1, y.position);
-        battleSystem.CurrentBState = BattleState.BattleTurn;//これだと一人しかかけないから用調整
-
     }
 
     Transform RandomPoint()//ｘ、ｙを適切な名前に治す

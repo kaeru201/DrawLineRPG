@@ -43,6 +43,7 @@ public class BattleSystem : MonoBehaviour
     [SerializeField] EnemyHud enemy3Hud;
 
     [SerializeField] SkillSelection playerSkill;
+    [SerializeField] EnemyDraw[] enemyDraw = new EnemyDraw[3]; 
 
     [SerializeField] BattleState currentBState;
 
@@ -128,6 +129,10 @@ public class BattleSystem : MonoBehaviour
     {
         yield return new WaitUntil(() => Next == true);
         currentBState = BattleState.EnemyTurn;
+        for (int i = 0; i < enemyDraw.Length ; i++)
+        {
+            enemyDraw[i].DrawEnemy();
+        }
         yield break;
     }
 
