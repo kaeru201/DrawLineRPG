@@ -11,7 +11,7 @@ public class DrawLine : MonoBehaviour
     [SerializeField] BattleSystem battleSystem;
 
     [SerializeField] LineRenderer lineRenderer;
-    [SerializeField] Transform startPosition;
+    Transform startPosition;
 
 
 

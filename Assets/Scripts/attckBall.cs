@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
+//攻撃するボールにアタッチするクラス
 //インスタンス化したら線にそって動く
 //もしpointに当たったら攻撃メソッドを発動()
 public class AttckBall : MonoBehaviour
@@ -11,30 +12,31 @@ public class AttckBall : MonoBehaviour
 
     Vector3 lastAddPos;//最後に加えて点
     float speed  = 75 ; //仮の変数。本当は技のデータから代入してくる
-    bool ok = true;
+    //bool ok = true;
 
     void Start()
     {
         lineRenderer = transform.parent.GetComponent<LineRenderer>();
         // lastAddPos = lineRenderer.GetPosition(0);
         speed = 1 /speed ;//Speedが大きければ大きいほどボールを速く
+        StartCoroutine(MoveBall());
     }
 
    
     void Update()
     {
        
-        if (battleSystem.CurrentBState != BattleState.BattleTurn) return;
-        if (ok)
-        {
-            StartCoroutine(MoveBall());
-        }
-        else return;
+        //if (battleSystem.CurrentBState != BattleState.BattleTurn) return;
+        //if (ok)
+        //{
+           
+        //}
+        //else return;
     }
 
     IEnumerator MoveBall()
     {
-        ok = false;
+       // ok = false;
         for (int i = 0; i < lineRenderer.positionCount; i++)
         {
             
@@ -49,5 +51,24 @@ public class AttckBall : MonoBehaviour
         yield break;
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.CompareTag("Point"))
+        {
+            //当たった相手にダメージ
+
+            //pointに当たった後消える
+            Destroy(gameObject);
+                }
+        else if(collision.gameObject.CompareTag("Ball"))
+        {
+            //お互いの貫通力を見て低い方は消える、同じ場合はどちらも消える
+            //if(this.gameObject.penetionPower <= collision.gameObject.penetionPower)
+            //{
+            //    Destroy(gameObject);
+            //}
+        }
+    }
     
+
 }
