@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class SkillSelection : MonoBehaviour
@@ -42,6 +41,10 @@ public class SkillSelection : MonoBehaviour
             intelligence.SkillPowers[i] = skills[i].Skillbase.Power;
 
             intelligence.SkillPenetionPowers[i] = skills[i].Skillbase.PenetrationPower;
+
+            intelligence.SkillSpeed[i] = skills[i].Skillbase.Speed;
+
+            intelligence.SkillNumAttacks[i] = skills[i].Skillbase.NumberAttacks;
         }
     }
 

@@ -19,12 +19,12 @@ public class DrawLine : MonoBehaviour
     int posCount;//
     [SerializeField] bool isDrawing = false;
     [SerializeField] bool ready = false;
-    
+
     float currentLineRange;//現在の書いた長さ
     Vector3 lastAddPoint;//最後に追加した点を記憶しておく変数
 
     public float MaxLineRange { get => maxLineRange; set => maxLineRange = value; }
-    
+
 
     void Start()
     {
@@ -56,7 +56,7 @@ public class DrawLine : MonoBehaviour
             lineRenderer.positionCount = 0;
             currentLineRange = 0;
             ready = false;
-            //Z軸は適当
+            //y軸は少し上からZ軸は適当
             AddLine(new Vector3(startPosition.position.x, startPosition.position.y + 0.5f, 8f));
 
         }
@@ -108,15 +108,12 @@ public class DrawLine : MonoBehaviour
         {
             ready = true;
             isDrawing = false;
-            //次のキャラSkillに移動
-            //いないならREADYのUIを出して行けるなら敵の線を引くターンに移動
-
+            
             //もう一度右クリックを押したら
-            if (ready)
-            {
-                battleSystem.Next = true;
-                enabled = false;
-            }
+
+            battleSystem.Next = true;
+
+
 
         }
 

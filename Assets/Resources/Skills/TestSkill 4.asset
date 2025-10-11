@@ -18,3 +18,5 @@ MonoBehaviour:
   power: 10
   penetrationPower: 1
   maxLineRange: 5
+  speed: 45
+  numberAttacks: 1

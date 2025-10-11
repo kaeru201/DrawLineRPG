@@ -1,7 +1,7 @@
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
-using static UnityEditor.Experimental.GraphView.GraphView;
+
+
 
 public enum BattleState //列挙型の現在どのターンなのか
 
@@ -18,7 +18,7 @@ public enum BattleState //列挙型の現在どのターンなのか
 
 }
 
-//実際にバトルを進行させるスクリプト
+//実際にバトルを進行させるクラス
 public class BattleSystem : MonoBehaviour
 {
 
@@ -43,11 +43,11 @@ public class BattleSystem : MonoBehaviour
     [SerializeField] EnemyHud enemy3Hud;
 
     [SerializeField] SkillSelection playerSkill;
-    [SerializeField] EnemyDraw[] enemyDraw = new EnemyDraw[3]; 
+    [SerializeField] EnemyDraw[] enemyDraw = new EnemyDraw[3];
 
     [SerializeField] BattleState currentBState;
 
-    bool next = false;//線を引き終わったかどうか
+    bool next = false;//線を引き終わったかどうか 
 
 
 
@@ -87,53 +87,73 @@ public class BattleSystem : MonoBehaviour
         //}
 
         //いてもいなくても最初はplayer1Turnから
-        PlayerTurnCng(1);
+        TurnCng(BattleState.Player1Turn);
 
     }
 
-    private void Update()
-    {
-        //もしEnemyTimeTurn以外なら何もしない
-        if (currentBState != BattleState.EnemyTimeTurn) return;
-
-        StartCoroutine(WaitEnemyTurn());//待ってからEnemyTurnに　後で消すかも
-    }
 
 
     //currentBstateのplayerTurnのどれかに変更するメソッド
-    //引数の数字によってどのプレイヤーTurnにするか決める
-    public void PlayerTurnCng(int playerX)
+    //引数に変える先のBattleStateを入れる
+    public void TurnCng(BattleState battleState)
     {
-        //引数が1ならStateをplayer1Turnにしてplayer1のスキル情報をセットする
-        if (playerX == 1)
+        switch (battleState)
         {
-            CurrentBState = BattleState.Player1Turn;
-            playerSkill.SetSkill(player1Unit.Unit.Skills);
+            //引数がplayer1TurnならStateをplayer1Turnにしてplayer1のスキル情報をセットする
+            case BattleState.Player1Turn:
+
+                CurrentBState = BattleState.Player1Turn;
+                playerSkill.SetSkill(player1Unit.Unit.Skills);
+                break;
+
+            //引数がplayer2TurnならStateをplayer2Turnにしてplayer2のスキル情報をセットする
+            case BattleState.Player2Turn:
+
+                CurrentBState = BattleState.Player2Turn;
+                playerSkill.SetSkill(player2Unit.Unit.Skills);
+                break;
+
+            //引数がplayer3TurnならStateをplayer3Turnにしてplayer3のスキル情報をセットする
+            case BattleState.Player3Turn:
+
+                CurrentBState = BattleState.Player3Turn;
+                playerSkill.SetSkill(player3Unit.Unit.Skills);
+                break;
+
+            //引数がEnemyTurnならstateをEnemyTurnに
+            case BattleState.EnemyTurn:
+
+                currentBState = BattleState.EnemyTurn;
+
+                break;
+            case BattleState.BattleTurn:
+
+                currentBState = BattleState.BattleTurn;
+                break;
         }
-        //引数が2ならStateをplayer2Turnにしてplayer2のスキル情報をセットする
-        else if (playerX == 2)
-        {
-            CurrentBState = BattleState.Player2Turn;
-            playerSkill.SetSkill(player2Unit.Unit.Skills);
-        }
-        //引数が3ならStateをplayer3Turnにしてplayer3のスキル情報をセットする
-        else if (playerX == 3)
-        {
-            CurrentBState = BattleState.Player3Turn;
-            playerSkill.SetSkill(player3Unit.Unit.Skills);
-        }
+
+
     }
 
     //線を描くのを待ってからEnemyターンにするコルーチン　後で消すかも
     IEnumerator WaitEnemyTurn()
     {
         yield return new WaitUntil(() => Next == true);
-        currentBState = BattleState.EnemyTurn;
-        for (int i = 0; i < enemyDraw.Length ; i++)
+        TurnCng(BattleState.EnemyTurn);
+        for (int i = 0; i < enemyDraw.Length; i++)
         {
             enemyDraw[i].DrawEnemy();
         }
+        TurnCng(BattleState.BattleTurn);//うーん、どこでゲームを進行しているのかが分かりにくい
         yield break;
+    }
+
+    //一回挟まないと動かなかったから一旦
+    private void Update()
+    {
+        if (currentBState != BattleState.EnemyTimeTurn) return;
+
+        StartCoroutine(WaitEnemyTurn());
     }
 
 }

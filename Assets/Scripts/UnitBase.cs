@@ -22,7 +22,7 @@ public class UnitBase : ScriptableObject
     [SerializeField] int maxHP;
     [SerializeField] int attack;
     [SerializeField] int defense;
-    [SerializeField] int speed;
+    //[SerializeField] int speed;  スピードは一旦無し、代わりに技毎にスピードを付ける
 
     //覚える技 list
     [SerializeField] List<LearnableSkill> learnableSkills;
@@ -37,7 +37,7 @@ public class UnitBase : ScriptableObject
     public int MaxHP { get => maxHP; }
     public int Attack { get => attack; }
     public int Defense { get => defense; }
-    public int Speed { get => speed; }
+    //public int Speed { get => speed; }
 
     public List<LearnableSkill> LearnableSkills { get => learnableSkills; }
 

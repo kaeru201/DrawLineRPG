@@ -63,11 +63,11 @@ public class SkillButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
                 skillSelection.SetActive(false);//SkillSelectionを停止
                 DrawNumberSet();//どれを押したか
                 intelligence.DrawIn(1);//線を描く
-                battleSystem.PlayerTurnCng(2);//BattleStetaをplayer2Turnに
+                battleSystem.TurnCng(BattleState.Player2Turn);//BattleStetaをplayer2Turnに
 
             }
             //生きていなくてもBattleStateをplayer2Turnに
-            else battleSystem.PlayerTurnCng(2);
+            else battleSystem.TurnCng(BattleState.Player2Turn);
 
         }
         //もしplayer2Turnなら
@@ -79,11 +79,11 @@ public class SkillButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
                 skillSelection.SetActive(false);
                 DrawNumberSet();
                 intelligence.DrawIn(2);
-                battleSystem.PlayerTurnCng(3);
+                battleSystem.TurnCng(BattleState.Player3Turn);
 
             }
             //生きていなくてもBattleStateをplayer3Turnに
-            else battleSystem.PlayerTurnCng(3);
+            else battleSystem.TurnCng(BattleState.Player3Turn);
 
         }
         //もしplayer3Tuneなら
@@ -97,8 +97,8 @@ public class SkillButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
                 intelligence.DrawIn(3);
                 battleSystem.CurrentBState = BattleState.EnemyTimeTurn;
             }
-            //生きていなくてもBattleStateをEnemyTimeTurnに
-            else battleSystem.CurrentBState = BattleState.EnemyTimeTurn;
+            //生きていなくてもBattleStateをEnemyTurnに
+            else battleSystem.TurnCng(BattleState.EnemyTurn);
         }
 
     }

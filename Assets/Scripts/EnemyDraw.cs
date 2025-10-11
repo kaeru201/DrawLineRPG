@@ -14,6 +14,8 @@ public class EnemyDraw : MonoBehaviour
 
     [SerializeField] Transform[] PlayerPoint = new Transform[3];
 
+    int posCount;
+
     //Transform[] test = new Transform[3];
 
     void Start()
@@ -27,38 +29,21 @@ public class EnemyDraw : MonoBehaviour
 
     }
 
-    //線を一気に描くのではなく、プレイヤーのように徐々に描いてほしい
-    //DrawLineと違って最終目的地がPlayerPointで決まっている
-    void Update()
-    {
-        if (battleSystem.CurrentBState != BattleState.EnemyTurn) return;
-
-        //Transform y = RandomPoint();
-        //lineRenderer.SetPosition(0, transform.position);
-        //lineRenderer.SetPosition(1, y.position);
-        battleSystem.CurrentBState = BattleState.BattleTurn;//これだと一人しかかけないから用調整
-
-    }
+    
     //死んでたら描かないという仕様にしないと
     public void DrawEnemy()
     {
-        Transform y = RandomPoint();
-        lineRenderer.SetPosition(0, transform.position);
-        lineRenderer.SetPosition(1, y.position);
+        Transform targetPos = RandomPoint();
+        lineRenderer.SetPosition(0,new Vector3( transform.position.x,transform.position.y,8f));
+        lineRenderer.SetPosition(1,new Vector3( targetPos.position.x,targetPos.position.y,8f));
     }
 
     Transform RandomPoint()//ｘ、ｙを適切な名前に治す
     {
-        int x = Random.Range(0, PlayerPoint.Length);
-        Transform Point = PlayerPoint[x];
+        int length = Random.Range(0, PlayerPoint.Length);
+        Transform Point = PlayerPoint[length];
         return Point;
     }
 
-    //Transform Test()
-    //{
-    //    int length = Random.Range(0, test.Length);
-    //    Transform ttest = test[length];
-    //    return ttest;
-    //}
 
 }

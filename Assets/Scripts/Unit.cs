@@ -58,8 +58,8 @@ public class Unit
     {
         get => Mathf.FloorToInt((UnitBase.Defense * Level) / 100f) + 5;
     }
-    public int Speed
-    {
-        get => Mathf.FloorToInt((UnitBase.Speed * Level) / 100f) + 5;
-    }
+    //public int Speed
+    //{
+    //    get => Mathf.FloorToInt((UnitBase.Speed * Level) / 100f) + 5;
+    //}
 }
