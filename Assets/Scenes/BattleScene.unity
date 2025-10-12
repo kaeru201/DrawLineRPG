@@ -1372,6 +1372,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objPrefab: {fileID: 376180456296494798, guid: 7f2f0fc69826826418c54f237fde9425, type: 3}
   battleSystem: {fileID: 716765375}
+  intelligence: {fileID: 444233897}
 --- !u!61 &171655047
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1892,6 +1893,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objPrefab: {fileID: 376180456296494798, guid: 7f2f0fc69826826418c54f237fde9425, type: 3}
   battleSystem: {fileID: 716765375}
+  intelligence: {fileID: 444233897}
 --- !u!61 &221090314
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7974,6 +7976,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objPrefab: {fileID: 376180456296494798, guid: 7f2f0fc69826826418c54f237fde9425, type: 3}
   battleSystem: {fileID: 716765375}
+  intelligence: {fileID: 444233897}
 --- !u!61 &1719090533
 BoxCollider2D:
   m_ObjectHideFlags: 0
