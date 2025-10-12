@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
+//SkillSelectionにアタッチするクラス、Game中にどのスキルを持っているかを表示する
 public class SkillSelection : MonoBehaviour
 
 {
@@ -31,12 +32,12 @@ public class SkillSelection : MonoBehaviour
                 skillNames[i].text = "・" + skills[i].Skillbase.Name;
             }
            
-            //それぞれののi毎に記憶しておく
+            //それぞれのi毎に記憶しておく
             intelligence.SkillRanges[i] = skills[i].Skillbase.MaxLineRange;
 
             intelligence.SkillDescriptions[i] = skills[i].Skillbase.Description;
 
-            intelligence.SkillTypes[i] = skills[i].Skillbase.SkilType;
+            intelligence.SkillTypes[i] = skills[i].Skillbase.SkillType;
 
             intelligence.SkillPowers[i] = skills[i].Skillbase.Power;
 

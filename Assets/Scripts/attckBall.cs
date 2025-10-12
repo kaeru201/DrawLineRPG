@@ -9,7 +9,7 @@ public class AttckBall : MonoBehaviour
 
     //[SerializeField]  BattleSystem battleSystem;
 
-    Vector3 lastAddPos;//最後に加えて点
+    Vector3 lastAddPos;//最後に加えた点
 
     public int Power { get; set; }
     public int PenetionPower { get; set; }
@@ -22,16 +22,10 @@ public class AttckBall : MonoBehaviour
     {
         lineRenderer = transform.parent.GetComponent<LineRenderer>();
         lastAddPos = lineRenderer.GetPosition(0);
-        Speed = 1 / Speed;//Speedが大きければ大きいほどボールを速く
+        Speed = 0.5f / Speed;//Speedが大きければ大きいほどボールを速く
         StartCoroutine(MoveBall());
     }
-
-
-    void Update()
-    {
-
-
-    }
+       
 
     IEnumerator MoveBall()
     {
@@ -40,9 +34,9 @@ public class AttckBall : MonoBehaviour
         {
 
             Vector3 nextPos = lineRenderer.GetPosition(i);
-            transform.position = Vector3.Lerp(lastAddPos, nextPos, 0.5f);
-            yield return new WaitForSeconds(Speed);
-            lastAddPos = nextPos;
+            transform.position = Vector3.Lerp(lastAddPos, nextPos, 0.5f);//徐々に次の点から最後に加えた点に移動
+            yield return new WaitForSeconds(Speed);//スピード秒だけ待つ
+            lastAddPos = nextPos;//現在地点を最後に加えた点に
 
             //最後まで何もぶつからなかったら消える
             if (i == lineRenderer.positionCount - 1)
@@ -66,15 +60,27 @@ public class AttckBall : MonoBehaviour
             Destroy(gameObject);
         }
 
-        //もし相手が敵のBallだったら
+        //もし相手がEnemyのBallだったら
         else if (collision.gameObject.CompareTag("EnemyBall"))
         {
+           
             EnemyBall enemyPenetion = collision.gameObject.GetComponent<EnemyBall>();
 
-            //お互いの貫通力を見て低い方は消える、同じ場合はどちらも消える
-            if (PenetionPower <= enemyPenetion.PenetionPower)
+            //ぶつかった相手より貫通力が低いなら自分を消す
+            if (PenetionPower < enemyPenetion.PenetionPower)
             {
                 Destroy(gameObject);
+            }
+            //ぶつかった相手より貫通力が高いなら相手を消す
+            else if(PenetionPower > enemyPenetion.PenetionPower)
+            {
+                Destroy(collision.gameObject);
+            }
+            //ぶつかった相手と貫通力が一緒ならどちらも消す
+            else if (PenetionPower == enemyPenetion.PenetionPower)
+            {
+                Destroy(gameObject);
+                Destroy(collision.gameObject);
             }
         }
     }

@@ -22,9 +22,6 @@ public enum BattleState //列挙型の現在どのターンなのか
 public class BattleSystem : MonoBehaviour
 {
 
-
-
-
     //とりあえずインスペクター上でアタッチ
     [SerializeField] BattleUnit player1Unit;
     [SerializeField] BattleUnit player2Unit;
@@ -42,6 +39,7 @@ public class BattleSystem : MonoBehaviour
     [SerializeField] EnemyHud enemy2Hud;
     [SerializeField] EnemyHud enemy3Hud;
 
+    [SerializeField] DrawIntelligence intelligence;
     [SerializeField] SkillSelection playerSkill;
     [SerializeField] EnemyDraw[] enemyDraw = new EnemyDraw[3];
 
@@ -49,7 +47,9 @@ public class BattleSystem : MonoBehaviour
 
     bool next = false;//線を引き終わったかどうか 
 
-
+    bool enemy1Alive = true;//仮置き、どこに置くかはまだ不明
+    bool enemy2Alive = true;
+    bool enemy3Alive = true;
 
     public BattleState CurrentBState { get => currentBState; set => currentBState = value; }
     public bool Next { get => next; set => next = value; }
@@ -136,9 +136,13 @@ public class BattleSystem : MonoBehaviour
     }
 
     //線を描くのを待ってからEnemyターンにするコルーチン　後で消すかも
-    IEnumerator WaitEnemyTurn()
+    IEnumerator EnemyTurn()
     {
-        yield return new WaitUntil(() => Next == true);
+       
+
+        yield return new WaitUntil(() => Next == true);//player3が描き終わる待ってから
+        EnemyIntelligence();//Enemyの情報を代入
+
         TurnCng(BattleState.EnemyTurn);
         for (int i = 0; i < enemyDraw.Length; i++)
         {
@@ -153,7 +157,52 @@ public class BattleSystem : MonoBehaviour
     {
         if (currentBState != BattleState.EnemyTimeTurn) return;
 
-        StartCoroutine(WaitEnemyTurn());
+
+
+        StartCoroutine(EnemyTurn());
     }
 
+    void EnemyIntelligence()
+    {
+        //Enemy1が生きているなら
+        if (enemy1Alive)
+        {
+            int nextSkill = Random.Range(0, enemy1Unit.Unit.Skills.Count);//Enemy1の持っているスキルの中からランダムに選ぶ
+
+           
+            //選んだスキルの情報を代入
+            intelligence.Enemy1SkillType = enemy1Unit.Unit.Skills[nextSkill].Skillbase.SkillType;
+            intelligence.enemyPowers[0] = enemy1Unit.Unit.Skills[nextSkill].Skillbase.Power;
+            intelligence.enemyPenetionPowers[0] = enemy1Unit.Unit.Skills[nextSkill].Skillbase.PenetrationPower;
+            intelligence.enemySpeeds[0] = enemy1Unit.Unit.Skills[nextSkill].Skillbase.Speed;
+            intelligence.enemyNumAttacks[0] = enemy1Unit.Unit.Skills[nextSkill].Skillbase.NumberAttacks;
+            
+            
+        }
+        //Enemy2が生きているなら
+        if (enemy2Alive)
+        {
+            int nextSkill = Random.Range(0,enemy2Unit.Unit.Skills.Count);
+
+            intelligence.Enemy2SkillType = enemy2Unit.Unit.Skills[nextSkill].Skillbase.SkillType;
+            intelligence.enemyPowers[1] = enemy2Unit.Unit.Skills[nextSkill].Skillbase.Power;
+            intelligence.enemyPenetionPowers[1] = enemy2Unit.Unit.Skills[nextSkill].Skillbase.PenetrationPower;
+            intelligence.enemySpeeds[1] = enemy2Unit.Unit.Skills[nextSkill].Skillbase.Speed;
+            intelligence.enemyNumAttacks[1] = enemy2Unit.Unit.Skills[nextSkill].Skillbase.NumberAttacks;
+        }
+        //Enemy3が生きているなら
+        if (enemy3Alive)
+        {
+            int nextSkill = Random.Range(0,enemy3Unit.Unit.Skills.Count);
+
+            intelligence.Enemy3SkillType = enemy3Unit.Unit.Skills[nextSkill].Skillbase.SkillType;
+            intelligence.enemyPowers[2] = enemy3Unit.Unit.Skills[nextSkill].Skillbase.Power;
+            intelligence.enemyPenetionPowers[2] = enemy3Unit.Unit.Skills[nextSkill].Skillbase.PenetrationPower;
+            intelligence.enemySpeeds[2] = enemy3Unit.Unit.Skills[nextSkill].Skillbase.Speed;
+            intelligence.enemyNumAttacks[2] = enemy3Unit.Unit.Skills[nextSkill].Skillbase.NumberAttacks;
+
+
+        }
+
+    }
 }

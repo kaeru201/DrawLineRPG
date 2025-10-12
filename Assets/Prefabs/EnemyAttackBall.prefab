@@ -10,12 +10,12 @@ GameObject:
   m_Component:
   - component: {fileID: 7535371834642153523}
   - component: {fileID: 2890108810522763309}
-  - component: {fileID: 7289660209787802136}
+  - component: {fileID: 3351776936747196144}
   - component: {fileID: 515422434550747043}
   - component: {fileID: 5013581303595871936}
   m_Layer: 0
   m_Name: EnemyAttackBall
-  m_TagString: PlayerBall
+  m_TagString: EnemyBall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -30,7 +30,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -220.99995, y: -72, z: 0}
-  m_LocalScale: {x: 0.35, y: 0.35, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -90,7 +90,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &7289660209787802136
+--- !u!114 &3351776936747196144
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -99,7 +99,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 376180456296494798}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56a3203777ddcbb448ffbe6f2f94378e, type: 3}
+  m_Script: {fileID: 11500000, guid: c4dbda83c127e0441a33a404fb71afcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!58 &515422434550747043

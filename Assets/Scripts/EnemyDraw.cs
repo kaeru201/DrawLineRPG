@@ -21,7 +21,7 @@ public class EnemyDraw : MonoBehaviour
     void Start()
     {
         lineRenderer = GetComponent<LineRenderer>();
-       startPosition = GetComponent<Transform>();
+        startPosition = GetComponent<Transform>();
 
         lineRenderer.startWidth = 0.1f;
         lineRenderer.endWidth = 0.1f;
@@ -29,13 +29,13 @@ public class EnemyDraw : MonoBehaviour
 
     }
 
-    
+
     //死んでたら描かないという仕様にしないと
     public void DrawEnemy()
     {
         Transform targetPos = RandomPoint();
-        lineRenderer.SetPosition(0,new Vector3( transform.position.x,transform.position.y,8f));
-        lineRenderer.SetPosition(1,new Vector3( targetPos.position.x,targetPos.position.y,8f));
+        lineRenderer.SetPosition(0, new Vector3(transform.position.x, transform.position.y -0.3f, 8f));
+        lineRenderer.SetPosition(1, new Vector3(targetPos.position.x, targetPos.position.y, 8f));
     }
 
     Transform RandomPoint()//ｘ、ｙを適切な名前に治す

@@ -22,7 +22,7 @@ public class SkillBase : ScriptableObject
     public int MaxLineRange { get => maxLineRange; }
     public int Speed { get => speed; set => speed = value; }
     public int NumberAttacks { get => numberAttacks; set => numberAttacks = value; }
-    internal SkillType SkilType { get => skilType; }
+    internal SkillType SkillType { get => skilType; }
 }
 
 

@@ -19,7 +19,6 @@ MonoBehaviour:
   maxHP: 0
   attack: 0
   defense: 0
-  speed: 0
-  learnablemoves:
-  - moveBase: {fileID: 11400000, guid: e52a46a2d5769f249bb89335ebec1371, type: 2}
-    level: 2
+  learnableSkills:
+  - skillBase: {fileID: 11400000, guid: 7220b50cc5e0b1240b0628eca1b05c57, type: 2}
+    level: 0
