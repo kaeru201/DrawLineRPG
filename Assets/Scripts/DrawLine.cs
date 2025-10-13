@@ -23,6 +23,8 @@ public class DrawLine : MonoBehaviour
     float currentLineRange;//現在の書いた長さ
     Vector3 lastAddPoint;//最後に追加した点を記憶しておく変数
 
+    float fixedDrawZ = 8f; //z軸を固定
+
     public float MaxLineRange { get => maxLineRange; set => maxLineRange = value; }
 
 
@@ -40,7 +42,7 @@ public class DrawLine : MonoBehaviour
     void Update()
     {
         //マウスのスクリーン座標をワールド座標に変換する
-        Vector3 mousePos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 8f));
+        Vector3 mousePos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, fixedDrawZ));
 
         //mousePosを枠から出ないように
         mousePos.x = Mathf.Clamp(mousePos.x, -28.28f, -14.733f);
@@ -57,7 +59,7 @@ public class DrawLine : MonoBehaviour
             currentLineRange = 0;
             ready = false;
             //y軸は少し上からZ軸は適当
-            AddLine(new Vector3(startPosition.position.x, startPosition.position.y + 0.5f, 8f));
+            AddLine(new Vector3(startPosition.position.x, startPosition.position.y + 0.5f, fixedDrawZ));
 
         }
 
@@ -111,7 +113,7 @@ public class DrawLine : MonoBehaviour
             
             //もう一度右クリックを押したら
 
-            battleSystem.Next = true;
+            battleSystem.next = true;
 
 
 
@@ -124,7 +126,7 @@ public class DrawLine : MonoBehaviour
     //線を引くメソッド(点)
     void AddLine(Vector3 point)
     {
-
+        point.z = fixedDrawZ;//z軸を固定
         lineRenderer.positionCount = posCount + 1;//繰り返す度に点を増やしていく
         lineRenderer.SetPosition(posCount, point);//一つ前の点から次の点に線を書く
         posCount++;

@@ -45,14 +45,16 @@ public class BattleSystem : MonoBehaviour
 
     [SerializeField] BattleState currentBState;
 
-    bool next = false;//線を引き終わったかどうか 
+    [SerializeField] GameObject readyButton;
+
+    public bool next = false;//線を引き終わったかどうか 
 
     bool enemy1Alive = true;//仮置き、どこに置くかはまだ不明
     bool enemy2Alive = true;
     bool enemy3Alive = true;
 
     public BattleState CurrentBState { get => currentBState; set => currentBState = value; }
-    public bool Next { get => next; set => next = value; }
+
 
 
 
@@ -120,10 +122,18 @@ public class BattleSystem : MonoBehaviour
                 playerSkill.SetSkill(player3Unit.Unit.Skills);
                 break;
 
+            //引数がEnemyTurnならstateをEnemyTimeTurnに
+            //case BattleState.EnemyTimeTurn:
+
+            //    currentBState = BattleState.EnemyTimeTurn;
+            //    readyButton.SetActive(true);
+
+            //    break;
             //引数がEnemyTurnならstateをEnemyTurnに
             case BattleState.EnemyTurn:
 
                 currentBState = BattleState.EnemyTurn;
+                StartCoroutine(EnemyTurn());
 
                 break;
             case BattleState.BattleTurn:
@@ -135,32 +145,33 @@ public class BattleSystem : MonoBehaviour
 
     }
 
+
+
     //線を描くのを待ってからEnemyターンにするコルーチン　後で消すかも
     IEnumerator EnemyTurn()
     {
-       
 
-        yield return new WaitUntil(() => Next == true);//player3が描き終わる待ってから
+        yield return new WaitUntil(() => next == true);//player3が描き終わる待ってから
         EnemyIntelligence();//Enemyの情報を代入
-
-        TurnCng(BattleState.EnemyTurn);
-        for (int i = 0; i < enemyDraw.Length; i++)
+                            //TurnCng(BattleState.EnemyTurn);
+        for (int i = 0; i < enemyDraw.Length; i++)//敵の数だけ線を引く(後で生きている敵だけに)
         {
             enemyDraw[i].DrawEnemy();
         }
-        TurnCng(BattleState.BattleTurn);//うーん、どこでゲームを進行しているのかが分かりにくい
+        yield return new WaitForSeconds(1f);//ちょっと待ってから
+        TurnCng(BattleState.BattleTurn);//BattaleTurnに
         yield break;
     }
 
     //一回挟まないと動かなかったから一旦
-    private void Update()
-    {
-        if (currentBState != BattleState.EnemyTimeTurn) return;
+    //private void Update()
+    //{
+    //    if (currentBState != BattleState.EnemyTimeTurn) return;
 
 
 
-        StartCoroutine(EnemyTurn());
-    }
+    //    StartCoroutine(EnemyTurn());
+    //}
 
     void EnemyIntelligence()
     {
@@ -169,20 +180,20 @@ public class BattleSystem : MonoBehaviour
         {
             int nextSkill = Random.Range(0, enemy1Unit.Unit.Skills.Count);//Enemy1の持っているスキルの中からランダムに選ぶ
 
-           
+
             //選んだスキルの情報を代入
             intelligence.Enemy1SkillType = enemy1Unit.Unit.Skills[nextSkill].Skillbase.SkillType;
             intelligence.enemyPowers[0] = enemy1Unit.Unit.Skills[nextSkill].Skillbase.Power;
             intelligence.enemyPenetionPowers[0] = enemy1Unit.Unit.Skills[nextSkill].Skillbase.PenetrationPower;
             intelligence.enemySpeeds[0] = enemy1Unit.Unit.Skills[nextSkill].Skillbase.Speed;
             intelligence.enemyNumAttacks[0] = enemy1Unit.Unit.Skills[nextSkill].Skillbase.NumberAttacks;
-            
-            
+
+
         }
         //Enemy2が生きているなら
         if (enemy2Alive)
         {
-            int nextSkill = Random.Range(0,enemy2Unit.Unit.Skills.Count);
+            int nextSkill = Random.Range(0, enemy2Unit.Unit.Skills.Count);
 
             intelligence.Enemy2SkillType = enemy2Unit.Unit.Skills[nextSkill].Skillbase.SkillType;
             intelligence.enemyPowers[1] = enemy2Unit.Unit.Skills[nextSkill].Skillbase.Power;
@@ -193,7 +204,7 @@ public class BattleSystem : MonoBehaviour
         //Enemy3が生きているなら
         if (enemy3Alive)
         {
-            int nextSkill = Random.Range(0,enemy3Unit.Unit.Skills.Count);
+            int nextSkill = Random.Range(0, enemy3Unit.Unit.Skills.Count);
 
             intelligence.Enemy3SkillType = enemy3Unit.Unit.Skills[nextSkill].Skillbase.SkillType;
             intelligence.enemyPowers[2] = enemy3Unit.Unit.Skills[nextSkill].Skillbase.Power;
@@ -205,4 +216,6 @@ public class BattleSystem : MonoBehaviour
         }
 
     }
+
+
 }

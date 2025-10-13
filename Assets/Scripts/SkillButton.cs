@@ -1,10 +1,11 @@
-using UnityEngine;
-using System.Collections.Generic;
-using UnityEngine.UI;
-using TMPro;
-using UnityEngine.EventSystems;
-using Unity.VisualScripting;
 using System.Collections;
+using System.Collections.Generic;
+using TMPro;
+using Unity.VisualScripting;
+using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
+using static System.Net.Mime.MediaTypeNames;
 
 
 //実際に押すSkillのスクリプト
@@ -60,6 +61,8 @@ public class SkillButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
             //押したときplayer1が生きていているなら
             if (player1Survival)
             {
+
+               
                 skillSelection.SetActive(false);//SkillSelectionを停止
                 DrawNumberSet();//どれを押したか
                 intelligence.DrawIn(1);//線を描く
@@ -76,6 +79,7 @@ public class SkillButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
             //プレイヤー2が生きているなら
             if (player2Survival)
             {
+               
                 skillSelection.SetActive(false);
                 DrawNumberSet();
                 intelligence.DrawIn(2);
@@ -92,16 +96,20 @@ public class SkillButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
             //プレイヤー3が生きているなら
             if (player3Survival)
             {
+                
                 skillSelection.SetActive(false);
                 DrawNumberSet();
                 intelligence.DrawIn(3);
-                battleSystem.CurrentBState = BattleState.EnemyTimeTurn;
+                // battleSystem.CurrentBState = BattleState.EnemyTimeTurn;
+                battleSystem.TurnCng(BattleState.EnemyTurn);
             }
             //生きていなくてもBattleStateをEnemyTurnに
             else battleSystem.TurnCng(BattleState.EnemyTurn);
         }
 
     }
+
+    
 
     //どのスキルをクリックしたかによって識別変数を変えて、クリックしたスキルの情報を覚えておメソッド
     public void DrawNumberSet()
