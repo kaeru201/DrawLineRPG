@@ -95,7 +95,7 @@ public class DrawIntelligence : MonoBehaviour
         {
             PlayerPointON(player1Point);//プレイヤー1の線を引くスクリプトをつける
 
-            WhoClick(player1Point, Player1SkillType, ref playerPowers[0], ref playerPenetionPowers[0], ref playerSpeeds[0], ref playerNumAttacks[0]);//プレイヤー1が何のスキルを打ったか
+            WhoClick(player1Point,  Player1SkillType, ref playerPowers[0], ref playerPenetionPowers[0], ref playerSpeeds[0], ref playerNumAttacks[0]);//プレイヤー1が何のスキルを打ったか
 
             StartCoroutine(PlayerPointOFF(player1Point));//プレイヤー1のスクリプトを消す
         }

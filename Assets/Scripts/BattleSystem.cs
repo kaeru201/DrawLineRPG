@@ -10,7 +10,7 @@ public enum BattleState //列挙型の現在どのターンなのか
     Player1Turn,
     Player2Turn,
     Player3Turn,
-    EnemyTimeTurn,　//後で消すかも
+    //EnemyTimeTurn,　//後で消すかも
     EnemyTurn,
     BattleTurn,
     WinTurn,
@@ -49,14 +49,15 @@ public class BattleSystem : MonoBehaviour
 
     public bool next = false;//線を引き終わったかどうか 
 
-    bool enemy1Alive = true;//仮置き、どこに置くかはまだ不明
-    bool enemy2Alive = true;
-    bool enemy3Alive = true;
+    public bool Player1Alive { get; set; } = false;
+    public bool Player2Alive { get; set; } = false;
+    public bool Player3Alive { get; set; } = false;
+
+    public bool Enemy1Alive { get; set; } = false;
+    public bool Enemy2Alive { get; set; } = false;
+    public bool Enemy3Alive { get; set; } = false;
 
     public BattleState CurrentBState { get => currentBState; set => currentBState = value; }
-
-
-
 
 
     //バトルが始まったら
@@ -66,20 +67,48 @@ public class BattleSystem : MonoBehaviour
 
         if (CurrentBState == BattleState.StartTurn)
         {
-            player1Unit.SetUp();//モンスターの生成
-            player2Unit.SetUp();
-            player3Unit.SetUp();
-            enemy1Unit.SetUp();
-            enemy2Unit.SetUp();
-            enemy3Unit.SetUp();
 
 
-            player1Hud.SetData(player1Unit.Unit);//プレイヤーのHudを出す
-            player2Hud.SetData(player2Unit.Unit);
-            player3Hud.SetData(player3Unit.Unit);
-            enemy1Hud.SetData(enemy1Unit.Unit);
-            enemy2Hud.SetData(enemy2Unit.Unit);
-            enemy3Hud.SetData(enemy3Unit.Unit);
+            if (player1Unit != null)
+            {
+                player1Unit.SetUp();//Unitの生成
+                Player1Alive = true;//Player生存フラグをON
+                player1Hud.SetData(player1Unit.Unit);//プレイヤーのHudを出す
+            }
+            if (player2Unit != null)
+            {
+                player2Unit.SetUp();
+                Player2Alive = true;
+                player2Hud.SetData(player2Unit.Unit);
+            }
+            if (player3Unit != null)
+            {
+                player3Unit.SetUp();
+                Player3Alive = true;
+                player3Hud.SetData(player3Unit.Unit);
+
+            }
+            if (enemy1Unit != null)
+            {
+                enemy1Unit.SetUp();
+                Enemy1Alive = true;
+                enemy1Hud.SetData(enemy1Unit.Unit);
+
+            }
+            if (enemy2Unit != null)
+            {
+                enemy2Unit.SetUp();
+                Enemy2Alive = true;
+                enemy2Hud.SetData(enemy2Unit.Unit);
+            }
+            if (enemy3Unit != null)
+            {
+                enemy3Unit.SetUp();
+                Enemy3Alive = true;
+                enemy3Hud.SetData(enemy3Unit.Unit);
+            }
+
+
         }
 
         //もしplayer1が生きているなら
@@ -93,7 +122,17 @@ public class BattleSystem : MonoBehaviour
 
     }
 
+    private void Update()
+    {
 
+        if (player1Unit.Unit.Hp <= 0) Player1Alive = false;
+        else if (player2Unit.Unit.Hp <= 0) Player2Alive = false;
+        else if (player3Unit.Unit.Hp <= 0) Player3Alive = false;
+        else if (enemy1Unit.Unit.Hp <= 0) Enemy1Alive = false;
+        else if (enemy2Unit.Unit.Hp <= 0) Enemy2Alive = false;
+        else if (enemy3Unit.Unit.Hp <= 0) Enemy3Alive = false;
+        else return;
+    }
 
     //currentBstateのplayerTurnのどれかに変更するメソッド
     //引数に変える先のBattleStateを入れる
@@ -176,7 +215,7 @@ public class BattleSystem : MonoBehaviour
     void EnemyIntelligence()
     {
         //Enemy1が生きているなら
-        if (enemy1Alive)
+        if (Enemy1Alive)
         {
             int nextSkill = Random.Range(0, enemy1Unit.Unit.Skills.Count);//Enemy1の持っているスキルの中からランダムに選ぶ
 
@@ -191,7 +230,7 @@ public class BattleSystem : MonoBehaviour
 
         }
         //Enemy2が生きているなら
-        if (enemy2Alive)
+        if (Enemy2Alive)
         {
             int nextSkill = Random.Range(0, enemy2Unit.Unit.Skills.Count);
 
@@ -202,7 +241,7 @@ public class BattleSystem : MonoBehaviour
             intelligence.enemyNumAttacks[1] = enemy2Unit.Unit.Skills[nextSkill].Skillbase.NumberAttacks;
         }
         //Enemy3が生きているなら
-        if (enemy3Alive)
+        if (Enemy3Alive)
         {
             int nextSkill = Random.Range(0, enemy3Unit.Unit.Skills.Count);
 

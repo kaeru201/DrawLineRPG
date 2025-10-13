@@ -33,9 +33,6 @@ public class EnemyDraw : MonoBehaviour
         lineRenderer.startWidth = 0.1f;
         lineRenderer.endWidth = 0.1f;
 
-        
-
-
     }
 
 
@@ -44,31 +41,24 @@ public class EnemyDraw : MonoBehaviour
     //死んでたら描かないという仕様にしないと
     public void DrawEnemy()
     {
-        startPos = new Vector3(transform.position.x, transform.position.y - 0.3f, fixedDrawZ);//線の書き始める座標、少し下から
-        lastAddPoint = startPos;
-        AddLine(lastAddPoint);
-        targetPoint = RandomPoint();
+        startPos = new Vector3(transform.position.x, transform.position.y - 0.4f, fixedDrawZ);//線の書き始める座標、少し下から
+        AddLine(startPos);//初期地点
+        targetPoint = RandomPoint();//ランダムに選んだ相手をターゲットに
+        Vector3 direction = (targetPoint - startPos).normalized;//ベクトル
 
-        Vector3 direction = (targetPoint - startPos).normalized;
-
-
-
-        while ( newPoint.y >= targetPoint.y)//newPointのy座標がtargetPointのy座標より下回るまで
+        while (newPoint.y >= targetPoint.y)//newPointのy座標がtargetPointのy座標より下回るまで
         {
-
-            newPoint = lastAddPoint + direction * 0.1f;
+            newPoint = lastAddPoint + direction * 0.1f;//最後に加えた点から0.1ベクトル分足した地点に次の点を
             AddLine(newPoint);
-
         }
-        
     }
 
-    //ランダムに目標相手を選んで、座標を取得
+    //ランダムに目標相手を選んで、座標を取得   これだと1，3が生き残っているときに3に攻撃が行かない
     Vector3 RandomPoint()
     {
         int length = Random.Range(0, PlayerPoint.Length);
         Transform Point = PlayerPoint[length];
-        Vector3 targetPos =new Vector3( Point.position.x,Point.position.y,fixedDrawZ);
+        Vector3 targetPos = new Vector3(Point.position.x, Point.position.y, fixedDrawZ);
         return targetPos;
     }
 
@@ -77,9 +67,9 @@ public class EnemyDraw : MonoBehaviour
     {
         point.z = fixedDrawZ;
         lineRenderer.positionCount = posCount + 1;//繰り返す度に点を増やしていく
-        lineRenderer.SetPosition(posCount, point);//一つ前の点から次の点に線を書く
+        lineRenderer.SetPosition(posCount, point); //引数に入れた座標に点を置く
         posCount++;
-        lastAddPoint = point;
+        lastAddPoint = point;//今加えた点を最後に加えた点に
     }
 
 

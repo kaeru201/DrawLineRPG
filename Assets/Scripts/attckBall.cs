@@ -11,12 +11,11 @@ public class AttckBall : MonoBehaviour
 
     Vector3 lastAddPos;//最後に加えた点
 
+    internal SkillType SkillType { get; set; }
     public int Power { get; set; }
     public int PenetionPower { get; set; }
     public float Speed { get; set; }
-
-
-
+       
 
     void Start()
     {
@@ -24,6 +23,7 @@ public class AttckBall : MonoBehaviour
         lastAddPos = lineRenderer.GetPosition(0);
         Speed = 0.5f / Speed;//Speedが大きければ大きいほどボールを速く
         StartCoroutine(MoveBall());
+
     }
        
 
@@ -54,10 +54,29 @@ public class AttckBall : MonoBehaviour
         //もし当たった相手がPointだったら
         if (collision.gameObject.CompareTag("Point"))
         {
-            //当たった相手にダメージ
-
-            //pointに当たった後消える
-            Destroy(gameObject);
+            //もしスキルタイプがAttackなら
+            if (SkillType == SkillType.Attack)
+            {
+                //当たった相手にダメージ
+                GameObject parentObj = collision.transform.parent.gameObject;
+                BattleUnit battleUnit = parentObj.GetComponent<BattleUnit>();
+                battleUnit.Unit.Hp = battleUnit.Unit.Hp - Power;//Hpをマイナス
+            }
+            //もしスキルタイプがHealなら
+            else if (SkillType == SkillType.Heal)
+            {
+                //当たった相手に回復
+                GameObject parentObj = collision.transform.parent.gameObject;
+                BattleUnit battleUnit = parentObj.GetComponent<BattleUnit>();
+                battleUnit.Unit.Hp = battleUnit.Unit.Hp + Power;//Hpをプラス
+            }
+            // もしスキルタイプがSupportなら
+            else if (SkillType == SkillType.Support)
+            {
+                Debug.Log("今後追加予定!!");
+            }
+                //pointに当たった後消える
+                Destroy(gameObject);
         }
 
         //もし相手がEnemyのBallだったら

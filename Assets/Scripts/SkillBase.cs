@@ -8,7 +8,7 @@ public class SkillBase : ScriptableObject
     [SerializeField] new string name;//名前  nameが被るから一応new
     [TextArea(3, 10)]
     [SerializeField] string description;//情報
-    [SerializeField] SkillType skilType;//技の種類
+    [SerializeField] SkillType skillType;//技の種類
     [SerializeField] int power;//威力
     [SerializeField] int penetrationPower;//貫通力
     [SerializeField] int maxLineRange;//線の長さ
@@ -22,7 +22,7 @@ public class SkillBase : ScriptableObject
     public int MaxLineRange { get => maxLineRange; }
     public int Speed { get => speed; set => speed = value; }
     public int NumberAttacks { get => numberAttacks; set => numberAttacks = value; }
-    internal SkillType SkillType { get => skilType; }
+    internal SkillType SkillType { get => skillType; }
 }
 
 

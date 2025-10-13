@@ -41,9 +41,6 @@ public class Unit
 
     }
 
-
-
-
     //レベルに応じたステータスを返すプロパティ
     //UnitBaseのプロパティにlevelを掛けて上限の100を割る　5はよくわからないから消すかも
     public int MaxHP

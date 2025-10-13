@@ -13,12 +13,13 @@ public class DrawLine : MonoBehaviour
     [SerializeField] LineRenderer lineRenderer;
     Transform startPosition;
 
-
-
     [SerializeField] float maxLineRange;//DrawIntelligenceから値を代入
     int posCount;//
+    float minMouseMove;
     [SerializeField] bool isDrawing = false;
     [SerializeField] bool ready = false;
+
+
 
     float currentLineRange;//現在の書いた長さ
     Vector3 lastAddPoint;//最後に追加した点を記憶しておく変数
@@ -76,6 +77,8 @@ public class DrawLine : MonoBehaviour
             //最後点と今のマウスの位置の差
             float distanceMouse = Vector2.Distance(lastAddPoint, mousePos);
 
+            if (distanceMouse < minMouseMove) return;//しきい値より動かなかったら線を描かない
+
             //もししきい値よりマウスが離れたら
             if (distanceMouse > 0.1f)
             {
@@ -85,16 +88,14 @@ public class DrawLine : MonoBehaviour
                 //しきい値の大きさのベクトル分の最後の点を記憶して代わりにそこに点を引く
                 Vector3 newPoint = lastAddPoint + direction * 0.1f;
 
-
                 float lengthToAdd = Vector3.Distance(lastAddPoint, newPoint);
 
-
-
+               
 
                 AddLine(newPoint);
+                 
                 currentLineRange += lengthToAdd;
             }
-
 
         }
 
@@ -115,11 +116,7 @@ public class DrawLine : MonoBehaviour
 
             battleSystem.next = true;
 
-
-
         }
-
-
 
     }
 
@@ -132,8 +129,5 @@ public class DrawLine : MonoBehaviour
         posCount++;
         lastAddPoint = point;
     }
-
-
-
 
 }

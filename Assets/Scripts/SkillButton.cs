@@ -24,9 +24,9 @@ public class SkillButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
     //bool player2Select = false;
     //bool player3Select = false;
 
-    bool player1Survival = true;  //とりあえずバグらないために置いてるけど、多分違う場所で宣言します
-    bool player2Survival = true;  //どうやって判別するかも一旦保留
-    bool player3Survival = true;　//でもSetUpでtrue + 戦闘中死んだらfalseにするのは確定
+    //bool player1Survival = true;  //とりあえずバグらないために置いてるけど、多分違う場所で宣言します
+    //bool player2Survival = true;  //どうやって判別するかも一旦保留
+    //bool player3Survival = true;　//でもSetUpでtrue + 戦闘中死んだらfalseにするのは確定
 
 
     void Start()
@@ -59,7 +59,7 @@ public class SkillButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
         if (battleSystem.CurrentBState == BattleState.Player1Turn)
         {
             //押したときplayer1が生きていているなら
-            if (player1Survival)
+            if (battleSystem.Player1Alive)
             {
 
                
@@ -77,7 +77,7 @@ public class SkillButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
         else if (battleSystem.CurrentBState == BattleState.Player2Turn)
         {
             //プレイヤー2が生きているなら
-            if (player2Survival)
+            if (battleSystem.Player2Alive)
             {
                
                 skillSelection.SetActive(false);
@@ -94,7 +94,7 @@ public class SkillButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
         else if (battleSystem.CurrentBState == BattleState.Player3Turn)
         {
             //プレイヤー3が生きているなら
-            if (player3Survival)
+            if (battleSystem.Player3Alive)
             {
                 
                 skillSelection.SetActive(false);

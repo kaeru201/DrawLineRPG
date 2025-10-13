@@ -12,7 +12,7 @@ public class HPBar : MonoBehaviour
 
     void Start()
     {
-        //¶¬‚µ‚½Unit–ˆ‚ÌÅ‘å‚ðmaxValue‚É‘ã“ü‚·‚é
+        //ç”Ÿæˆã—ãŸUnitæ¯Žã®æœ€å¤§ã‚’maxValueã«ä»£å…¥ã™ã‚‹
         //slider.maxValue = unit.MaxHP;
        // slider.value = 1;
         
@@ -22,28 +22,28 @@ public class HPBar : MonoBehaviour
         
     void Update()
     {
-        //‚±‚±‚Å‚â‚é‚©‚Í’u‚¢‚Æ‚¢‚ÄŒ»Ý‚ÌHP‚ðvalue‚É‘ã“ü
+        //ã“ã“ã§ã‚„ã‚‹ã‹ã¯ç½®ã„ã¨ã„ã¦ç¾åœ¨ã®HPã‚’valueã«ä»£å…¥
         slider.value = CurrentHP;
-        OnDamage();   
+     //   OnDamage();   
     }
 
-    //‰¼ƒ_ƒ[ƒWƒtƒ‰ƒOƒƒ\ƒbƒh
-    void OnDamage()
-    {
-        if (CurrentHP > 0)
-        {
-            if(Input.GetKeyDown(KeyCode.Space) )
-            {
-                CurrentHP = CurrentHP - damage;
-                Debug.Log(CurrentHP);
-            }
+    //ä»®ãƒ€ãƒ¡ãƒ¼ã‚¸ãƒ•ãƒ©ã‚°ãƒ¡ã‚½ãƒƒãƒ‰
+    //void OnDamage()
+    //{
+    //    if (CurrentHP > 0)
+    //    {
+    //        if(Input.GetKeyDown(KeyCode.Space) )
+    //        {
+    //            CurrentHP = CurrentHP - damage;
+    //            Debug.Log(CurrentHP);
+    //        }
 
 
 
-        }
+    //    }
         
            
         
-    }
+    //}
 
 }

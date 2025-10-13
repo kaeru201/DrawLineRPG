@@ -9,10 +9,11 @@ public class EnemyBall : MonoBehaviour
 
     Vector3 lastAddPos;//最後に加えた点
 
+    internal SkillType SkillType{ get; set; }
     public int Power { get; set; }
     public int PenetionPower { get; set; }
     public float Speed { get; set; }
-
+    
 
     void Start()
     {
@@ -47,10 +48,30 @@ public class EnemyBall : MonoBehaviour
         //もし当たった相手がPointだったら
         if (collision.gameObject.CompareTag("Point"))
         {
-            //当たった相手にダメージ
+            //もしスキルタイプがAttackなら
+            if(SkillType == SkillType.Attack)
+            {
+                //当たった相手にダメージ
+                GameObject parentObj = collision.transform.parent.gameObject;
+                BattleUnit battleUnit = parentObj.GetComponent<BattleUnit>();
+                battleUnit.Unit.Hp = battleUnit.Unit.Hp - Power;
+            }
+            //もしスキルタイプがHealなら
+            else if (SkillType == SkillType.Heal)
+            {
+                //当たった相手に回復
+                GameObject parentObj = collision.transform.parent.gameObject;
+                BattleUnit battleUnit = parentObj.GetComponent<BattleUnit>();
+                battleUnit.Unit.Hp = battleUnit.Unit.Hp + Power;
+            }
+            //もしスキルタイプがSupportなら
+            else if (SkillType == SkillType.Support)
+            {
+                Debug.Log("今後追加予定!!");
+            }
 
             //pointに当たった後消える
-           // Destroy(gameObject);
+            Destroy(gameObject);
         }
 
         //playerのボールが当たった時の処理はAttackBall側で行うためこちらには無し
