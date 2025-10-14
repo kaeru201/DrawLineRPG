@@ -256,5 +256,39 @@ public class BattleSystem : MonoBehaviour
 
     }
 
+    //ボールが誰かに当たった時のダメージ計算をするメソッド(AttackBallかRnemyBallで発動)
+    public int Damage(int myPower, int UnitNum, BattleUnit collisionUnit)
+    {
+        int damage = 0;
+
+        if (UnitNum == 1)//自分がPlaye1のボールだった時
+        {
+             damage = (myPower * player1Unit.Unit.Attack) / collisionUnit.Unit.Defense;//スキル火力 * 自分の攻撃力 / 相手の防御力
+        }
+        else if (UnitNum == 2)//自分がPlayeのボールだった時
+        {
+            damage = (myPower * player2Unit.Unit.Attack) / collisionUnit.Unit.Defense;
+        }
+        else if(UnitNum == 3)//自分がPlaye3のボールだった時
+        {
+             damage = (myPower * player3Unit.Unit.Attack) / collisionUnit.Unit.Defense;
+        }
+        else if (UnitNum == 4)//自分がEnemy1のボールだった時
+        {
+             damage = (myPower * enemy1Unit.Unit.Attack) / collisionUnit.Unit.Defense;
+        }
+        else if(UnitNum ==  5)//自分がEnemy2のボールだった時
+        {
+             damage = (myPower * enemy2Unit.Unit.Attack) / collisionUnit.Unit.Defense;
+        }
+        else if(UnitNum == 6)//自分がEnemy3のボールだった時
+        {
+             damage = (myPower * enemy3Unit.Unit.Attack) / collisionUnit.Unit.Defense;
+        }
+
+        return damage;
+            
+    }
+
 
 }

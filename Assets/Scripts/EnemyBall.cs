@@ -1,19 +1,24 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 
 //敵のプレハブ化されたBallにアタッチするクラス
 public class EnemyBall : MonoBehaviour
 {
+
+    BattleSystem battleSystem;
     LineRenderer lineRenderer;
 
     Vector3 lastAddPos;//最後に加えた点
 
-    internal SkillType SkillType{ get; set; }
+    internal SkillType SkillType { get; set; }
     public int Power { get; set; }
     public int PenetionPower { get; set; }
     public float Speed { get; set; }
-    
+
+    public int UnitNum { get; set; }
+
 
     void Start()
     {
@@ -33,9 +38,9 @@ public class EnemyBall : MonoBehaviour
             yield return new WaitForSeconds(Speed);//スピード秒だけ待つ
             lastAddPos = nextPos;//現在地点を最後に加えた点に
 
-            if (i == lineRenderer.positionCount - 1) 
+            if (i == lineRenderer.positionCount - 1)
             {
-               // Destroy(gameObject);
+                // Destroy(gameObject);
 
             }
         }
@@ -49,12 +54,16 @@ public class EnemyBall : MonoBehaviour
         if (collision.gameObject.CompareTag("Point"))
         {
             //もしスキルタイプがAttackなら
-            if(SkillType == SkillType.Attack)
+            if (SkillType == SkillType.Attack)
             {
                 //当たった相手にダメージ
                 GameObject parentObj = collision.transform.parent.gameObject;
                 BattleUnit battleUnit = parentObj.GetComponent<BattleUnit>();
+
+
+
                 battleUnit.Unit.Hp = battleUnit.Unit.Hp - Power;
+
             }
             //もしスキルタイプがHealなら
             else if (SkillType == SkillType.Heal)
@@ -62,7 +71,9 @@ public class EnemyBall : MonoBehaviour
                 //当たった相手に回復
                 GameObject parentObj = collision.transform.parent.gameObject;
                 BattleUnit battleUnit = parentObj.GetComponent<BattleUnit>();
-                battleUnit.Unit.Hp = battleUnit.Unit.Hp + Power;
+
+                int damage = battleSystem.Damage(Power, UnitNum, battleUnit);//battleSystemのDamageメソッドを発動させてダメージ計算をする
+                battleUnit.Unit.Hp = battleUnit.Unit.Hp - damage;//計算した値分Hpをマイナス
             }
             //もしスキルタイプがSupportなら
             else if (SkillType == SkillType.Support)
@@ -73,6 +84,10 @@ public class EnemyBall : MonoBehaviour
             //pointに当たった後消える
             Destroy(gameObject);
         }
+
+
+
+
 
         //playerのボールが当たった時の処理はAttackBall側で行うためこちらには無し
 
@@ -88,6 +103,11 @@ public class EnemyBall : MonoBehaviour
         //    }
         //}
 
+    }
+
+    public void SetBattleSystem(BattleSystem system)
+    {
+        battleSystem = system;
     }
 
 }

@@ -25,14 +25,14 @@ public class InstanceBall : MonoBehaviour
 
     void Update()
     {
-        if(battleSystem.CurrentBState == BattleState.Player1Turn) //リセット　本当にUPdataに書くかは疑問
+        if (battleSystem.CurrentBState == BattleState.Player1Turn) //リセット　本当にUPdataに書くかは疑問
         {
-            p1Rdy=true;
-            p2Rdy=true;
-            p3Rdy=true;
-            e1Rdy=true;
-            e2Rdy=true;
-            e3Rdy=true;
+            p1Rdy = true;
+            p2Rdy = true;
+            p3Rdy = true;
+            e1Rdy = true;
+            e2Rdy = true;
+            e3Rdy = true;
         }
 
         else if (battleSystem.CurrentBState == BattleState.BattleTurn)
@@ -56,6 +56,11 @@ public class InstanceBall : MonoBehaviour
                             script.PenetionPower = intelligence.playerPenetionPowers[0];
                             script.Speed = intelligence.playerSpeeds[0];
 
+                            //ダメージ計算をする時につかう
+                            script.SetBattleSystem(battleSystem);//BallにBattleSystemを参照させるメソッド
+                            script.UnitNum = 1;//どのユニットのBallか判別するint
+
+
                         }
                         p1Rdy = false;
                     }
@@ -78,6 +83,10 @@ public class InstanceBall : MonoBehaviour
                             script.Power = intelligence.playerPowers[1];
                             script.PenetionPower = intelligence.playerPenetionPowers[1];
                             script.Speed = intelligence.playerSpeeds[1];
+
+                            //ダメージ計算をする時につかう
+                            script.SetBattleSystem(battleSystem);//BallにBattleSystemを参照させるメソッド
+                            script.UnitNum = 2;//どのユニットのBallか判別するint
 
                         }
                         p2Rdy = false;
@@ -103,6 +112,9 @@ public class InstanceBall : MonoBehaviour
                             script.PenetionPower = intelligence.playerPenetionPowers[2];
                             script.Speed = intelligence.playerSpeeds[2];
 
+                            //ダメージ計算をする時につかう
+                            script.SetBattleSystem(battleSystem);//BallにBattleSystemを参照させるメソッド
+                            script.UnitNum = 3;//どのユニットのBallか判別するint
                         }
                         p3Rdy = false;
                     }
@@ -112,7 +124,7 @@ public class InstanceBall : MonoBehaviour
 
                     if (e1Rdy)
                     {
-                        
+
                         for (int i = 0; i < intelligence.enemyNumAttacks[0]; i++)
                         {
                             GameObject enemy1Ball = Instantiate(objPrefab, transform.position, Quaternion.identity);
@@ -123,6 +135,10 @@ public class InstanceBall : MonoBehaviour
                             script.Power = intelligence.enemyPowers[0];
                             script.PenetionPower = intelligence.enemyPenetionPowers[0];
                             script.Speed = intelligence.enemySpeeds[0];
+
+                            //ダメージ計算をする時につかう
+                            script.SetBattleSystem(battleSystem);//BallにBattleSystemを参照させるメソッド
+                            script.UnitNum = 4;//どのユニットのBallか判別するint
                         }
                     }
                     e1Rdy = false;
@@ -141,6 +157,10 @@ public class InstanceBall : MonoBehaviour
                             script.Power = intelligence.enemyPowers[1];
                             script.PenetionPower = intelligence.enemyPenetionPowers[1];
                             script.Speed = intelligence.enemySpeeds[1];
+
+                            //ダメージ計算をする時につかう
+                            script.SetBattleSystem(battleSystem);//BallにBattleSystemを参照させるメソッド
+                            script.UnitNum = 5;//どのユニットのBallか判別するint
                         }
                     }
                     e2Rdy = false;
@@ -159,6 +179,10 @@ public class InstanceBall : MonoBehaviour
                             script.Power = intelligence.enemyPowers[2];
                             script.PenetionPower = intelligence.enemyPenetionPowers[2];
                             script.Speed = intelligence.enemySpeeds[2];
+
+                            //ダメージ計算をする時につかう
+                            script.SetBattleSystem(battleSystem);//BallにBattleSystemを参照させるメソッド
+                            script.UnitNum = 6;//どのユニットのBallか判別するint
                         }
                     }
                     e3Rdy = false;
@@ -171,6 +195,6 @@ public class InstanceBall : MonoBehaviour
 
     }
 
-    
+
 
 }

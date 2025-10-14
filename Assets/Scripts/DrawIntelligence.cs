@@ -39,6 +39,8 @@ public class DrawIntelligence : MonoBehaviour
     public int[] enemySpeeds = new int[3];
     public int[] enemyNumAttacks = new int[3];
 
+    
+
 
     SkillType player1SkillType;//流石にプロパティが多すぎるからpublicにするかも
     SkillType player2SkillType;
@@ -96,7 +98,7 @@ public class DrawIntelligence : MonoBehaviour
             PlayerPointON(player1Point);//プレイヤー1の線を引くスクリプトをつける
 
             WhoClick(player1Point,  Player1SkillType, ref playerPowers[0], ref playerPenetionPowers[0], ref playerSpeeds[0], ref playerNumAttacks[0]);//プレイヤー1が何のスキルを打ったか
-
+                        
             StartCoroutine(PlayerPointOFF(player1Point));//プレイヤー1のスクリプトを消す
         }
         //Unitがplayer2なら

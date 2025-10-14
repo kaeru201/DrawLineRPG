@@ -5,6 +5,8 @@ using UnityEngine;
 //インスタンス化したら線にそって動く
 public class AttckBall : MonoBehaviour
 {
+    BattleSystem battleSystem;
+
     LineRenderer lineRenderer;
 
     //[SerializeField]  BattleSystem battleSystem;
@@ -15,7 +17,9 @@ public class AttckBall : MonoBehaviour
     public int Power { get; set; }
     public int PenetionPower { get; set; }
     public float Speed { get; set; }
-       
+
+    public int UnitNum { get; set; }
+
 
     void Start()
     {
@@ -25,7 +29,7 @@ public class AttckBall : MonoBehaviour
         StartCoroutine(MoveBall());
 
     }
-       
+
 
     IEnumerator MoveBall()
     {
@@ -60,7 +64,9 @@ public class AttckBall : MonoBehaviour
                 //当たった相手にダメージ
                 GameObject parentObj = collision.transform.parent.gameObject;
                 BattleUnit battleUnit = parentObj.GetComponent<BattleUnit>();
-                battleUnit.Unit.Hp = battleUnit.Unit.Hp - Power;//Hpをマイナス
+
+                int damage = battleSystem.Damage(Power, UnitNum, battleUnit);//battleSystemのDamageメソッドを発動させてダメージ計算をする
+                battleUnit.Unit.Hp = battleUnit.Unit.Hp - damage;//計算した値分Hpをマイナス
             }
             //もしスキルタイプがHealなら
             else if (SkillType == SkillType.Heal)
@@ -75,14 +81,14 @@ public class AttckBall : MonoBehaviour
             {
                 Debug.Log("今後追加予定!!");
             }
-                //pointに当たった後消える
-                Destroy(gameObject);
+            //pointに当たった後消える
+            Destroy(gameObject);
         }
 
         //もし相手がEnemyのBallだったら
         else if (collision.gameObject.CompareTag("EnemyBall"))
         {
-           
+
             EnemyBall enemyPenetion = collision.gameObject.GetComponent<EnemyBall>();
 
             //ぶつかった相手より貫通力が低いなら自分を消す
@@ -91,7 +97,7 @@ public class AttckBall : MonoBehaviour
                 Destroy(gameObject);
             }
             //ぶつかった相手より貫通力が高いなら相手を消す
-            else if(PenetionPower > enemyPenetion.PenetionPower)
+            else if (PenetionPower > enemyPenetion.PenetionPower)
             {
                 Destroy(collision.gameObject);
             }
@@ -102,6 +108,12 @@ public class AttckBall : MonoBehaviour
                 Destroy(collision.gameObject);
             }
         }
+    }
+
+    //インスタンス化した時にBattaleSystemを参照させるメソッド(InstanceBallで発動させる）
+    public void SetBattleSystem(BattleSystem system)
+    {
+        battleSystem = system;
     }
 
 
