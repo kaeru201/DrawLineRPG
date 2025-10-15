@@ -3,7 +3,7 @@ using UnityEngine;
 //敵が線を引くメソッド(Pointにアタッチする)
 public class EnemyDraw : MonoBehaviour
 {
-    [SerializeField] BattleSystem battleSystem;//いらんかも
+    [SerializeField] BattleSystem battleSystem;
 
     LineRenderer lineRenderer;
     //Transform startPosition;
@@ -12,7 +12,7 @@ public class EnemyDraw : MonoBehaviour
     [SerializeField] Transform Enemy2Point;//違う気がする
     [SerializeField] Transform Enemy3Point;
 
-    [SerializeField] Transform[] PlayerPoint = new Transform[3];
+    //[SerializeField] Transform[] PlayerPoint = new Transform[3];
 
     int posCount;
     float fixedDrawZ = 8f;
@@ -35,6 +35,19 @@ public class EnemyDraw : MonoBehaviour
 
     }
 
+    private void Update()
+    {
+        //リセットするターンではないなら何もしない
+        if (battleSystem.CurrentBState == BattleState.WaitNextTurn)
+        {
+            lineRenderer.positionCount = 0;
+            posCount = 0;
+        }
+
+       
+        
+
+    }
 
 
 
@@ -53,13 +66,19 @@ public class EnemyDraw : MonoBehaviour
         }
     }
 
-    //ランダムに目標相手を選んで、座標を取得   これだと1，3が生き残っているときに3に攻撃が行かない
+    //ランダムに目標相手を選んで、座標を取得   
     Vector3 RandomPoint()
     {
-        int length = Random.Range(0, PlayerPoint.Length);
-        Transform Point = PlayerPoint[length];
-        Vector3 targetPos = new Vector3(Point.position.x, Point.position.y, fixedDrawZ);
+        //生きているplayerのgameObjの要素のAlivePPoint
+        int count = Random.Range(0, battleSystem.AlivePPoint.Count);//から要素数から0までの数字を取得   
+        Transform point = battleSystem.AlivePPoint[count].transform;//ランダムに選ばれた要素番号のtrasformを取得
+        Vector3 targetPos = new Vector3( point.position.x,point.position.y,fixedDrawZ);//それの座標取得
         return targetPos;
+
+        //int length = Random.Range(0, PlayerPoint.Length);
+        //Transform Point = PlayerPoint[length];
+        //Vector3 targetPos = new Vector3(Point.position.x, Point.position.y, fixedDrawZ);
+        //return targetPos;
     }
 
     //線を引くメソッド(点)

@@ -26,6 +26,7 @@ public class EnemyBall : MonoBehaviour
         lastAddPos = lineRenderer.GetPosition(0);//初期配置
         Speed = 0.5f / Speed;//Speedが大きければ大きいほどボールを速く
         StartCoroutine(MoveBall());
+        battleSystem.AliveBalls.Add(gameObject);//AliveBallリストにこのオブジェクトを追加
     }
 
     IEnumerator MoveBall()
@@ -38,9 +39,11 @@ public class EnemyBall : MonoBehaviour
             yield return new WaitForSeconds(Speed);//スピード秒だけ待つ
             lastAddPos = nextPos;//現在地点を最後に加えた点に
 
-            if (i == lineRenderer.positionCount - 1)
+            if (i == lineRenderer.positionCount - 1)//一応最後まで何にも当たらなかったら削除
             {
-                // Destroy(gameObject);
+
+                battleSystem.AliveBalls.Remove(gameObject);//AliveBallsリストからこのオブジェクトの要素を削除
+                Destroy(gameObject);
 
             }
         }
@@ -61,8 +64,8 @@ public class EnemyBall : MonoBehaviour
                 BattleUnit battleUnit = parentObj.GetComponent<BattleUnit>();
 
 
-
-                battleUnit.Unit.Hp = battleUnit.Unit.Hp - Power;
+                int damage = battleSystem.Damage(Power, UnitNum, battleUnit);//battleSystemのDamageメソッドを発動させてダメージ計算をする
+                battleUnit.Unit.Hp = battleUnit.Unit.Hp - damage;//計算した値分Hpをマイナス
 
             }
             //もしスキルタイプがHealなら
@@ -72,8 +75,7 @@ public class EnemyBall : MonoBehaviour
                 GameObject parentObj = collision.transform.parent.gameObject;
                 BattleUnit battleUnit = parentObj.GetComponent<BattleUnit>();
 
-                int damage = battleSystem.Damage(Power, UnitNum, battleUnit);//battleSystemのDamageメソッドを発動させてダメージ計算をする
-                battleUnit.Unit.Hp = battleUnit.Unit.Hp - damage;//計算した値分Hpをマイナス
+                battleUnit.Unit.Hp = battleUnit.Unit.Hp + Power;//計算した値分Hpをマイナス
             }
             //もしスキルタイプがSupportなら
             else if (SkillType == SkillType.Support)
@@ -81,8 +83,10 @@ public class EnemyBall : MonoBehaviour
                 Debug.Log("今後追加予定!!");
             }
 
-            //pointに当たった後消える
-            Destroy(gameObject);
+            battleSystem.AliveBalls.Remove(gameObject);//AliveBallsリストからこのオブジェクトの要素を削除
+
+            Destroy(gameObject);//pointに当たった後消える
+
         }
 
 

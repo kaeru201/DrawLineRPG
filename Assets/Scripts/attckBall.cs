@@ -26,6 +26,7 @@ public class AttckBall : MonoBehaviour
         lineRenderer = transform.parent.GetComponent<LineRenderer>();
         lastAddPos = lineRenderer.GetPosition(0);
         Speed = 0.5f / Speed;//Speedが大きければ大きいほどボールを速く
+        battleSystem.AliveBalls.Add(gameObject);//AliveBallリストにこのオブジェクトを追加
         StartCoroutine(MoveBall());
 
     }
@@ -45,6 +46,7 @@ public class AttckBall : MonoBehaviour
             //最後まで何もぶつからなかったら消える
             if (i == lineRenderer.positionCount - 1)
             {
+                battleSystem.AliveBalls.Remove(gameObject);//AliveBallsリストからこのオブジェクトの要素を削除
                 Destroy(gameObject);
             }
         }
@@ -82,6 +84,7 @@ public class AttckBall : MonoBehaviour
                 Debug.Log("今後追加予定!!");
             }
             //pointに当たった後消える
+            battleSystem.AliveBalls.Remove(gameObject);//AliveBallsリストからこのオブジェクトの要素を削除
             Destroy(gameObject);
         }
 
@@ -94,17 +97,22 @@ public class AttckBall : MonoBehaviour
             //ぶつかった相手より貫通力が低いなら自分を消す
             if (PenetionPower < enemyPenetion.PenetionPower)
             {
+                battleSystem.AliveBalls.Remove(gameObject);//AliveBallsリストからこのオブジェクトの要素を削除
                 Destroy(gameObject);
             }
             //ぶつかった相手より貫通力が高いなら相手を消す
             else if (PenetionPower > enemyPenetion.PenetionPower)
             {
+                battleSystem.AliveBalls.Remove(collision.gameObject);//AliveBallsリストから当たった相手のオブジェクトの要素を削除
                 Destroy(collision.gameObject);
             }
             //ぶつかった相手と貫通力が一緒ならどちらも消す
             else if (PenetionPower == enemyPenetion.PenetionPower)
             {
+                battleSystem.AliveBalls.Remove(gameObject);//AliveBallsリストからこのオブジェクトの要素を削除
                 Destroy(gameObject);
+
+                battleSystem.AliveBalls.Remove(collision.gameObject);//AliveBallsリストから当たった相手のオブジェクトの要素を削除
                 Destroy(collision.gameObject);
             }
         }

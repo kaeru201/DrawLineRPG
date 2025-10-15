@@ -4327,9 +4327,13 @@ MonoBehaviour:
   - {fileID: 158742752}
   - {fileID: 1631110094}
   - {fileID: 1323977760}
-  currentBState: 0
+  player1Point: {fileID: 171655038}
+  player2Point: {fileID: 221090307}
+  player3Point: {fileID: 1719090526}
   readyButton: {fileID: 207774332}
   next: 0
+  AliveBalls: []
+  AlivePPoint: []
 --- !u!1 &783698283
 GameObject:
   m_ObjectHideFlags: 0

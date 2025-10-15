@@ -47,64 +47,70 @@ public class SkillButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
         Set();
     }
 
+
     //Skillからマウスが離れたら
     public void OnPointerExit(PointerEventData eventData)
     {
         text.color = Color.black;//文字を黒に戻す
     }
 
+
     public void OnPointerClick(PointerEventData eventData)
     {
         //もしplayer1Tuneなら
         if (battleSystem.CurrentBState == BattleState.Player1Turn)
         {
-            //押したときplayer1が生きていているなら
-            if (battleSystem.Player1Alive)
-            {
-
-               
+                          
                 skillSelection.SetActive(false);//SkillSelectionを停止
                 DrawNumberSet();//どれを押したか
                 intelligence.DrawIn(1);//線を描く
+            //player2が生きているなら
+            if (battleSystem.Player2Alive)
+            {
                 battleSystem.TurnCng(BattleState.Player2Turn);//BattleStetaをplayer2Turnに
-
             }
-            //生きていなくてもBattleStateをplayer2Turnに
-            else battleSystem.TurnCng(BattleState.Player2Turn);
+            //Player3が生きているなら
+            else if(battleSystem.Player3Alive) 
+            {
+                battleSystem.TurnCng(BattleState.Player3Turn);
+            }
+            //誰も生き残っていないなら
+            else
+            {
+                battleSystem.TurnCng(BattleState.EnemyTurn);
+            }
+
 
         }
         //もしplayer2Turnなら
         else if (battleSystem.CurrentBState == BattleState.Player2Turn)
         {
-            //プレイヤー2が生きているなら
-            if (battleSystem.Player2Alive)
-            {
+            
                
                 skillSelection.SetActive(false);
                 DrawNumberSet();
                 intelligence.DrawIn(2);
+            //Player3が生きているなら
+            if (battleSystem.Player3Alive)
+            {
                 battleSystem.TurnCng(BattleState.Player3Turn);
 
             }
-            //生きていなくてもBattleStateをplayer3Turnに
-            else battleSystem.TurnCng(BattleState.Player3Turn);
+            //生き残っていないのなら
+            else battleSystem.TurnCng(BattleState.EnemyTurn);
+
 
         }
         //もしplayer3Tuneなら
         else if (battleSystem.CurrentBState == BattleState.Player3Turn)
         {
-            //プレイヤー3が生きているなら
-            if (battleSystem.Player3Alive)
-            {
-                
+                            
                 skillSelection.SetActive(false);
                 DrawNumberSet();
                 intelligence.DrawIn(3);
-                // battleSystem.CurrentBState = BattleState.EnemyTimeTurn;
+                //EnemyTurnに
                 battleSystem.TurnCng(BattleState.EnemyTurn);
-            }
-            //生きていなくてもBattleStateをEnemyTurnに
-            else battleSystem.TurnCng(BattleState.EnemyTurn);
+           
         }
 
     }

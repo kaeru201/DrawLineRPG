@@ -42,6 +42,12 @@ public class DrawLine : MonoBehaviour
 
     void Update()
     {
+        if(battleSystem.CurrentBState == BattleState.WaitNextTurn)//できない
+        {
+            posCount = 0;
+            lineRenderer.positionCount = 0;
+        }
+
         //マウスのスクリーン座標をワールド座標に変換する
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, fixedDrawZ));
 
