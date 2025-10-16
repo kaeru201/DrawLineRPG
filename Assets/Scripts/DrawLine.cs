@@ -16,8 +16,9 @@ public class DrawLine : MonoBehaviour
     [SerializeField] float maxLineRange;//DrawIntelligenceから値を代入
     int posCount;//
     float minMouseMove;
-    [SerializeField] bool isDrawing = false;
+    [SerializeField] bool isDrawing = false;//描き続けられるか
     [SerializeField] bool ready = false;
+     public bool Draw { get; set; } = false; //描き始められえるか　DrawIntelligenceから個別にtrueにする変数
 
 
 
@@ -42,6 +43,7 @@ public class DrawLine : MonoBehaviour
 
     void Update()
     {
+        
         if(battleSystem.CurrentBState == BattleState.WaitNextTurn)//できない
         {
             posCount = 0;
@@ -55,73 +57,77 @@ public class DrawLine : MonoBehaviour
         mousePos.x = Mathf.Clamp(mousePos.x, -28.28f, -14.733f);
         mousePos.y = Mathf.Clamp(mousePos.y, -2.279f, 2.307f);
 
-
-
-        if (Input.GetMouseButtonDown(0))
+        //CurrenBStateがWaitNextTurn以外かつDrawがtrueなら
+        if (battleSystem.CurrentBState != BattleState.WaitNextTurn && Draw)
         {
-            isDrawing = true;
-            //初期化
-            posCount = 0;
-            lineRenderer.positionCount = 0;
-            currentLineRange = 0;
-            ready = false;
-            //y軸は少し上からZ軸は適当
-            AddLine(new Vector3(startPosition.position.x, startPosition.position.y + 0.5f, fixedDrawZ));
 
-        }
-
-        //左クリック押し続けている間かつisDrawがtrueなら
-        if (Input.GetMouseButton(0) && isDrawing)
-        {
-            if (currentLineRange >= MaxLineRange)
+            if (Input.GetMouseButtonDown(0))
             {
+                isDrawing = true;
+                //初期化
+                posCount = 0;
+                lineRenderer.positionCount = 0;
+                currentLineRange = 0;
+                ready = false;
+                //y軸は少し上からZ軸は適当
+                AddLine(new Vector3(startPosition.position.x, startPosition.position.y + 0.5f, fixedDrawZ));
 
+            }
+
+            //左クリック押し続けている間かつisDrawがtrueなら
+            if (Input.GetMouseButton(0) && isDrawing)
+            {
+                if (currentLineRange >= MaxLineRange)
+                {
+
+                    isDrawing = false;
+                    return;
+                }
+
+                //最後点と今のマウスの位置の差
+                float distanceMouse = Vector2.Distance(lastAddPoint, mousePos);
+
+                if (distanceMouse < minMouseMove) return;//しきい値より動かなかったら線を描かない
+
+                //もししきい値よりマウスが離れたら
+                if (distanceMouse > 0.1f)
+                {
+                    //ベクトル
+                    Vector3 direction = (mousePos - lastAddPoint).normalized;
+
+                    //しきい値の大きさのベクトル分の最後の点を記憶して代わりにそこに点を引く
+                    Vector3 newPoint = lastAddPoint + direction * 0.1f;
+
+                    float lengthToAdd = Vector3.Distance(lastAddPoint, newPoint);
+
+
+
+                    AddLine(newPoint);
+
+                    currentLineRange += lengthToAdd;
+                }
+
+            }
+
+            //左クリックを離した時かつREADYがfalseなら
+            if (Input.GetMouseButtonUp(0) && !ready)
+            {
                 isDrawing = false;
-                return;
+                lineRenderer.positionCount = 0;//やりなおし
             }
 
-            //最後点と今のマウスの位置の差
-            float distanceMouse = Vector2.Distance(lastAddPoint, mousePos);
-
-            if (distanceMouse < minMouseMove) return;//しきい値より動かなかったら線を描かない
-
-            //もししきい値よりマウスが離れたら
-            if (distanceMouse > 0.1f)
+            //右クリックを押した時
+            if (Input.GetMouseButtonDown(1))
             {
-                //ベクトル
-                Vector3 direction = (mousePos - lastAddPoint).normalized;
+                ready = true;
+                isDrawing = false;
 
-                //しきい値の大きさのベクトル分の最後の点を記憶して代わりにそこに点を引く
-                Vector3 newPoint = lastAddPoint + direction * 0.1f;
+                //もう一度右クリックを押したら
 
-                float lengthToAdd = Vector3.Distance(lastAddPoint, newPoint);
+                battleSystem.next = true;
 
-               
-
-                AddLine(newPoint);
-                 
-                currentLineRange += lengthToAdd;
+                
             }
-
-        }
-
-        //左クリックを離した時かつREADYがfalseなら
-        if (Input.GetMouseButtonUp(0) && !ready)
-        {
-            isDrawing = false;
-            lineRenderer.positionCount = 0;//やりなおし
-        }
-
-        //右クリックを押した時
-        if (Input.GetMouseButtonDown(1))
-        {
-            ready = true;
-            isDrawing = false;
-            
-            //もう一度右クリックを押したら
-
-            battleSystem.next = true;
-
         }
 
     }

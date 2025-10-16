@@ -1016,10 +1016,6 @@ MonoBehaviour:
   Enemy1Point: {fileID: 158742747}
   Enemy2Point: {fileID: 1631110089}
   Enemy3Point: {fileID: 1323977761}
-  PlayerPoint:
-  - {fileID: 171655039}
-  - {fileID: 221090308}
-  - {fileID: 1719090527}
 --- !u!114 &158742753
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4327,13 +4323,16 @@ MonoBehaviour:
   - {fileID: 158742752}
   - {fileID: 1631110094}
   - {fileID: 1323977760}
+  CurrentBState: 0
   player1Point: {fileID: 171655038}
   player2Point: {fileID: 221090307}
   player3Point: {fileID: 1719090526}
+  enemy1Point: {fileID: 158742746}
+  enemy2Point: {fileID: 1631110088}
+  enemy3Point: {fileID: 1323977759}
   readyButton: {fileID: 207774332}
+  aliveBalls: []
   next: 0
-  AliveBalls: []
-  AlivePPoint: []
 --- !u!1 &783698283
 GameObject:
   m_ObjectHideFlags: 0
@@ -6157,10 +6156,6 @@ MonoBehaviour:
   Enemy1Point: {fileID: 158742747}
   Enemy2Point: {fileID: 1631110089}
   Enemy3Point: {fileID: 1323977761}
-  PlayerPoint:
-  - {fileID: 171655039}
-  - {fileID: 221090308}
-  - {fileID: 1719090527}
 --- !u!224 &1323977761
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7745,10 +7740,6 @@ MonoBehaviour:
   Enemy1Point: {fileID: 158742747}
   Enemy2Point: {fileID: 1631110089}
   Enemy3Point: {fileID: 1323977761}
-  PlayerPoint:
-  - {fileID: 171655039}
-  - {fileID: 221090308}
-  - {fileID: 1719090527}
 --- !u!114 &1631110095
 MonoBehaviour:
   m_ObjectHideFlags: 0

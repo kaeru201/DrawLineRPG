@@ -70,8 +70,8 @@ public class EnemyDraw : MonoBehaviour
     Vector3 RandomPoint()
     {
         //生きているplayerのgameObjの要素のAlivePPoint
-        int count = Random.Range(0, battleSystem.AlivePPoint.Count);//から要素数から0までの数字を取得   
-        Transform point = battleSystem.AlivePPoint[count].transform;//ランダムに選ばれた要素番号のtrasformを取得
+        int count = Random.Range(0, battleSystem.AlivePlayers.Count);//から要素数から0までの数字を取得   
+        Transform point = battleSystem.AlivePlayers[count].transform;//ランダムに選ばれた要素番号のtrasformを取得
         Vector3 targetPos = new Vector3( point.position.x,point.position.y,fixedDrawZ);//それの座標取得
         return targetPos;
 

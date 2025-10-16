@@ -201,7 +201,8 @@ public class DrawIntelligence : MonoBehaviour
     //対応したUnitの線を書き始めるスクリプトをONにするメソッド
     void PlayerPointON(DrawLine pPoint)
     {
-        pPoint.enabled = true;
+        pPoint.Draw = true;
+
 
     }
 
@@ -209,7 +210,7 @@ public class DrawIntelligence : MonoBehaviour
     IEnumerator PlayerPointOFF(DrawLine pPoint)
     {
         yield return new WaitUntil(() => battleSystem.next == true);//描き終わるまで待つ
-        pPoint.enabled = false;//描いたPointのDrawスクリプトを停止
+        pPoint.Draw = false;//描いたPointのDrawスクリプトを停止
         yield return new WaitForSeconds(0.1f);//一瞬待ってから
         battleSystem.next = false;//描き終わるフラグをリセット
         selectAction.SetActive(true);//SelectAction復活

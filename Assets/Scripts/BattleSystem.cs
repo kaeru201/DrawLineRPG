@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using System.Collections.Generic;
 using UnityEditor.Build;
+using UnityEngine.UI;
 
 
 
@@ -46,17 +47,21 @@ public class BattleSystem : MonoBehaviour
     [SerializeField] SkillSelection playerSkill;
     [SerializeField] EnemyDraw[] enemyDraw = new EnemyDraw[3];
 
-    public BattleState CurrentBState { get; set; }
+    [SerializeField] public BattleState CurrentBState; //{ get; set; }
 
     [SerializeField] GameObject player1Point;
     [SerializeField] GameObject player2Point;
     [SerializeField] GameObject player3Point;
+    [SerializeField] GameObject enemy1Point;
+    [SerializeField] GameObject enemy2Point;
+    [SerializeField] GameObject enemy3Point;
 
     [SerializeField] GameObject readyButton;
 
-    List<GameObject> aliveBalls = new List<GameObject>();//ballをインスタンス化するたびにリストに追加してボールがまだフィールドにいるか調べるリスト　
-
-    List<GameObject> alivePPoint = new List<GameObject>();　//生き残っているplayerPointを得るリスト
+    List<GameObject> alivePLayers = new List<GameObject>();　//生き残っているplayerPointを得るリスト
+    List<GameObject> aliveEnemies = new List<GameObject>();
+    [SerializeField] List<GameObject> aliveBalls = new List<GameObject>();//ballをインスタンス化するたびにリストに追加してボールがまだフィールドにいるか調べるリスト　
+    
 
     public bool next = false;//線を引き終わったかどうか 
 
@@ -67,7 +72,11 @@ public class BattleSystem : MonoBehaviour
     public bool Enemy1Alive { get; set; } = false;
     public bool Enemy2Alive { get; set; } = false;
     public bool Enemy3Alive { get; set; } = false;
-    public List<GameObject> AlivePPoint { get => alivePPoint; set => alivePPoint = value; }
+
+
+   
+    public List<GameObject> AlivePlayers { get => alivePLayers; set => alivePLayers = value; }
+    public List<GameObject> AliveEnemies { get => aliveEnemies; set => aliveEnemies = value; }
     public List<GameObject> AliveBalls { get => aliveBalls; set => aliveBalls = value; }
 
 
@@ -86,21 +95,21 @@ public class BattleSystem : MonoBehaviour
             {
                 player1Unit.SetUp();//Unitの生成
                 Player1Alive = true;//Player生存フラグをON
-                AlivePPoint.Add(player1Point);//敵の標的になるPointのオブジェクトをリストに
+                AlivePlayers.Add(player1Point);//敵の標的になるPointのオブジェクトをリストに
                 player1Hud.SetData(player1Unit.Unit);//プレイヤーのHudを出す
             }
             if (player2Unit != null)
             {
                 player2Unit.SetUp();
                 Player2Alive = true;
-                AlivePPoint.Add(player2Point);
+                AlivePlayers.Add(player2Point);
                 player2Hud.SetData(player2Unit.Unit);
             }
             if (player3Unit != null)
             {
                 player3Unit.SetUp();
                 Player3Alive = true;
-                AlivePPoint.Add(player3Point);
+                AlivePlayers.Add(player3Point);
                 player3Hud.SetData(player3Unit.Unit);
 
             }
@@ -108,6 +117,7 @@ public class BattleSystem : MonoBehaviour
             {
                 enemy1Unit.SetUp();
                 Enemy1Alive = true;
+                AliveEnemies.Add(enemy1Point);
                 enemy1Hud.SetData(enemy1Unit.Unit);
 
             }
@@ -115,12 +125,14 @@ public class BattleSystem : MonoBehaviour
             {
                 enemy2Unit.SetUp();
                 Enemy2Alive = true;
+                AliveEnemies.Add(enemy2Point);
                 enemy2Hud.SetData(enemy2Unit.Unit);
             }
             if (enemy3Unit != null)
             {
                 enemy3Unit.SetUp();
                 Enemy3Alive = true;
+                AliveEnemies.Add(enemy3Point);
                 enemy3Hud.SetData(enemy3Unit.Unit);
             }
 
@@ -139,29 +151,32 @@ public class BattleSystem : MonoBehaviour
         if (Death(player1Unit))
         {
             Player1Alive = false;//UnitAliveをfalse
-            AlivePPoint.Remove(player1Point);//死んだ時にAlivePPointからplayer1のリストを消す
+            AlivePlayers.Remove(player1Point);//死んだ時にAlivePPointからplayer1のリストを消す
         }
         if (Death(player2Unit))
         {
             Player2Alive = false;
-            AlivePPoint.Remove(player2Point);
+            AlivePlayers.Remove(player2Point);
         }
         if (Death(player3Unit))
         {
             Player3Alive = false;
-            AlivePPoint.Remove(player3Point);
+            AlivePlayers.Remove(player3Point);
         }
         if (Death(enemy1Unit))
         {
             Enemy1Alive = false;
+            AliveEnemies.Remove(enemy1Point);
         }
         if (Death(enemy2Unit))
         {
             Enemy2Alive = false;
+            AlivePlayers.Remove(enemy2Point);
         }
         if (Death(enemy3Unit))
         {
             Enemy3Alive = false;
+            AlivePlayers.Remove(enemy3Point);
         }
 
 
@@ -169,7 +184,7 @@ public class BattleSystem : MonoBehaviour
         if (CurrentBState == BattleState.BattleTurn)//BattleTurnなら
         {
 
-            StartCoroutine(EndOrContinue());
+            
 
         }
 
@@ -182,15 +197,20 @@ public class BattleSystem : MonoBehaviour
     {
 
         bool death = battleUnit.Unit.Hp <= 0;//UnitのHpが0以下になったらdeathをtrue
-        if (death) battleUnit.gameObject.SetActive(false);//deathがtrueならユニットを消す
+        //if (death) battleUnit.gameObject.SetActive(false);//deathがtrueならユニットを消す
+        if(death) battleUnit.gameObject.GetComponent<Image>().enabled = false;
         return death;
     }
 
     IEnumerator EndOrContinue()
     {
+        
         //Ballが全部ヒエラルキー上から消えたら
-        if (AliveBalls.Count <= 0)
+        //if (AliveBalls.Count == 0)
         {
+           // yield return new WaitUntil(() => AliveBalls.Count > 0);
+            yield return new WaitUntil(() => AliveBalls.Count < 0);
+            Debug.Log("AliveBallは" + AliveBalls.Count);
             yield return new WaitForSeconds(1);//一秒待ってから
 
             //プレイヤーが誰も生き残っていないのなら(誰もいない場合も)
@@ -210,7 +230,7 @@ public class BattleSystem : MonoBehaviour
             {
                 Debug.Log("もっかい!");
                 TurnCng(BattleState.WaitNextTurn);//リセットするターン
-
+                yield return new WaitForSeconds(1);//
                 //もう一巡
                 //生き残っている中で若い順番のプレイヤーから
                 if (Player1Alive) TurnCng(BattleState.Player1Turn);
@@ -221,6 +241,7 @@ public class BattleSystem : MonoBehaviour
 
 
         }
+        
     }
 
     //currentBstateのplayerTurnのどれかに変更するメソッド
@@ -267,6 +288,7 @@ public class BattleSystem : MonoBehaviour
             case BattleState.BattleTurn:
 
                 CurrentBState = BattleState.BattleTurn;
+                StartCoroutine(EndOrContinue());//バトルが終了したら、つづくならWaitNext、負けならLoseTurn、勝っていたらWinTurnへ
                 break;
             case BattleState.WaitNextTurn:
                 CurrentBState = BattleState.WaitNextTurn;
@@ -300,13 +322,24 @@ public class BattleSystem : MonoBehaviour
         yield return new WaitUntil(() => next == true);//playerが描き終わる待ってから
         EnemyIntelligence();//Enemyの情報を代入
 
-        for (int i = 0; i < enemyDraw.Length; i++)//敵の数だけ線を引く(後で生きている敵だけに)
+        if(Enemy1Alive)
         {
-            enemyDraw[i].DrawEnemy();
+            enemyDraw[0].DrawEnemy();
+        }
+        if(Enemy2Alive)
+        {
+            enemyDraw[1].DrawEnemy();
+        }
+        if(Enemy3Alive)
+        {
+            enemyDraw[2].DrawEnemy();
         }
         yield return new WaitForSeconds(1f);//ちょっと待ってから
         TurnCng(BattleState.BattleTurn);//BattaleTurnに
         yield break;
+
+        
+
     }
 
     //一回挟まないと動かなかったから一旦
@@ -393,7 +426,7 @@ public class BattleSystem : MonoBehaviour
             damage = (myPower * enemy3Unit.Unit.Attack) / collisionUnit.Unit.Defense;
         }
 
-        Debug.Log(damage);
+        Debug.Log(damage + "ダメージだったよ");
         return damage;
 
     }
