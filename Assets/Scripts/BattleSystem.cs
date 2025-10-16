@@ -208,7 +208,7 @@ public class BattleSystem : MonoBehaviour
         //Ballが全部ヒエラルキー上から消えたら
         //if (AliveBalls.Count == 0)
         {
-           // yield return new WaitUntil(() => AliveBalls.Count > 0);
+            yield return new WaitUntil(() => AliveBalls.Count > 0);
             yield return new WaitUntil(() => AliveBalls.Count < 0);
             Debug.Log("AliveBallは" + AliveBalls.Count);
             yield return new WaitForSeconds(1);//一秒待ってから
