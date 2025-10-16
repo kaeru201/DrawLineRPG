@@ -59,35 +59,41 @@ public class AttckBall : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+                       
         //もし当たった相手がPointだったら
         if (collision.gameObject.CompareTag("Point"))
         {
-            //もしスキルタイプがAttackなら
-            if (SkillType == SkillType.Attack)
-            {
-                //当たった相手にダメージ
-                GameObject parentObj = collision.transform.parent.gameObject;
-                BattleUnit battleUnit = parentObj.GetComponent<BattleUnit>();
+            GameObject parentObj = collision.transform.parent.gameObject;//当たった相手の親オブジェクト
+            BattleUnit battleUnit = parentObj.GetComponent<BattleUnit>();//のBattleUnitスクリプトを取得
 
-                int damage = battleSystem.Damage(Power, UnitNum, battleUnit);//battleSystemのDamageメソッドを発動させてダメージ計算をする
-                battleUnit.Unit.Hp = battleUnit.Unit.Hp - damage;//計算した値分Hpをマイナス
-            }
-            //もしスキルタイプがHealなら
-            else if (SkillType == SkillType.Heal)
+            //当たった相手の体力が0以上なら(復活魔法などを使いたくなったらどうするか)
+            if (battleUnit.Unit.Hp > 0)
             {
-                //当たった相手に回復
-                GameObject parentObj = collision.transform.parent.gameObject;
-                BattleUnit battleUnit = parentObj.GetComponent<BattleUnit>();
-                battleUnit.Unit.Hp = battleUnit.Unit.Hp + Power;//Hpをプラス
+                //もしスキルタイプがAttackなら
+                if (SkillType == SkillType.Attack)
+                {
+                    //当たった相手にダメージ               
+                    int damage = battleSystem.Damage(Power, UnitNum, battleUnit);//battleSystemのDamageメソッドを発動させてダメージ計算をする
+                    battleUnit.Unit.Hp = battleUnit.Unit.Hp - damage;//計算した値分Hpをマイナス
+                }
+
+                //もしスキルタイプがHealなら
+                else if (SkillType == SkillType.Heal)
+                {
+                    //当たった相手に回復
+                    battleUnit.Unit.Hp = battleUnit.Unit.Hp + Power;//Hpをプラス
+                }
+
+                // もしスキルタイプがSupportなら
+                else if (SkillType == SkillType.Support)
+                {
+                    Debug.Log("今後追加予定!!");
+                }
+                //pointに当たった後消える
+                battleSystem.AliveBalls.Remove(gameObject);//AliveBallsリストからこのオブジェクトの要素を削除
+                Destroy(gameObject);
             }
-            // もしスキルタイプがSupportなら
-            else if (SkillType == SkillType.Support)
-            {
-                Debug.Log("今後追加予定!!");
-            }
-            //pointに当たった後消える
-            battleSystem.AliveBalls.Remove(gameObject);//AliveBallsリストからこのオブジェクトの要素を削除
-            Destroy(gameObject);
+            
         }
 
         //もし相手がEnemyのBallだったら

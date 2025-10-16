@@ -56,37 +56,36 @@ public class EnemyBall : MonoBehaviour
         //もし当たった相手がPointだったら
         if (collision.gameObject.CompareTag("Point"))
         {
-            //もしスキルタイプがAttackなら
-            if (SkillType == SkillType.Attack)
+            GameObject parentObj = collision.transform.parent.gameObject;//当たった相手の親オブジェクト
+            BattleUnit battleUnit = parentObj.GetComponent<BattleUnit>();//のBattleUnitスクリプトを取得
+
+            //当たった相手が生きていたら
+            if (battleUnit.Unit.Hp > 0)
             {
-                //当たった相手にダメージ
-                GameObject parentObj = collision.transform.parent.gameObject;
-                BattleUnit battleUnit = parentObj.GetComponent<BattleUnit>();
+                //もしスキルタイプがAttackなら
+                if (SkillType == SkillType.Attack)
+                {
+                    //当たった相手にダメージ                
+                    int damage = battleSystem.Damage(Power, UnitNum, battleUnit);//battleSystemのDamageメソッドを発動させてダメージ計算をする
+                    battleUnit.Unit.Hp = battleUnit.Unit.Hp - damage;//計算した値分Hpをマイナス
 
+                }
+                //もしスキルタイプがHealなら
+                else if (SkillType == SkillType.Heal)
+                {
+                    //当たった相手に回復                
+                    battleUnit.Unit.Hp = battleUnit.Unit.Hp + Power;//計算した値分Hpをマイナス
+                }
+                //もしスキルタイプがSupportなら
+                else if (SkillType == SkillType.Support)
+                {
+                    Debug.Log("今後追加予定!!");
+                }
 
-                int damage = battleSystem.Damage(Power, UnitNum, battleUnit);//battleSystemのDamageメソッドを発動させてダメージ計算をする
-                battleUnit.Unit.Hp = battleUnit.Unit.Hp - damage;//計算した値分Hpをマイナス
+                battleSystem.AliveBalls.Remove(gameObject);//AliveBallsリストからこのオブジェクトの要素を削除
 
+                Destroy(gameObject);//pointに当たった後消える
             }
-            //もしスキルタイプがHealなら
-            else if (SkillType == SkillType.Heal)
-            {
-                //当たった相手に回復
-                GameObject parentObj = collision.transform.parent.gameObject;
-                BattleUnit battleUnit = parentObj.GetComponent<BattleUnit>();
-
-                battleUnit.Unit.Hp = battleUnit.Unit.Hp + Power;//計算した値分Hpをマイナス
-            }
-            //もしスキルタイプがSupportなら
-            else if (SkillType == SkillType.Support)
-            {
-                Debug.Log("今後追加予定!!");
-            }
-
-            battleSystem.AliveBalls.Remove(gameObject);//AliveBallsリストからこのオブジェクトの要素を削除
-
-            Destroy(gameObject);//pointに当たった後消える
-
         }
 
 
