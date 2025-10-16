@@ -206,9 +206,8 @@ public class BattleSystem : MonoBehaviour
         //Ballが全部ヒエラルキー上から消えたら
         //if (AliveBalls.Count == 0)
         {
-            yield return new WaitUntil(() => AliveBalls.Count > 0);
-            yield return new WaitUntil(() => AliveBalls.Count <= 0);
-            Debug.Log("AliveBallは" + AliveBalls.Count);
+            yield return new WaitUntil(() => AliveBalls.Count > 0);//一度カウントが1異常になるまで待ってから
+            yield return new WaitUntil(() => AliveBalls.Count <= 0);//ListのAliveBallsのカウントが0なるまで待つ            
             yield return new WaitForSeconds(1);//一秒待ってから
 
             //プレイヤーが誰も生き残っていないのなら(誰もいない場合も)
@@ -315,8 +314,7 @@ public class BattleSystem : MonoBehaviour
 
     //線を描くのを待ってからEnemyターンにするコルーチン　後で消すかも
     IEnumerator EnemyTurn()
-    {
-
+    {       
         yield return new WaitUntil(() => next == true);//playerが描き終わる待ってから
         EnemyIntelligence();//Enemyの情報を代入
 
