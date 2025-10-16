@@ -1,8 +1,9 @@
 using System.Collections;
-using UnityEngine;
 using System.Collections.Generic;
 using UnityEditor.Build;
+using UnityEngine;
 using UnityEngine.UI;
+using static TMPro.SpriteAssetUtilities.TexturePacker_JsonArray;
 
 
 
@@ -79,7 +80,7 @@ public class BattleSystem : MonoBehaviour
     public List<GameObject> AliveEnemies { get => aliveEnemies; set => aliveEnemies = value; }
     public List<GameObject> AliveBalls { get => aliveBalls; set => aliveBalls = value; }
 
-
+    
 
 
     //バトルが始まったら
@@ -136,7 +137,7 @@ public class BattleSystem : MonoBehaviour
                 enemy3Hud.SetData(enemy3Unit.Unit);
             }
 
-
+            
         }
 
         //生成したプレイヤーユニットの中で若い数のplayerUnitターンからスタート
@@ -145,6 +146,8 @@ public class BattleSystem : MonoBehaviour
         else if (Player3Alive) TurnCng(BattleState.Player3Turn);
     }
 
+    
+
     private void Update()
     {
         //もしUnitが死んでしまったら
@@ -152,6 +155,7 @@ public class BattleSystem : MonoBehaviour
         {
             Player1Alive = false;//UnitAliveをfalse
             AlivePlayers.Remove(player1Point);//死んだ時にAlivePPointからplayer1のリストを消す
+            
         }
         if (Death(player2Unit))
         {
@@ -180,13 +184,7 @@ public class BattleSystem : MonoBehaviour
         }
 
 
-        //ゲームを繰り返かどうかの確認
-        if (CurrentBState == BattleState.BattleTurn)//BattleTurnなら
-        {
-
-            
-
-        }
+        
 
 
 
@@ -198,7 +196,7 @@ public class BattleSystem : MonoBehaviour
 
         bool death = battleUnit.Unit.Hp <= 0;//UnitのHpが0以下になったらdeathをtrue
         //if (death) battleUnit.gameObject.SetActive(false);//deathがtrueならユニットを消す
-        if(death) battleUnit.gameObject.GetComponent<Image>().enabled = false;
+        if(death) battleUnit.gameObject.GetComponent<Image>().enabled = false;        
         return death;
     }
 
@@ -209,7 +207,7 @@ public class BattleSystem : MonoBehaviour
         //if (AliveBalls.Count == 0)
         {
             yield return new WaitUntil(() => AliveBalls.Count > 0);
-            yield return new WaitUntil(() => AliveBalls.Count < 0);
+            yield return new WaitUntil(() => AliveBalls.Count <= 0);
             Debug.Log("AliveBallは" + AliveBalls.Count);
             yield return new WaitForSeconds(1);//一秒待ってから
 
