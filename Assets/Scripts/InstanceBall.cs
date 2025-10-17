@@ -25,7 +25,7 @@ public class InstanceBall : MonoBehaviour
 
     void Update()
     {
-        if (battleSystem.CurrentBState == BattleState.Player1Turn) //リセット　本当にUPdataに書くかは疑問
+        if (battleSystem.CurrentBState == BattleState.WaitNextTurn) //リセット　本当にUPdataに書くかは疑問
         {
             p1Rdy = true;
             p2Rdy = true;
@@ -55,7 +55,7 @@ public class InstanceBall : MonoBehaviour
 
                                 //player1の情報を入れる
                                 AttckBall script = player1Ball.GetComponent<AttckBall>();
-                                script.SkillType = intelligence.enemySkillTypes[0];
+                                script.SkillType = intelligence.playerSkillTypes[0];
                                 script.Power = intelligence.playerPowers[0];
                                 script.PenetionPower = intelligence.playerPenetionPowers[0];
                                 script.Speed = intelligence.playerSpeeds[0];
@@ -80,14 +80,13 @@ public class InstanceBall : MonoBehaviour
                         {
                             //攻撃回数分インスタンス
                             for (int i = 0; i < intelligence.playerNumAttacks[1]; i++)
-                            {
-
+                            {                                
                                 GameObject player2Ball = Instantiate(objPrefab, transform.position, Quaternion.identity);
                                 player2Ball.transform.parent = gameObject.transform;
 
                                 //player2の情報を入れる
                                 AttckBall script = player2Ball.GetComponent<AttckBall>();
-                                script.SkillType = intelligence.enemySkillTypes[1];
+                                script.SkillType = intelligence.playerSkillTypes[1];
                                 script.Power = intelligence.playerPowers[1];
                                 script.PenetionPower = intelligence.playerPenetionPowers[1];
                                 script.Speed = intelligence.playerSpeeds[1];
@@ -121,7 +120,7 @@ public class InstanceBall : MonoBehaviour
 
                                 //player3の情報を入れる
                                 AttckBall script = player3Ball.GetComponent<AttckBall>();
-                                script.SkillType = intelligence.enemySkillTypes[2];
+                                script.SkillType = intelligence.playerSkillTypes[2];
                                 script.Power = intelligence.playerPowers[2];
                                 script.PenetionPower = intelligence.playerPenetionPowers[2];
                                 script.Speed = intelligence.playerSpeeds[2];

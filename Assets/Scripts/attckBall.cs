@@ -80,9 +80,9 @@ public class AttckBall : MonoBehaviour
                 //もしスキルタイプがHealなら
                 else if (SkillType == SkillType.Heal)
                 {
-                    //当たった相手に回復
-                    battleUnit.Unit.Hp += Power;//Hpをプラス
-                    
+                     //当たった相手に回復
+                     battleUnit.Unit.Hp += Power;//Hpをプラス
+                                        
                 }
 
                 // もしスキルタイプがSupportなら

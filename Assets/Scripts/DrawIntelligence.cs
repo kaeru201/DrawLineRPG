@@ -177,7 +177,6 @@ public class DrawIntelligence : MonoBehaviour
         pPoint.Draw = false;//描いたPointのDrawスクリプトを停止
         yield return new WaitForSeconds(0.1f);//一瞬待ってから
         battleSystem.next = false;//描き終わるフラグをリセット
-        selectAction.SetActive(true);//SelectAction復活
         yield break;
     }
 

@@ -53,28 +53,61 @@ public class EnemyDraw : MonoBehaviour
 
 
     //BattleSystenが発動　敵が線を描くメソッド
-    public void DrawEnemy()
+    public void DrawEnemy(SkillType skillType)
     {
-        startPos = new Vector3(transform.position.x, transform.position.y - 0.4f, fixedDrawZ);//線の書き始める座標、少し下から
+        startPos = new Vector3(transform.position.x, transform.position.y - 0.5f, fixedDrawZ);//線の書き始める座標、少し下から(自分のPointに当たらないため)
         AddLine(startPos);//初期地点
-        targetPoint = RandomPoint();//ランダムに選んだ相手をターゲットに
+        targetPoint = RandomPoint(skillType);//ランダムに選んだ相手をターゲットに
         Vector3 direction = (targetPoint - startPos).normalized;//ベクトル
 
-        while (newPoint.y >= targetPoint.y)//newPointのy座標がtargetPointのy座標より下回るまで
+        //もしスキルタイプがAttackなら
+        if(skillType == SkillType.Attack)
         {
-            newPoint = lastAddPoint + direction * 0.1f;//最後に加えた点から0.1ベクトル分足した地点に次の点を
-            AddLine(newPoint);
+            while (newPoint.y >= targetPoint.y)//newPointのy座標がtargetPointのy座標より下回るまで
+            {
+                newPoint = lastAddPoint + direction * 0.1f;//最後に加えた点から0.1ベクトル分足した地点に次の点を
+                AddLine(newPoint);
+            }
         }
+        //それ以外なら
+        else
+        {
+            while (newPoint.y <= targetPoint.y)//newPointのy座標がtargetPointのy座標より上回るまで　
+            {
+                newPoint = lastAddPoint + direction * 0.1f;//最後に加えた点から0.1ベクトル分足した地点に次の点を
+                AddLine(newPoint);
+            }
+        }
+        
     }
 
     //ランダムに目標相手を選んで、座標を取得   
-    Vector3 RandomPoint()
+    Vector3 RandomPoint(SkillType skillType)
     {
-        //生きているplayerのgameObjの要素のAlivePPoint
-        int count = Random.Range(0, battleSystem.AlivePlayers.Count);//から要素数から0までの数字を取得   
-        Transform point = battleSystem.AlivePlayers[count].transform;//ランダムに選ばれた要素番号のtrasformを取得
-        Vector3 targetPos = new Vector3(point.position.x, point.position.y, fixedDrawZ);//それの座標取得
-        return targetPos;
+        //もしスキルタイプがAttackならplayerのランダムな相手の座標を得る
+        if(skillType == SkillType.Attack)
+        {
+            //生きているplayerのgameObjの要素のAlivePPoint
+            int count = Random.Range(0, battleSystem.AlivePlayers.Count);//から要素数から0までの数字を取得   
+            Transform point = battleSystem.AlivePlayers[count].transform;//ランダムに選ばれた要素番号のtrasformを取得
+            Vector3 targetPos = new Vector3(point.position.x, point.position.y, fixedDrawZ);//それの座標取得
+            return targetPos;
+        }
+        //もしスキルタイプがHealならenemyのランダムな相手の座標を得る
+        else if (skillType == SkillType.Heal)
+        {
+            int count = Random.Range(0, battleSystem.AliveEnemies.Count);
+            Transform point = battleSystem.AliveEnemies[count].transform;
+            Vector3 targetPos = new Vector3(point.position.x, point.position.y, fixedDrawZ);
+            return targetPos;
+        }
+        else
+        {
+            Debug.Log("supportは実装途中");
+            return transform.position;
+        }
+        
+        
 
     }
 

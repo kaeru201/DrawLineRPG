@@ -75,7 +75,7 @@ public class EnemyBall : MonoBehaviour
                 {
                     //当たった相手に回復                
                     battleUnit.Unit.Hp += Power;//Power分Hpをプラス
-                    
+                                        
                 }
                 //もしスキルタイプがSupportなら
                 else if (SkillType == SkillType.Support)

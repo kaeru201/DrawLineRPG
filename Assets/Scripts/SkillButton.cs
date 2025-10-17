@@ -20,13 +20,7 @@ public class SkillButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
     [SerializeField] TextMeshProUGUI instruction;
     GameObject skillSelection;
 
-    //bool player1Select = false;
-    //bool player2Select = false;
-    //bool player3Select = false;
-
-    //bool player1Survival = true;  //とりあえずバグらないために置いてるけど、多分違う場所で宣言します
-    //bool player2Survival = true;  //どうやって判別するかも一旦保留
-    //bool player3Survival = true;　//でもSetUpでtrue + 戦闘中死んだらfalseにするのは確定
+    
 
 
     void Start()
@@ -64,21 +58,9 @@ public class SkillButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
             skillSelection.SetActive(false);//SkillSelectionを停止
             DrawNumberSet();//どれを押したか
             intelligence.DrawIn(1);//線を描く
-            //player2が生きているなら
-            if (battleSystem.Player2Alive)
-            {
-                battleSystem.TurnCng(BattleState.Player2Turn);//BattleStetaをplayer2Turnに
-            }
-            //Player3が生きているなら
-            else if (battleSystem.Player3Alive)
-            {
-                battleSystem.TurnCng(BattleState.Player3Turn);
-            }
-            //誰も生き残っていないなら
-            else
-            {
-                battleSystem.TurnCng(BattleState.EnemyTurn);
-            }
+            battleSystem.PushButton(1);//battleSystemにボタンを押したかを参照させる
+
+
 
 
         }
@@ -90,14 +72,8 @@ public class SkillButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
             skillSelection.SetActive(false);
             DrawNumberSet();
             intelligence.DrawIn(2);
-            //Player3が生きているなら
-            if (battleSystem.Player3Alive)
-            {
-                battleSystem.TurnCng(BattleState.Player3Turn);
+            battleSystem.PushButton(2);
 
-            }
-            //生き残っていないのなら
-            else battleSystem.TurnCng(BattleState.EnemyTurn);
 
 
         }
@@ -108,8 +84,8 @@ public class SkillButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
             skillSelection.SetActive(false);
             DrawNumberSet();
             intelligence.DrawIn(3);
-            //EnemyTurnに
-            battleSystem.TurnCng(BattleState.EnemyTurn);
+            battleSystem.PushButton(3);
+
 
         }
 
