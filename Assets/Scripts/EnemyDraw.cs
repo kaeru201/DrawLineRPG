@@ -42,16 +42,17 @@ public class EnemyDraw : MonoBehaviour
         {
             lineRenderer.positionCount = 0;
             posCount = 0;
+            newPoint = transform.position;
         }
 
-       
-        
+
+
 
     }
 
 
 
-    //死んでたら描かないという仕様にしないと
+    //BattleSystenが発動　敵が線を描くメソッド
     public void DrawEnemy()
     {
         startPos = new Vector3(transform.position.x, transform.position.y - 0.4f, fixedDrawZ);//線の書き始める座標、少し下から
@@ -72,13 +73,9 @@ public class EnemyDraw : MonoBehaviour
         //生きているplayerのgameObjの要素のAlivePPoint
         int count = Random.Range(0, battleSystem.AlivePlayers.Count);//から要素数から0までの数字を取得   
         Transform point = battleSystem.AlivePlayers[count].transform;//ランダムに選ばれた要素番号のtrasformを取得
-        Vector3 targetPos = new Vector3( point.position.x,point.position.y,fixedDrawZ);//それの座標取得
+        Vector3 targetPos = new Vector3(point.position.x, point.position.y, fixedDrawZ);//それの座標取得
         return targetPos;
 
-        //int length = Random.Range(0, PlayerPoint.Length);
-        //Transform Point = PlayerPoint[length];
-        //Vector3 targetPos = new Vector3(Point.position.x, Point.position.y, fixedDrawZ);
-        //return targetPos;
     }
 
     //線を引くメソッド(点)

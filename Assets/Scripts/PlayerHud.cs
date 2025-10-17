@@ -4,14 +4,14 @@ using UnityEngine.UI;
 
 public class PlayerHud : MonoBehaviour
 {
-   
+
     [SerializeField] TextMeshProUGUI nameText;
     [SerializeField] TextMeshProUGUI levelText;
     [SerializeField] Slider hpSlider;
     [SerializeField] TextMeshProUGUI hpText;
 
     Unit myUnit;
-        
+
     int lastHp;
 
     public void SetData(Unit unit)
@@ -20,12 +20,12 @@ public class PlayerHud : MonoBehaviour
         nameText.text = unit.UnitBase.Name;//UnitのpublicにしたUnitBase型のunitBaseのnameを代入
         levelText.text = "LV" + unit.Level;//string + int型
         hpSlider.maxValue = unit.Hp;
-        hpText.text = unit.Hp + "  /  " +  myUnit.MaxHP;
+        hpText.text = unit.Hp + "  /  " + myUnit.MaxHP;
 
         lastHp = unit.Hp;
-        
+
     }
-     
+
 
     private void Update()
     {

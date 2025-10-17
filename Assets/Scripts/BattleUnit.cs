@@ -8,7 +8,7 @@ public class BattleUnit : MonoBehaviour
     [SerializeField] int level;//今の相手のレベル
 
     private Unit unit;
-public Unit Unit { get => unit; set => unit = value; }
+    public Unit Unit { get => unit; set => unit = value; }
 
     //モンスターの生成メソッド
     public void SetUp()
@@ -16,6 +16,6 @@ public Unit Unit { get => unit; set => unit = value; }
         Unit = new Unit(unitBase, level);
         //相手の画像
         Image image = GetComponent<Image>();
-        image.sprite =Unit.UnitBase.Sprite;
+        image.sprite = Unit.UnitBase.Sprite;
     }
 }

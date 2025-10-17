@@ -60,17 +60,17 @@ public class SkillButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
         //もしplayer1Tuneなら
         if (battleSystem.CurrentBState == BattleState.Player1Turn)
         {
-                          
-                skillSelection.SetActive(false);//SkillSelectionを停止
-                DrawNumberSet();//どれを押したか
-                intelligence.DrawIn(1);//線を描く
+
+            skillSelection.SetActive(false);//SkillSelectionを停止
+            DrawNumberSet();//どれを押したか
+            intelligence.DrawIn(1);//線を描く
             //player2が生きているなら
             if (battleSystem.Player2Alive)
             {
                 battleSystem.TurnCng(BattleState.Player2Turn);//BattleStetaをplayer2Turnに
             }
             //Player3が生きているなら
-            else if(battleSystem.Player3Alive) 
+            else if (battleSystem.Player3Alive)
             {
                 battleSystem.TurnCng(BattleState.Player3Turn);
             }
@@ -85,11 +85,11 @@ public class SkillButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
         //もしplayer2Turnなら
         else if (battleSystem.CurrentBState == BattleState.Player2Turn)
         {
-            
-               
-                skillSelection.SetActive(false);
-                DrawNumberSet();
-                intelligence.DrawIn(2);
+
+
+            skillSelection.SetActive(false);
+            DrawNumberSet();
+            intelligence.DrawIn(2);
             //Player3が生きているなら
             if (battleSystem.Player3Alive)
             {
@@ -104,18 +104,18 @@ public class SkillButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
         //もしplayer3Tuneなら
         else if (battleSystem.CurrentBState == BattleState.Player3Turn)
         {
-                            
-                skillSelection.SetActive(false);
-                DrawNumberSet();
-                intelligence.DrawIn(3);
-                //EnemyTurnに
-                battleSystem.TurnCng(BattleState.EnemyTurn);
-           
+
+            skillSelection.SetActive(false);
+            DrawNumberSet();
+            intelligence.DrawIn(3);
+            //EnemyTurnに
+            battleSystem.TurnCng(BattleState.EnemyTurn);
+
         }
 
     }
 
-    
+
 
     //どのスキルをクリックしたかによって識別変数を変えて、クリックしたスキルの情報を覚えておメソッド
     public void DrawNumberSet()
@@ -171,7 +171,7 @@ public class SkillButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 
     }
 
-    
+
 }
 
 

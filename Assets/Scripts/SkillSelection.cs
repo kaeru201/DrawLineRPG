@@ -31,7 +31,7 @@ public class SkillSelection : MonoBehaviour
                 //スキル選択画面のテキストを対応したスキル名に変更
                 skillNames[i].text = "・" + skills[i].Skillbase.Name;
             }
-           
+
             //それぞれのi毎に記憶しておく
             intelligence.SkillRanges[i] = skills[i].Skillbase.MaxLineRange;
 

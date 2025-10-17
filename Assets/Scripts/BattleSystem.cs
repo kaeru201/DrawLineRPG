@@ -62,7 +62,7 @@ public class BattleSystem : MonoBehaviour
     List<GameObject> alivePLayers = new List<GameObject>();　//生き残っているplayerPointを得るリスト
     List<GameObject> aliveEnemies = new List<GameObject>();
     [SerializeField] List<GameObject> aliveBalls = new List<GameObject>();//ballをインスタンス化するたびにリストに追加してボールがまだフィールドにいるか調べるリスト　
-    
+
 
     public bool next = false;//線を引き終わったかどうか 
 
@@ -75,12 +75,12 @@ public class BattleSystem : MonoBehaviour
     public bool Enemy3Alive { get; set; } = false;
 
 
-   
+
     public List<GameObject> AlivePlayers { get => alivePLayers; set => alivePLayers = value; }
     public List<GameObject> AliveEnemies { get => aliveEnemies; set => aliveEnemies = value; }
     public List<GameObject> AliveBalls { get => aliveBalls; set => aliveBalls = value; }
 
-    
+
 
 
     //バトルが始まったら
@@ -137,7 +137,7 @@ public class BattleSystem : MonoBehaviour
                 enemy3Hud.SetData(enemy3Unit.Unit);
             }
 
-            
+
         }
 
         //生成したプレイヤーユニットの中で若い数のplayerUnitターンからスタート
@@ -146,7 +146,7 @@ public class BattleSystem : MonoBehaviour
         else if (Player3Alive) TurnCng(BattleState.Player3Turn);
     }
 
-    
+
 
     private void Update()
     {
@@ -155,7 +155,7 @@ public class BattleSystem : MonoBehaviour
         {
             Player1Alive = false;//UnitAliveをfalse
             AlivePlayers.Remove(player1Point);//死んだ時にAlivePPointからplayer1のリストを消す
-            
+
         }
         if (Death(player2Unit))
         {
@@ -184,7 +184,7 @@ public class BattleSystem : MonoBehaviour
         }
 
 
-        
+
 
 
 
@@ -196,13 +196,13 @@ public class BattleSystem : MonoBehaviour
 
         bool death = battleUnit.Unit.Hp <= 0;//UnitのHpが0以下になったらdeathをtrue
         //if (death) battleUnit.gameObject.SetActive(false);//deathがtrueならユニットを消す
-        if(death) battleUnit.gameObject.GetComponent<Image>().enabled = false;        
+        if (death) battleUnit.gameObject.GetComponent<Image>().enabled = false;
         return death;
     }
 
     IEnumerator EndOrContinue()
     {
-        
+
         //Ballが全部ヒエラルキー上から消えたら
         //if (AliveBalls.Count == 0)
         {
@@ -238,7 +238,7 @@ public class BattleSystem : MonoBehaviour
 
 
         }
-        
+
     }
 
     //currentBstateのplayerTurnのどれかに変更するメソッド
@@ -314,19 +314,19 @@ public class BattleSystem : MonoBehaviour
 
     //線を描くのを待ってからEnemyターンにするコルーチン　後で消すかも
     IEnumerator EnemyTurn()
-    {       
+    {
         yield return new WaitUntil(() => next == true);//playerが描き終わる待ってから
         EnemyIntelligence();//Enemyの情報を代入
 
-        if(Enemy1Alive)
+        if (Enemy1Alive)
         {
             enemyDraw[0].DrawEnemy();
         }
-        if(Enemy2Alive)
+        if (Enemy2Alive)
         {
             enemyDraw[1].DrawEnemy();
         }
-        if(Enemy3Alive)
+        if (Enemy3Alive)
         {
             enemyDraw[2].DrawEnemy();
         }
@@ -334,7 +334,7 @@ public class BattleSystem : MonoBehaviour
         TurnCng(BattleState.BattleTurn);//BattaleTurnに
         yield break;
 
-        
+
 
     }
 
@@ -357,7 +357,7 @@ public class BattleSystem : MonoBehaviour
 
 
             //選んだスキルの情報を代入
-            intelligence.Enemy1SkillType = enemy1Unit.Unit.Skills[nextSkill].Skillbase.SkillType;
+            intelligence.enemySkillTypes[0] = enemy1Unit.Unit.Skills[nextSkill].Skillbase.SkillType;
             intelligence.enemyPowers[0] = enemy1Unit.Unit.Skills[nextSkill].Skillbase.Power;
             intelligence.enemyPenetionPowers[0] = enemy1Unit.Unit.Skills[nextSkill].Skillbase.PenetrationPower;
             intelligence.enemySpeeds[0] = enemy1Unit.Unit.Skills[nextSkill].Skillbase.Speed;
@@ -370,7 +370,7 @@ public class BattleSystem : MonoBehaviour
         {
             int nextSkill = Random.Range(0, enemy2Unit.Unit.Skills.Count);
 
-            intelligence.Enemy2SkillType = enemy2Unit.Unit.Skills[nextSkill].Skillbase.SkillType;
+            intelligence.enemySkillTypes[1] = enemy2Unit.Unit.Skills[nextSkill].Skillbase.SkillType;
             intelligence.enemyPowers[1] = enemy2Unit.Unit.Skills[nextSkill].Skillbase.Power;
             intelligence.enemyPenetionPowers[1] = enemy2Unit.Unit.Skills[nextSkill].Skillbase.PenetrationPower;
             intelligence.enemySpeeds[1] = enemy2Unit.Unit.Skills[nextSkill].Skillbase.Speed;
@@ -381,7 +381,7 @@ public class BattleSystem : MonoBehaviour
         {
             int nextSkill = Random.Range(0, enemy3Unit.Unit.Skills.Count);
 
-            intelligence.Enemy3SkillType = enemy3Unit.Unit.Skills[nextSkill].Skillbase.SkillType;
+            intelligence.enemySkillTypes[2] = enemy3Unit.Unit.Skills[nextSkill].Skillbase.SkillType;
             intelligence.enemyPowers[2] = enemy3Unit.Unit.Skills[nextSkill].Skillbase.Power;
             intelligence.enemyPenetionPowers[2] = enemy3Unit.Unit.Skills[nextSkill].Skillbase.PenetrationPower;
             intelligence.enemySpeeds[2] = enemy3Unit.Unit.Skills[nextSkill].Skillbase.Speed;

@@ -55,7 +55,7 @@ public class InstanceBall : MonoBehaviour
 
                                 //player1の情報を入れる
                                 AttckBall script = player1Ball.GetComponent<AttckBall>();
-                                script.SkillType = intelligence.Player1SkillType;
+                                script.SkillType = intelligence.enemySkillTypes[0];
                                 script.Power = intelligence.playerPowers[0];
                                 script.PenetionPower = intelligence.playerPenetionPowers[0];
                                 script.Speed = intelligence.playerSpeeds[0];
@@ -66,7 +66,7 @@ public class InstanceBall : MonoBehaviour
 
 
                             }
-                            
+
                         }
                         p1Rdy = false;
                     }
@@ -87,7 +87,7 @@ public class InstanceBall : MonoBehaviour
 
                                 //player2の情報を入れる
                                 AttckBall script = player2Ball.GetComponent<AttckBall>();
-                                script.SkillType = intelligence.Player2SkillType;
+                                script.SkillType = intelligence.enemySkillTypes[1];
                                 script.Power = intelligence.playerPowers[1];
                                 script.PenetionPower = intelligence.playerPenetionPowers[1];
                                 script.Speed = intelligence.playerSpeeds[1];
@@ -97,7 +97,7 @@ public class InstanceBall : MonoBehaviour
                                 script.UnitNum = 2;//どのユニットのBallか判別するint
 
                             }
-                            
+
                         }
                         p2Rdy = false;
                     }
@@ -121,7 +121,7 @@ public class InstanceBall : MonoBehaviour
 
                                 //player3の情報を入れる
                                 AttckBall script = player3Ball.GetComponent<AttckBall>();
-                                script.SkillType = intelligence.Player3SkillType;
+                                script.SkillType = intelligence.enemySkillTypes[2];
                                 script.Power = intelligence.playerPowers[2];
                                 script.PenetionPower = intelligence.playerPenetionPowers[2];
                                 script.Speed = intelligence.playerSpeeds[2];
@@ -130,7 +130,7 @@ public class InstanceBall : MonoBehaviour
                                 script.SetBattleSystem(battleSystem);//BallにBattleSystemを参照させるメソッド
                                 script.UnitNum = 3;//どのユニットのBallか判別するint
                             }
-                            
+
                         }
                         p3Rdy = false;
                     }
@@ -149,7 +149,7 @@ public class InstanceBall : MonoBehaviour
                                 enemy1Ball.transform.parent = gameObject.transform;
 
                                 EnemyBall script = enemy1Ball.GetComponent<EnemyBall>();
-                                script.SkillType = intelligence.Enemy1SkillType;
+                                script.SkillType = intelligence.enemySkillTypes[0];
                                 script.Power = intelligence.enemyPowers[0];
                                 script.PenetionPower = intelligence.enemyPenetionPowers[0];
                                 script.Speed = intelligence.enemySpeeds[0];
@@ -161,7 +161,7 @@ public class InstanceBall : MonoBehaviour
                         }
                         e1Rdy = false;
                     }
-                    
+
                     break;
 
                 case "Enemy2Point":
@@ -175,7 +175,7 @@ public class InstanceBall : MonoBehaviour
                                 enemy2Ball.transform.parent = gameObject.transform;
 
                                 EnemyBall script = enemy2Ball.GetComponent<EnemyBall>();
-                                script.SkillType = intelligence.Enemy2SkillType;
+                                script.SkillType = intelligence.enemySkillTypes[1];
                                 script.Power = intelligence.enemyPowers[1];
                                 script.PenetionPower = intelligence.enemyPenetionPowers[1];
                                 script.Speed = intelligence.enemySpeeds[1];
@@ -187,7 +187,7 @@ public class InstanceBall : MonoBehaviour
                         }
                         e2Rdy = false;
                     }
-                    
+
                     break;
 
                 case "Enemy3Point":
@@ -201,7 +201,7 @@ public class InstanceBall : MonoBehaviour
                                 enemy3Ball.transform.parent = gameObject.transform;
 
                                 EnemyBall script = enemy3Ball.GetComponent<EnemyBall>();
-                                script.SkillType = intelligence.Enemy3SkillType;
+                                script.SkillType = intelligence.enemySkillTypes[2];
                                 script.Power = intelligence.enemyPowers[2];
                                 script.PenetionPower = intelligence.enemyPenetionPowers[2];
                                 script.Speed = intelligence.enemySpeeds[2];
@@ -213,7 +213,7 @@ public class InstanceBall : MonoBehaviour
                         }
                         e3Rdy = false;
                     }
-                    
+
                     break;
             }
         }

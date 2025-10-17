@@ -22,13 +22,13 @@ public class SkillBase : ScriptableObject
     public int MaxLineRange { get => maxLineRange; }
     public int Speed { get => speed; set => speed = value; }
     public int NumberAttacks { get => numberAttacks; set => numberAttacks = value; }
-    internal SkillType SkillType { get => skillType; }
+    public SkillType SkillType { get => skillType; }
 }
 
 
 
-//技の種類
-enum SkillType
+//技の種類 
+public enum SkillType
 {
     Attack,
     Heal,

@@ -30,7 +30,7 @@ public class ActionButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
         nextUI.SetActive(true);//対応した次のUIを起動
         serectAction.SetActive(false);//自分の親ごと停止
 
-        Invoke("DefaultReset" ,200f *Time.deltaTime);//クリックした時も少し待って画像をリセット
+        Invoke("DefaultReset", 200f * Time.deltaTime);//クリックした時も少し待って画像をリセット
     }
 
     //マウスがボタンを触れたとき

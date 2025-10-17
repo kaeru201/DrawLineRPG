@@ -14,17 +14,17 @@ public class HPBar : MonoBehaviour
     {
         //生成したUnit毎の最大をmaxValueに代入する
         //slider.maxValue = unit.MaxHP;
-       // slider.value = 1;
-        
+        // slider.value = 1;
+
 
     }
 
-        
+
     void Update()
     {
         //ここでやるかは置いといて現在のHPをvalueに代入
         slider.value = CurrentHP;
-     //   OnDamage();   
+        //   OnDamage();   
     }
 
     //仮ダメージフラグメソッド
@@ -41,9 +41,9 @@ public class HPBar : MonoBehaviour
 
 
     //    }
-        
-           
-        
+
+
+
     //}
 
 }

@@ -9,13 +9,13 @@ public class EnemyHud : MonoBehaviour
 
     Unit myUnit;
 
-public void SetData(Unit unit)
+    public void SetData(Unit unit)
     {
         myUnit = unit;
         nameText.text = unit.UnitBase.Name;
         levelText.text = "LV" + unit.Level;
     }
 
-   
+
 
 }

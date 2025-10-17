@@ -13,7 +13,7 @@ public class AttckBall : MonoBehaviour
 
     Vector3 lastAddPos;//最後に加えた点
 
-    internal SkillType SkillType { get; set; }
+    public SkillType SkillType { get; set; }
     public int Power { get; set; }
     public int PenetionPower { get; set; }
     public float Speed { get; set; }
@@ -31,7 +31,7 @@ public class AttckBall : MonoBehaviour
 
     }
 
-   
+
 
 
     IEnumerator MoveBall()
@@ -59,7 +59,7 @@ public class AttckBall : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-                       
+
         //もし当たった相手がPointだったら
         if (collision.gameObject.CompareTag("Point"))
         {
@@ -74,14 +74,15 @@ public class AttckBall : MonoBehaviour
                 {
                     //当たった相手にダメージ               
                     int damage = battleSystem.Damage(Power, UnitNum, battleUnit);//battleSystemのDamageメソッドを発動させてダメージ計算をする
-                    battleUnit.Unit.Hp = battleUnit.Unit.Hp - damage;//計算した値分Hpをマイナス
+                    battleUnit.Unit.Hp -= damage;//計算した値分Hpをマイナス
                 }
 
                 //もしスキルタイプがHealなら
                 else if (SkillType == SkillType.Heal)
                 {
                     //当たった相手に回復
-                    battleUnit.Unit.Hp = battleUnit.Unit.Hp + Power;//Hpをプラス
+                    battleUnit.Unit.Hp += Power;//Hpをプラス
+                    
                 }
 
                 // もしスキルタイプがSupportなら
@@ -93,7 +94,7 @@ public class AttckBall : MonoBehaviour
                 battleSystem.AliveBalls.Remove(gameObject);//AliveBallsリストからこのオブジェクトの要素を削除
                 Destroy(gameObject);
             }
-            
+
         }
 
         //もし相手がEnemyのBallだったら

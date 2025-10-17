@@ -18,7 +18,7 @@ public class DrawLine : MonoBehaviour
     float minMouseMove;
     [SerializeField] bool isDrawing = false;//描き続けられるか
     [SerializeField] bool ready = false;
-     public bool Draw { get; set; } = false; //描き始められえるか　DrawIntelligenceから個別にtrueにする変数
+    public bool Draw { get; set; } = false; //描き始められえるか　DrawIntelligenceから個別にtrueにする変数
 
 
 
@@ -43,8 +43,8 @@ public class DrawLine : MonoBehaviour
 
     void Update()
     {
-        
-        if(battleSystem.CurrentBState == BattleState.WaitNextTurn)//できない
+
+        if (battleSystem.CurrentBState == BattleState.WaitNextTurn)//できない
         {
             posCount = 0;
             lineRenderer.positionCount = 0;
@@ -126,7 +126,7 @@ public class DrawLine : MonoBehaviour
 
                 battleSystem.next = true;
 
-                
+
             }
         }
 

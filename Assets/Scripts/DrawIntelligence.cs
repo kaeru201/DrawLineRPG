@@ -29,45 +29,17 @@ public class DrawIntelligence : MonoBehaviour
 
     //打つスキルの情報を覚えておく変数 (InstanceBallに渡してBallに反映させる)
     // 0:player1、1:player2、2:player3
+    public SkillType[] playerSkillTypes = new SkillType[3];
     public int[] playerPowers = new int[3];
     public int[] playerPenetionPowers = new int[3];
     public float[] playerSpeeds = new float[3];
     public int[] playerNumAttacks = new int[3];
 
+    public SkillType[] enemySkillTypes = new SkillType[3];
     public int[] enemyPowers = new int[3];
     public int[] enemyPenetionPowers = new int[3];
     public int[] enemySpeeds = new int[3];
     public int[] enemyNumAttacks = new int[3];
-
-    
-
-
-    SkillType player1SkillType;//流石にプロパティが多すぎるからpublicにするかも
-    SkillType player2SkillType;
-    SkillType player3SkillType;
-
-    SkillType enemy1SkillType;
-    SkillType enemy2SkillType;
-    SkillType enemy3SkillType;
-
-    //public int player1Power;
-    //public int player2Power;
-    //public int player3Power;
-
-
-    //public int player1PenetionPower;
-    //public int player2PenetionPower;
-    //public int player3PenetionPower;
-
-
-    //public int player1Speed;
-    //public int player2Speed;
-    //public int player3Speed;
-
-
-    //public int player1NumAttacks;
-    //public int player2NumAttacks;
-    //public int player3NumAttacks;
 
 
 
@@ -76,19 +48,11 @@ public class DrawIntelligence : MonoBehaviour
     public string[] SkillDescriptions { get => skillDescriptions; set => skillDescriptions = value; }
     public int[] SkillPowers { get => skillPowers; set => skillPowers = value; }
     public int[] SkillPenetionPowers { get => skillPenetionPowers; set => skillPenetionPowers = value; }
-    internal SkillType[] SkillTypes { get => skillTypes; set => skillTypes = value; }
+    public SkillType[] SkillTypes { get => skillTypes; set => skillTypes = value; }
     public int[] SkillSpeed { get => skillSpeed; set => skillSpeed = value; }
     public int[] SkillNumAttacks { get => skillNumAttacks; set => skillNumAttacks = value; }
 
-    internal SkillType Player1SkillType { get => player1SkillType; set => player1SkillType = value; }
-    internal SkillType Player2SkillType { get => player2SkillType; set => player2SkillType = value; }
-    internal SkillType Player3SkillType { get => player3SkillType; set => player3SkillType = value; }
-
-    internal SkillType Enemy1SkillType { get => enemy1SkillType; set => enemy1SkillType = value; }
-    internal SkillType Enemy2SkillType { get => enemy2SkillType; set => enemy2SkillType = value; }
-    internal SkillType Enemy3SkillType { get => enemy3SkillType; set => enemy3SkillType = value; }
-
-
+   
     //線を描くメソッド
     public void DrawIn(int pUnit)//引数にどのプレイヤーに対してか
     {
@@ -97,8 +61,8 @@ public class DrawIntelligence : MonoBehaviour
         {
             PlayerPointON(player1Point);//プレイヤー1の線を引くスクリプトをつける
 
-            WhoClick(player1Point,  Player1SkillType, ref playerPowers[0], ref playerPenetionPowers[0], ref playerSpeeds[0], ref playerNumAttacks[0]);//プレイヤー1が何のスキルを打ったか
-                        
+            WhoClick(player1Point, ref playerSkillTypes[0], ref playerPowers[0], ref playerPenetionPowers[0], ref playerSpeeds[0], ref playerNumAttacks[0]);//プレイヤー1が何のスキルを打ったか
+
             StartCoroutine(PlayerPointOFF(player1Point));//プレイヤー1のスクリプトを消す
         }
         //Unitがplayer2なら
@@ -106,7 +70,7 @@ public class DrawIntelligence : MonoBehaviour
         {
             PlayerPointON(player2Point);//プレイヤー2の線を引くスクリプトをつける
 
-            WhoClick(player2Point, Player2SkillType, ref playerPowers[1], ref playerPenetionPowers[1], ref playerSpeeds[1], ref playerNumAttacks[1]);//プレイヤー2が何のスキルを打ったか
+            WhoClick(player2Point, ref playerSkillTypes[1], ref playerPowers[1], ref playerPenetionPowers[1], ref playerSpeeds[1], ref playerNumAttacks[1]);//プレイヤー2が何のスキルを打ったか
 
             StartCoroutine(PlayerPointOFF(player2Point));//プレイヤー2のスクリプトを消す
         }
@@ -115,7 +79,7 @@ public class DrawIntelligence : MonoBehaviour
         {
             PlayerPointON(player3Point);//プレイヤー3の線を引くスクリプトをつける
 
-            WhoClick(player3Point, Player3SkillType, ref playerPowers[2], ref playerPenetionPowers[2], ref playerSpeeds[2], ref playerNumAttacks[2]);//プレイヤー3が何のスキルを打ったか
+            WhoClick(player3Point, ref playerSkillTypes[2], ref playerPowers[2], ref playerPenetionPowers[2], ref playerSpeeds[2], ref playerNumAttacks[2]);//プレイヤー3が何のスキルを打ったか
 
             StartCoroutine(PlayerPointOFF(player3Point));//プレイヤー3のスクリプトを消す
         }
@@ -127,7 +91,7 @@ public class DrawIntelligence : MonoBehaviour
     }
 
     //どのスキルをクリックしたか
-    void WhoClick(DrawLine pPoint, SkillType pSkillType, ref int pPower, ref int pPenetion, ref float pSpeed, ref int pNumATK)
+    void WhoClick(DrawLine pPoint, ref SkillType pSkillType, ref int pPower, ref int pPenetion, ref float pSpeed, ref int pNumATK)
     {
         //クリックされたら対応する識別番号の変数を代入する
         switch (Number)
