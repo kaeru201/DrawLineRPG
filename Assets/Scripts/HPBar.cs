@@ -7,43 +7,21 @@ public class HPBar : MonoBehaviour
     [SerializeField] int currentHP;
     [SerializeField] public Slider slider;
     [SerializeField] public int damage = 1;
+    BattleUnit myUnit;
 
-    public int CurrentHP { get => currentHP; set => currentHP = value; }
 
     void Start()
     {
-        //生成したUnit毎の最大をmaxValueに代入する
-        //slider.maxValue = unit.MaxHP;
-        // slider.value = 1;
 
-
+        myUnit = transform.parent.GetComponent<BattleUnit>();
+        Debug.Log(myUnit.Unit.Hp);
+        slider.maxValue = myUnit.Unit.MaxHP;
     }
-
 
     void Update()
     {
-        //ここでやるかは置いといて現在のHPをvalueに代入
-        slider.value = CurrentHP;
-        //   OnDamage();   
+        slider.value = myUnit.Unit.Hp;
     }
 
-    //仮ダメージフラグメソッド
-    //void OnDamage()
-    //{
-    //    if (CurrentHP > 0)
-    //    {
-    //        if(Input.GetKeyDown(KeyCode.Space) )
-    //        {
-    //            CurrentHP = CurrentHP - damage;
-    //            Debug.Log(CurrentHP);
-    //        }
-
-
-
-    //    }
-
-
-
-    //}
 
 }

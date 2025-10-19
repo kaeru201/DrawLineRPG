@@ -89,7 +89,7 @@ public class BattleSystem : MonoBehaviour
 
 
     //バトルが始まったら
-    private void Start()
+    private void Awake()
     {
         CurrentBState = BattleState.StartTurn;
 
