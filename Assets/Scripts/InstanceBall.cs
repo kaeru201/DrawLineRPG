@@ -55,6 +55,7 @@ public class InstanceBall : MonoBehaviour
 
                                 //player1の情報を入れる
                                 AttckBall script = player1Ball.GetComponent<AttckBall>();
+                                script.SkillName = intelligence.playerSkillNames[0];
                                 script.SkillType = intelligence.playerSkillTypes[0];
                                 script.Power = intelligence.playerPowers[0];
                                 script.PenetionPower = intelligence.playerPenetionPowers[0];
@@ -86,6 +87,7 @@ public class InstanceBall : MonoBehaviour
 
                                 //player2の情報を入れる
                                 AttckBall script = player2Ball.GetComponent<AttckBall>();
+                                script.SkillName = intelligence.playerSkillNames[1];
                                 script.SkillType = intelligence.playerSkillTypes[1];
                                 script.Power = intelligence.playerPowers[1];
                                 script.PenetionPower = intelligence.playerPenetionPowers[1];
@@ -120,6 +122,7 @@ public class InstanceBall : MonoBehaviour
 
                                 //player3の情報を入れる
                                 AttckBall script = player3Ball.GetComponent<AttckBall>();
+                                script.SkillName = intelligence.playerSkillNames[2];
                                 script.SkillType = intelligence.playerSkillTypes[2];
                                 script.Power = intelligence.playerPowers[2];
                                 script.PenetionPower = intelligence.playerPenetionPowers[2];
@@ -148,6 +151,7 @@ public class InstanceBall : MonoBehaviour
                                 enemy1Ball.transform.parent = gameObject.transform;
 
                                 EnemyBall script = enemy1Ball.GetComponent<EnemyBall>();
+                                script.SkillName = intelligence.enemySkillNames[0];
                                 script.SkillType = intelligence.enemySkillTypes[0];
                                 script.Power = intelligence.enemyPowers[0];
                                 script.PenetionPower = intelligence.enemyPenetionPowers[0];
@@ -174,6 +178,7 @@ public class InstanceBall : MonoBehaviour
                                 enemy2Ball.transform.parent = gameObject.transform;
 
                                 EnemyBall script = enemy2Ball.GetComponent<EnemyBall>();
+                                script.SkillName = intelligence.enemySkillNames[1];
                                 script.SkillType = intelligence.enemySkillTypes[1];
                                 script.Power = intelligence.enemyPowers[1];
                                 script.PenetionPower = intelligence.enemyPenetionPowers[1];
@@ -200,6 +205,7 @@ public class InstanceBall : MonoBehaviour
                                 enemy3Ball.transform.parent = gameObject.transform;
 
                                 EnemyBall script = enemy3Ball.GetComponent<EnemyBall>();
+                                script.SkillName = intelligence.enemySkillNames[2];
                                 script.SkillType = intelligence.enemySkillTypes[2];
                                 script.Power = intelligence.enemyPowers[2];
                                 script.PenetionPower = intelligence.enemyPenetionPowers[2];

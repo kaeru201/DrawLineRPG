@@ -16,7 +16,8 @@ public class DrawIntelligence : MonoBehaviour
     [SerializeField] DrawLine player2Point;
     [SerializeField] DrawLine player3Point;
 
-    //持っているスキルの情報を一旦保存しておく配列変数  
+    //持っているスキルの情報を一旦保存しておく配列変数  SkillSelection.csで値を代入
+    string[] skillNames = new string[6];
     int[] skillRanges = new int[6];
     string[] skillDescriptions = new string[6];
     SkillType[] skillTypes = new SkillType[6];
@@ -29,12 +30,14 @@ public class DrawIntelligence : MonoBehaviour
 
     //打つスキルの情報を覚えておく変数 (InstanceBallに渡してBallに反映させる)
     // 0:player1、1:player2、2:player3
+    public string[] playerSkillNames = new string[3];
     public SkillType[] playerSkillTypes = new SkillType[3];
     public int[] playerPowers = new int[3];
     public int[] playerPenetionPowers = new int[3];
     public float[] playerSpeeds = new float[3];
     public int[] playerNumAttacks = new int[3];
 
+    public string[] enemySkillNames = new string[3];
     public SkillType[] enemySkillTypes = new SkillType[3];
     public int[] enemyPowers = new int[3];
     public int[] enemyPenetionPowers = new int[3];
@@ -43,6 +46,7 @@ public class DrawIntelligence : MonoBehaviour
 
 
 
+    public string[] SkillNames { get => skillNames; set => skillNames = value; }
     public int Number { get => number; set => number = value; }
     public int[] SkillRanges { get => skillRanges; set => skillRanges = value; }
     public string[] SkillDescriptions { get => skillDescriptions; set => skillDescriptions = value; }
@@ -52,7 +56,7 @@ public class DrawIntelligence : MonoBehaviour
     public int[] SkillSpeed { get => skillSpeed; set => skillSpeed = value; }
     public int[] SkillNumAttacks { get => skillNumAttacks; set => skillNumAttacks = value; }
 
-   
+
     //線を描くメソッド
     public void DrawIn(int pUnit)//引数にどのプレイヤーに対してか
     {
@@ -61,7 +65,7 @@ public class DrawIntelligence : MonoBehaviour
         {
             PlayerPointON(player1Point);//プレイヤー1の線を引くスクリプトをつける
 
-            WhoClick(player1Point, ref playerSkillTypes[0], ref playerPowers[0], ref playerPenetionPowers[0], ref playerSpeeds[0], ref playerNumAttacks[0]);//プレイヤー1が何のスキルを打ったか
+            WhoClick(ref playerSkillNames[0],player1Point, ref playerSkillTypes[0], ref playerPowers[0], ref playerPenetionPowers[0], ref playerSpeeds[0], ref playerNumAttacks[0]);//プレイヤー1が何のスキルを打ったか
 
             StartCoroutine(PlayerPointOFF(player1Point));//プレイヤー1のスクリプトを消す
         }
@@ -70,7 +74,7 @@ public class DrawIntelligence : MonoBehaviour
         {
             PlayerPointON(player2Point);//プレイヤー2の線を引くスクリプトをつける
 
-            WhoClick(player2Point, ref playerSkillTypes[1], ref playerPowers[1], ref playerPenetionPowers[1], ref playerSpeeds[1], ref playerNumAttacks[1]);//プレイヤー2が何のスキルを打ったか
+            WhoClick(ref playerSkillNames[1],player2Point, ref playerSkillTypes[1], ref playerPowers[1], ref playerPenetionPowers[1], ref playerSpeeds[1], ref playerNumAttacks[1]);//プレイヤー2が何のスキルを打ったか
 
             StartCoroutine(PlayerPointOFF(player2Point));//プレイヤー2のスクリプトを消す
         }
@@ -79,7 +83,7 @@ public class DrawIntelligence : MonoBehaviour
         {
             PlayerPointON(player3Point);//プレイヤー3の線を引くスクリプトをつける
 
-            WhoClick(player3Point, ref playerSkillTypes[2], ref playerPowers[2], ref playerPenetionPowers[2], ref playerSpeeds[2], ref playerNumAttacks[2]);//プレイヤー3が何のスキルを打ったか
+            WhoClick(ref playerSkillNames[2], player3Point, ref playerSkillTypes[2], ref playerPowers[2], ref playerPenetionPowers[2], ref playerSpeeds[2], ref playerNumAttacks[2]);//プレイヤー3が何のスキルを打ったか
 
             StartCoroutine(PlayerPointOFF(player3Point));//プレイヤー3のスクリプトを消す
         }
@@ -91,7 +95,7 @@ public class DrawIntelligence : MonoBehaviour
     }
 
     //どのスキルをクリックしたか
-    void WhoClick(DrawLine pPoint, ref SkillType pSkillType, ref int pPower, ref int pPenetion, ref float pSpeed, ref int pNumATK)
+    void WhoClick(ref string pSkillName, DrawLine pPoint, ref SkillType pSkillType, ref int pPower, ref int pPenetion, ref float pSpeed, ref int pNumATK)
     {
         //クリックされたら対応する識別番号の変数を代入する
         switch (Number)
@@ -100,6 +104,7 @@ public class DrawIntelligence : MonoBehaviour
                 return;
             //スキルの情報
             case 1:
+                pSkillName = SkillNames[0];
                 pPoint.MaxLineRange = SkillRanges[0];//距離
                 pSkillType = SkillTypes[0];//スキルタイプ
                 pPower = SkillPowers[0];//攻撃力
@@ -109,7 +114,7 @@ public class DrawIntelligence : MonoBehaviour
 
                 break;
             case 2:
-
+                pSkillName = SkillNames[1];
                 pPoint.MaxLineRange = SkillRanges[1];
                 pSkillType = SkillTypes[1];
                 pPower = SkillPowers[1];
@@ -119,7 +124,7 @@ public class DrawIntelligence : MonoBehaviour
 
                 break;
             case 3:
-
+                pSkillName= SkillNames[2];
                 pPoint.MaxLineRange = SkillRanges[2];
                 pSkillType = SkillTypes[2];
                 pPower = SkillPowers[2];
@@ -129,7 +134,7 @@ public class DrawIntelligence : MonoBehaviour
 
                 break;
             case 4:
-
+                pSkillName = skillNames[3];
                 pPoint.MaxLineRange = SkillRanges[3];
                 pSkillType = SkillTypes[3];
                 pPower = SkillPowers[3];
@@ -139,7 +144,7 @@ public class DrawIntelligence : MonoBehaviour
 
                 break;
             case 5:
-
+                pSkillName = SkillNames[4];
                 pPoint.MaxLineRange = SkillRanges[4];
                 pSkillType = SkillTypes[4];
                 pPower = SkillPowers[4];
@@ -149,7 +154,7 @@ public class DrawIntelligence : MonoBehaviour
 
                 break;
             case 6:
-
+                pSkillName = SkillNames[5];
                 pPoint.MaxLineRange = SkillRanges[5];
                 pSkillType = SkillTypes[5];
                 pPower = SkillPowers[5];

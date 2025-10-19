@@ -12,7 +12,8 @@ public class EnemyBall : MonoBehaviour
 
     Vector3 lastAddPos;//最後に加えた点
 
-    internal SkillType SkillType { get; set; }
+    public string SkillName { get; set; }
+    public SkillType SkillType { get; set; }
     public int Power { get; set; }
     public int PenetionPower { get; set; }
     public float Speed { get; set; }
@@ -67,7 +68,8 @@ public class EnemyBall : MonoBehaviour
                 {
                     //当たった相手にダメージ                
                     int damage = battleSystem.Damage(Power, UnitNum, battleUnit);//battleSystemのDamageメソッドを発動させてダメージ計算をする
-                     battleUnit.Unit.Hp -= damage;//計算した値分Hpをマイナス
+                    battleUnit.Unit.Hp -= damage;//計算した値分Hpをマイナス
+                    battleSystem.dialog.AddDialog(battleUnit.Unit.UnitBase.Name + "は" + damage + " ダメージ受けた");//ダイヤログで何ダメ与えたかを流す
 
                 }
                 //もしスキルタイプがHealなら
@@ -75,7 +77,7 @@ public class EnemyBall : MonoBehaviour
                 {
                     //当たった相手に回復                
                     battleUnit.Unit.Hp += Power;//Power分Hpをプラス
-                                        
+                    battleSystem.dialog.AddDialog(battleUnit.Unit.UnitBase.Name + "は" + Power + "回復した");//ダイヤログでどれだけ回復したかを流す                     
                 }
                 //もしスキルタイプがSupportなら
                 else if (SkillType == SkillType.Support)
@@ -89,23 +91,6 @@ public class EnemyBall : MonoBehaviour
             }
         }
 
-
-
-
-
-        //playerのボールが当たった時の処理はAttackBall側で行うためこちらには無し
-
-        //もし相手がPlayerのBallだったら
-        //else if (collision.gameObject.CompareTag("PlayerBall"))
-        //{
-        //   AttckBall enemyPenetion = collision.gameObject.GetComponent<AttckBall>();
-
-        //    //お互いの貫通力を見て低い方は消える、同じ場合はどちらも消える
-        //    if (PenetionPower <= enemyPenetion.PenetionPower)
-        //    {
-        //       // Destroy(gameObject);
-        //    }
-        //}
 
     }
 

@@ -1,9 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Build;
 using UnityEngine;
 using UnityEngine.UI;
-using static TMPro.SpriteAssetUtilities.TexturePacker_JsonArray;
+
 
 
 
@@ -47,6 +46,8 @@ public class BattleSystem : MonoBehaviour
     [SerializeField] DrawIntelligence intelligence;
     [SerializeField] SkillSelection playerSkill;
     [SerializeField] EnemyDraw[] enemyDraw = new EnemyDraw[3];
+    [SerializeField] GameObject dialogObj;
+    public Dialog dialog;
 
     [SerializeField] public BattleState CurrentBState; //{ get; set; }
 
@@ -66,7 +67,7 @@ public class BattleSystem : MonoBehaviour
 
 
     public bool next = false;//線を引き終わったかどうか 
-
+    bool[] just1DeadUnits = new bool[6];//一回だけ死亡判定させる変数(player1=0,player2=1.enemy1=3)
 
 
     public bool Player1Alive { get; set; } = false;
@@ -82,6 +83,7 @@ public class BattleSystem : MonoBehaviour
     public List<GameObject> AlivePlayers { get => alivePLayers; set => alivePLayers = value; }
     public List<GameObject> AliveEnemies { get => aliveEnemies; set => aliveEnemies = value; }
     public List<GameObject> AliveBalls { get => aliveBalls; set => aliveBalls = value; }
+   
 
 
 
@@ -153,38 +155,69 @@ public class BattleSystem : MonoBehaviour
 
     private void Update()
     {
-        //もしUnitが死んでしまったら
-        if (Death(player1Unit))
-        {
-            Player1Alive = false;//UnitAliveをfalse
-            AlivePlayers.Remove(player1Point);//死んだ時にAlivePPointからplayer1のリストを消す
-
+        //player1の死亡がまだ行われていないなら
+        if (!just1DeadUnits[0])
+        { 
+            //もしUnitが死んでしまったら
+            if (Death(player1Unit))
+            {
+                Player1Alive = false;//UnitAliveをfalse
+                AlivePlayers.Remove(player1Point);//死んだ時にAlivePPointからplayer1のリストを消す
+                dialog.AddDialog(player1Unit.Unit.UnitBase.Name + "が戦闘不能");//死亡時アナウンスをダイヤログで流す
+                just1DeadUnits[0] = true;
+            }
         }
-        if (Death(player2Unit))
+        if(!just1DeadUnits[1])
         {
-            Player2Alive = false;
-            AlivePlayers.Remove(player2Point);
+            if (Death(player2Unit))
+            {
+                Player2Alive = false;
+                AlivePlayers.Remove(player2Point);
+                dialog.AddDialog(player2Unit.Unit.UnitBase.Name + "が戦闘不能");
+                just1DeadUnits[1] = true;
+            }
         }
-        if (Death(player3Unit))
+        if(!just1DeadUnits[2])
         {
-            Player3Alive = false;
-            AlivePlayers.Remove(player3Point);
+            if (Death(player3Unit))
+            {
+                Player3Alive = false;
+                AlivePlayers.Remove(player3Point);
+                dialog.AddDialog(player3Unit.Unit.UnitBase.Name + "が戦闘不能");
+                just1DeadUnits[2] = true;
+            }
         }
-        if (Death(enemy1Unit))
+       if(!just1DeadUnits[3])
         {
-            Enemy1Alive = false;
-            AliveEnemies.Remove(enemy1Point);
+            if (Death(enemy1Unit))
+            {
+                Enemy1Alive = false;
+                AliveEnemies.Remove(enemy1Point);
+                dialog.AddDialog(enemy1Unit.Unit.UnitBase.Name + "が戦闘不能");
+                just1DeadUnits[3] = true;
+            }
         }
-        if (Death(enemy2Unit))
+        if(!just1DeadUnits[4])
         {
-            Enemy2Alive = false;
-            AlivePlayers.Remove(enemy2Point);
+            if (Death(enemy2Unit))
+            {
+                Enemy2Alive = false;
+                AlivePlayers.Remove(enemy2Point);
+                dialog.AddDialog(enemy2Unit.Unit.UnitBase.Name + "が戦闘不能");
+                just1DeadUnits[4] = true;
+            }
         }
-        if (Death(enemy3Unit))
+        if (!just1DeadUnits[5])
         {
-            Enemy3Alive = false;
-            AlivePlayers.Remove(enemy3Point);
+            if (Death(enemy3Unit))
+            {
+                Enemy3Alive = false;
+                AlivePlayers.Remove(enemy3Point);
+                dialog.AddDialog(enemy3Unit.Unit.UnitBase.Name + "が戦闘不能");
+                just1DeadUnits[5] = true;
+            }
         }
+       
 
 
 
@@ -195,11 +228,11 @@ public class BattleSystem : MonoBehaviour
 
     //Unitが死んでしまったかを確認するメソッド
     bool Death(BattleUnit battleUnit)
-    {
+    {       
 
-        bool death = battleUnit.Unit.Hp <= 0;//UnitのHpが0以下になったらdeathをtrue
-        //if (death) battleUnit.gameObject.SetActive(false);//deathがtrueならユニットを消す
+        bool death = battleUnit.Unit.Hp <= 0;//UnitのHpが0以下になったらdeathをtrue        
         if (death) battleUnit.gameObject.GetComponent<Image>().enabled = false;
+
         return death;
     }
 
@@ -255,6 +288,8 @@ public class BattleSystem : MonoBehaviour
                 break;
             case BattleState.WaitNextTurn:
                 CurrentBState = BattleState.WaitNextTurn;
+                dialogObj.SetActive(false);//ダイヤログを非表示
+                dialog.DialogReset();//ダイヤログをリセットするメソッド
                 break;
 
             case BattleState.LoseTurn:
@@ -335,10 +370,12 @@ public class BattleSystem : MonoBehaviour
     {
         yield return new WaitUntil(() => next == true);//playerが描き終わる待ってから
         EnemyIntelligence();//Enemyの情報を代入
+        dialogObj.SetActive(true);//ダイヤログを表示
 
         if (Enemy1Alive)
         {
             enemyDraw[0].DrawEnemy(intelligence.enemySkillTypes[0]);//線を書く時にSkillTypeの情報も渡す
+
         }
         if (Enemy2Alive)
         {
@@ -366,37 +403,43 @@ public class BattleSystem : MonoBehaviour
 
 
             //選んだスキルの情報を代入
+            intelligence.enemySkillNames[0] = enemy1Unit.Unit.Skills[nextSkill].Skillbase.Name;
             intelligence.enemySkillTypes[0] = enemy1Unit.Unit.Skills[nextSkill].Skillbase.SkillType;
             intelligence.enemyPowers[0] = enemy1Unit.Unit.Skills[nextSkill].Skillbase.Power;
             intelligence.enemyPenetionPowers[0] = enemy1Unit.Unit.Skills[nextSkill].Skillbase.PenetrationPower;
             intelligence.enemySpeeds[0] = enemy1Unit.Unit.Skills[nextSkill].Skillbase.Speed;
             intelligence.enemyNumAttacks[0] = enemy1Unit.Unit.Skills[nextSkill].Skillbase.NumberAttacks;
 
-
+            //一旦ここで選んだスキルをダイヤログで流す(演出を変える時に変更)
+            dialog.AddDialog(enemy1Unit.Unit.UnitBase.Name + "は" + intelligence.enemySkillNames[0] + "を放った");
         }
         //Enemy2が生きているなら
         if (Enemy2Alive)
         {
             int nextSkill = Random.Range(0, enemy2Unit.Unit.Skills.Count);
 
+            intelligence.enemySkillNames[1] = enemy2Unit.Unit.Skills[nextSkill].Skillbase.Name;
             intelligence.enemySkillTypes[1] = enemy2Unit.Unit.Skills[nextSkill].Skillbase.SkillType;
             intelligence.enemyPowers[1] = enemy2Unit.Unit.Skills[nextSkill].Skillbase.Power;
             intelligence.enemyPenetionPowers[1] = enemy2Unit.Unit.Skills[nextSkill].Skillbase.PenetrationPower;
             intelligence.enemySpeeds[1] = enemy2Unit.Unit.Skills[nextSkill].Skillbase.Speed;
             intelligence.enemyNumAttacks[1] = enemy2Unit.Unit.Skills[nextSkill].Skillbase.NumberAttacks;
+
+            dialog.AddDialog(enemy2Unit.Unit.UnitBase.Name + "は" + intelligence.enemySkillNames[0] + "を放った");
         }
         //Enemy3が生きているなら
         if (Enemy3Alive)
         {
             int nextSkill = Random.Range(0, enemy3Unit.Unit.Skills.Count);
 
+            intelligence.enemySkillNames[2] = enemy3Unit.Unit.Skills[nextSkill].Skillbase.Name;
             intelligence.enemySkillTypes[2] = enemy3Unit.Unit.Skills[nextSkill].Skillbase.SkillType;
             intelligence.enemyPowers[2] = enemy3Unit.Unit.Skills[nextSkill].Skillbase.Power;
             intelligence.enemyPenetionPowers[2] = enemy3Unit.Unit.Skills[nextSkill].Skillbase.PenetrationPower;
             intelligence.enemySpeeds[2] = enemy3Unit.Unit.Skills[nextSkill].Skillbase.Speed;
             intelligence.enemyNumAttacks[2] = enemy3Unit.Unit.Skills[nextSkill].Skillbase.NumberAttacks;
 
-
+            dialog.AddDialog(enemy3Unit.Unit.UnitBase.Name + "は" + intelligence.enemySkillNames[0] + "を放った");
         }
 
     }

@@ -33,6 +33,8 @@ public class SkillSelection : MonoBehaviour
             }
 
             //それぞれのi毎に記憶しておく
+            intelligence.SkillNames[i] = skills[i].Skillbase.Name;
+
             intelligence.SkillRanges[i] = skills[i].Skillbase.MaxLineRange;
 
             intelligence.SkillDescriptions[i] = skills[i].Skillbase.Description;

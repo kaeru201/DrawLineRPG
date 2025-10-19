@@ -9,10 +9,13 @@ public class AttckBall : MonoBehaviour
 
     LineRenderer lineRenderer;
 
+    
+
     //[SerializeField]  BattleSystem battleSystem;
 
     Vector3 lastAddPos;//最後に加えた点
 
+    public string SkillName { get; set; }
     public SkillType SkillType { get; set; }
     public int Power { get; set; }
     public int PenetionPower { get; set; }
@@ -28,6 +31,7 @@ public class AttckBall : MonoBehaviour
         Speed = 0.5f / Speed;//Speedが大きければ大きいほどボールを速く
         battleSystem.AliveBalls.Add(gameObject);//AliveBallリストにこのオブジェクトを追加
         StartCoroutine(MoveBall());
+       // dialog = battleSystem.Dialog.GetComponent<Dialog>();
 
     }
 
@@ -75,6 +79,7 @@ public class AttckBall : MonoBehaviour
                     //当たった相手にダメージ               
                     int damage = battleSystem.Damage(Power, UnitNum, battleUnit);//battleSystemのDamageメソッドを発動させてダメージ計算をする
                     battleUnit.Unit.Hp -= damage;//計算した値分Hpをマイナス
+                    battleSystem.dialog.AddDialog(battleUnit.Unit.UnitBase.Name + "は" +  damage + " ダメージ受けた"　);//ダイヤログで何ダメ与えたかを流す
                 }
 
                 //もしスキルタイプがHealなら
@@ -82,7 +87,7 @@ public class AttckBall : MonoBehaviour
                 {
                      //当たった相手に回復
                      battleUnit.Unit.Hp += Power;//Hpをプラス
-                                        
+                    battleSystem.dialog.AddDialog(battleUnit.Unit.UnitBase.Name + "は" + Power + "回復した");//ダイヤログでどれだけ回復したかを流す
                 }
 
                 // もしスキルタイプがSupportなら
@@ -101,28 +106,31 @@ public class AttckBall : MonoBehaviour
         else if (collision.gameObject.CompareTag("EnemyBall"))
         {
 
-            EnemyBall enemyPenetion = collision.gameObject.GetComponent<EnemyBall>();
+            EnemyBall enemyBall = collision.gameObject.GetComponent<EnemyBall>();
 
             //ぶつかった相手より貫通力が低いなら自分を消す
-            if (PenetionPower < enemyPenetion.PenetionPower)
+            if (PenetionPower < enemyBall.PenetionPower)
             {
                 battleSystem.AliveBalls.Remove(gameObject);//AliveBallsリストからこのオブジェクトの要素を削除
                 Destroy(gameObject);
+                battleSystem.dialog.AddDialog(SkillName + "は" + enemyBall.SkillName + "に壊されてしまった!");
             }
             //ぶつかった相手より貫通力が高いなら相手を消す
-            else if (PenetionPower > enemyPenetion.PenetionPower)
+            else if (PenetionPower > enemyBall.PenetionPower)
             {
                 battleSystem.AliveBalls.Remove(collision.gameObject);//AliveBallsリストから当たった相手のオブジェクトの要素を削除
                 Destroy(collision.gameObject);
+                battleSystem.dialog.AddDialog(SkillName + "は" + enemyBall.SkillName + "を壊した!");
             }
             //ぶつかった相手と貫通力が一緒ならどちらも消す
-            else if (PenetionPower == enemyPenetion.PenetionPower)
+            else if (PenetionPower == enemyBall.PenetionPower)
             {
                 battleSystem.AliveBalls.Remove(gameObject);//AliveBallsリストからこのオブジェクトの要素を削除
                 Destroy(gameObject);
 
                 battleSystem.AliveBalls.Remove(collision.gameObject);//AliveBallsリストから当たった相手のオブジェクトの要素を削除
                 Destroy(collision.gameObject);
+                battleSystem.dialog.AddDialog(SkillName + "と" + enemyBall.SkillName + "は相殺した!");
             }
         }
     }

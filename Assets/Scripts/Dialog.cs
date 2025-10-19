@@ -14,6 +14,7 @@ public class Dialog : MonoBehaviour
 
     Vector3 startPosition = new Vector3(0, 260, 0);//初期地点
     Vector3 nextPosition = new Vector3();//次の出現地点
+    float dialogSpece　=　110f;//ダイヤログの間隔
 
 
     //ダイヤログで表示するものが出るたびに他のクラスから呼ばれて、ダイヤログを更新するメソッド
@@ -35,12 +36,12 @@ public class Dialog : MonoBehaviour
             {
                 Vector3 textPos = textObj.gameObject.transform.localPosition;
 
-                textPos.y += 100;
+                textPos.y += dialogSpece;
 
                 textObj.gameObject.transform.localPosition = textPos;
             }
 
-            nextPosition.y += 100f;//次の出現地点を上にずらす(枠から出ないように)
+            nextPosition.y += dialogSpece;//次の出現地点を上にずらす(枠から出ないように)
 
         }
 
@@ -52,8 +53,19 @@ public class Dialog : MonoBehaviour
         text.transform.localScale = new Vector3(1, 1, 1);
         text.text = dialog;//テキストをメソッドの引数に変更
 
-        nextPosition.y -= 100;//次の出現地点を下にずらす
+        nextPosition.y -= dialogSpece;//次の出現地点を下にずらす
 
+    }
+
+    //ダイヤログをリセットするメソッド(battleSystemから呼ばれる)
+    public void DialogReset()
+    {
+        foreach (TextMeshProUGUI textObj in dialogTextObjs)
+        {
+            Destroy(textObj);
+        }
+
+            dialogTextObjs.Clear();
     }
 
 }
