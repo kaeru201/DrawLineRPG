@@ -1,5 +1,3 @@
-using System.Runtime.CompilerServices;
-using Unity.VisualScripting;
 using UnityEngine;
 
 
@@ -25,7 +23,7 @@ public class DrawLine : MonoBehaviour
     float currentLineRange;//現在の書いた長さ
     Vector3 lastAddPoint;//最後に追加した点を記憶しておく変数
 
-    float fixedDrawZ = 8f; //z軸を固定
+    float fixedDrawZ = 100f; //z軸を固定
 
     public float MaxLineRange { get => maxLineRange; set => maxLineRange = value; }
 

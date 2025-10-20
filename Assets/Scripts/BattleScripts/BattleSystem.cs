@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 
@@ -230,7 +231,7 @@ public class BattleSystem : MonoBehaviour
     bool Death(BattleUnit battleUnit)
     {       
 
-        bool death = battleUnit.Unit.Hp <= 0;//UnitのHpが0以下になったらdeathをtrue        
+        bool death = battleUnit.Unit.HP <= 0;//UnitのHpが0以下になったらdeathをtrue        
         if (death) battleUnit.gameObject.GetComponent<Image>().enabled = false;
 
         return death;
@@ -296,12 +297,14 @@ public class BattleSystem : MonoBehaviour
 
                 CurrentBState = BattleState.LoseTurn;
                 Debug.Log("負けたよ");
+                SceneManager.LoadScene("TitleScene");
                 break;
 
             case BattleState.WinTurn:
 
                 CurrentBState = BattleState.WinTurn;
                 Debug.Log("勝ったよ");
+                SceneManager.LoadScene("AdventureScene");
                 break;
 
         }
@@ -457,12 +460,19 @@ public class BattleSystem : MonoBehaviour
             //プレイヤーが誰も生き残っていないのなら(誰もいない場合も)
             if (!Player1Alive && !Player2Alive && !Player3Alive)
             {
+                yield return new WaitForSeconds(1);
                 //敗北処理
                 TurnCng(BattleState.LoseTurn);
             }
             //敵が誰も生き残っていないのなら
             else if (!Enemy1Alive && !Enemy2Alive && !Enemy3Alive)
             {
+                //playerUnitに経験値を配る
+
+                //勝利画面
+
+                //少し待ってから
+                yield return new WaitForSeconds(1); 
                 //勝利処理
                 TurnCng(BattleState.WinTurn);
             }

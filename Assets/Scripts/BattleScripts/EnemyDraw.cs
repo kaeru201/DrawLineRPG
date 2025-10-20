@@ -15,7 +15,7 @@ public class EnemyDraw : MonoBehaviour
     //[SerializeField] Transform[] PlayerPoint = new Transform[3];
 
     int posCount;
-    float fixedDrawZ = 8f;
+    float fixedDrawZ = 100f;
     Vector3 startPos;
 
     Vector3 lastAddPoint;

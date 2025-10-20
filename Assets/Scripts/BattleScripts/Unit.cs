@@ -1,4 +1,3 @@
-using NUnit.Framework;
 using UnityEngine;
 using System.Collections.Generic;
 
@@ -16,7 +15,7 @@ public class Unit
 
     public UnitBase UnitBase { get => unitBase; set => unitBase = value; }
     public int Level { get => level; set => level = value; }
-    public int Hp { get => hp; set => hp = value; }
+    public int HP { get => hp; set => hp = value; }
     public List<Skill> Skills { get => skills; set => skills = value; }
 
 
@@ -26,7 +25,7 @@ public class Unit
     {
         UnitBase = uBase;
         Level = uLevel;
-        Hp = MaxHP; //参考にした資料だとuBase.MaxHPにしていたよくわからないし、バグってたのでそのままこのクラスのMaxHPを参照している
+        HP = MaxHP; //参考にした資料だとuBase.MaxHPにしていたよくわからないし、バグってたのでそのままこのクラスのMaxHPを参照している
 
         Skills = new List<Skill>();
 

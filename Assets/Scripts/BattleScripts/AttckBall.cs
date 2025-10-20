@@ -71,14 +71,14 @@ public class AttckBall : MonoBehaviour
             BattleUnit battleUnit = parentObj.GetComponent<BattleUnit>();//のBattleUnitスクリプトを取得
 
             //当たった相手の体力が0以上なら(復活魔法などを使いたくなったらどうするか)
-            if (battleUnit.Unit.Hp > 0)
+            if (battleUnit.Unit.HP > 0)
             {
                 //もしスキルタイプがAttackなら
                 if (SkillType == SkillType.Attack)
                 {
                     //当たった相手にダメージ               
                     int damage = battleSystem.Damage(Power, UnitNum, battleUnit);//battleSystemのDamageメソッドを発動させてダメージ計算をする
-                    battleUnit.Unit.Hp -= damage;//計算した値分Hpをマイナス
+                    battleUnit.Unit.HP -= damage;//計算した値分Hpをマイナス
                     battleSystem.dialog.AddDialog(battleUnit.Unit.UnitBase.Name + "は" +  damage + " ダメージ受けた"　);//ダイヤログで何ダメ与えたかを流す
                 }
 
@@ -86,7 +86,7 @@ public class AttckBall : MonoBehaviour
                 else if (SkillType == SkillType.Heal)
                 {
                      //当たった相手に回復
-                     battleUnit.Unit.Hp += Power;//Hpをプラス
+                     battleUnit.Unit.HP += Power;//Hpをプラス
                     battleSystem.dialog.AddDialog(battleUnit.Unit.UnitBase.Name + "は" + Power + "回復した");//ダイヤログでどれだけ回復したかを流す
                 }
 

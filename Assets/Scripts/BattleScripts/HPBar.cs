@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+//HPBarにアタッチするスクリプト　
+//HPBarとUnitのHPを連動させる
 public class HPBar : MonoBehaviour
 {
     Unit unit;
@@ -14,13 +16,12 @@ public class HPBar : MonoBehaviour
     {
 
         myUnit = transform.parent.GetComponent<BattleUnit>();
-        Debug.Log(myUnit.Unit.Hp);
         slider.maxValue = myUnit.Unit.MaxHP;
     }
 
     void Update()
     {
-        slider.value = myUnit.Unit.Hp;
+        slider.value = myUnit.Unit.HP;
     }
 
 
