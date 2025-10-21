@@ -794,7 +794,7 @@ GameObject:
   - component: {fileID: 146075068}
   - component: {fileID: 146075067}
   m_Layer: 0
-  m_Name: StartPoint
+  m_Name: P2StartPoint
   m_TagString: StartPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2663,6 +2663,55 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 310502077}
   m_CullTransparentMesh: 1
+--- !u!1 &314401032
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 314401033}
+  - component: {fileID: 314401034}
+  m_Layer: 0
+  m_Name: UnitSelect
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &314401033
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 314401032}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 716765374}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &314401034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 314401032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24948e5b4c798864c946fbe4e7169d5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mob1Units:
+  - {fileID: 0}
+  mob2Units: []
+  mob3Units: []
+  boss1Units: []
 --- !u!1 &372478320
 GameObject:
   m_ObjectHideFlags: 0
@@ -4534,6 +4583,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1066397652}
+  - {fileID: 314401033}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &716765375
@@ -4579,7 +4629,7 @@ MonoBehaviour:
   readyButton: {fileID: 207774332}
   startPoints:
   - {fileID: 2001271567}
-  - {fileID: 1315891650}
+  - {fileID: 146075065}
   - {fileID: 1315891650}
   aliveBalls: []
   next: 0
@@ -6383,7 +6433,7 @@ GameObject:
   - component: {fileID: 1315891653}
   - component: {fileID: 1315891652}
   m_Layer: 0
-  m_Name: StartPoint
+  m_Name: P3StartPoint
   m_TagString: StartPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9614,7 +9664,7 @@ GameObject:
   - component: {fileID: 2001271570}
   - component: {fileID: 2001271569}
   m_Layer: 0
-  m_Name: StartPoint
+  m_Name: P1StartPoint
   m_TagString: StartPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
