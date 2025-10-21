@@ -1,36 +1,37 @@
 using UnityEngine;
 using System.Collections.Generic;
 
+[System.Serializable]
 //レベルに応じたステータスを扱うクラス
 public class Unit
 {
 
     //PlayerHudの時にunitBaseからUnitを参照するためにpublic (プロバティ)
-    [SerializeField] private UnitBase unitBase;
-    private int level;
+    [SerializeField]  UnitBase unitBase;
+    [SerializeField] int level;
 
     private int hp;
     //使える技
     private List<Skill> skills;
 
-    public UnitBase UnitBase { get => unitBase; set => unitBase = value; }
-    public int Level { get => level; set => level = value; }
+    public UnitBase UnitBase { get => unitBase; }
+    public int Level { get => level;}
     public int HP { get => hp; set => hp = value; }
     public List<Skill> Skills { get => skills; set => skills = value; }
 
 
 
     //生成時の初期設定
-    public Unit(UnitBase uBase, int uLevel)
+    public void Init()
     {
-        UnitBase = uBase;
-        Level = uLevel;
+        //UnitBase = uBase;
+        //Level = uLevel;
         HP = MaxHP; //参考にした資料だとuBase.MaxHPにしていたよくわからないし、バグってたのでそのままこのクラスのMaxHPを参照している
 
         Skills = new List<Skill>();
 
 
-        foreach (LearnableSkill learnableSkill in uBase.LearnableSkills)
+        foreach (LearnableSkill learnableSkill in UnitBase.LearnableSkills)
         {
             if (Level >= learnableSkill.Level)
             {

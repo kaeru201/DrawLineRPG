@@ -9,7 +9,7 @@ public class DrawLine : MonoBehaviour
     [SerializeField] BattleSystem battleSystem;
 
     [SerializeField] LineRenderer lineRenderer;
-    Transform startPosition;
+    Vector3 startPosition;
 
     [SerializeField] float maxLineRange;//DrawIntelligenceから値を代入
     int posCount;//
@@ -31,7 +31,7 @@ public class DrawLine : MonoBehaviour
     void Start()
     {
         lineRenderer = GetComponent<LineRenderer>();
-        startPosition = GetComponent<Transform>();
+        
 
         lineRenderer.startWidth = 0.1f;
         lineRenderer.endWidth = 0.1f;
@@ -67,19 +67,18 @@ public class DrawLine : MonoBehaviour
                 lineRenderer.positionCount = 0;
                 currentLineRange = 0;
                 ready = false;
-                //y軸は少し上からZ軸は適当
-
+               
                 //マウスを押した時にStartPointの中だったら
-                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                Debug.Log(ray);
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);                
                 RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction);
 
                 if (hit.collider == null) return;
 
                 else if (hit.collider.CompareTag("StartPoint"))
                 {
-                    AddLine(new Vector3(mousePos.x, mousePos.y, fixedDrawZ));
-
+                    AddLine(mousePos);//マウスの座標に点を置く
+                    startPosition = mousePos;
+                    
                 }
                 
                 //AddLine(new Vector3(startPosition.position.x, startPosition.position.y + 0.5f, fixedDrawZ));
@@ -126,6 +125,7 @@ public class DrawLine : MonoBehaviour
             {
                 isDrawing = false;
                 lineRenderer.positionCount = 0;//やりなおし
+                lastAddPoint = startPosition;
             }
 
             //右クリックを押した時

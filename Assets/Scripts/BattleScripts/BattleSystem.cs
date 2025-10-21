@@ -65,6 +65,7 @@ public class BattleSystem : MonoBehaviour
     List<GameObject> alivePLayers = new List<GameObject>();　//生き残っているplayerPointを得るリスト
     List<GameObject> aliveEnemies = new List<GameObject>();
     [SerializeField] List<GameObject> aliveBalls = new List<GameObject>();//ballをインスタンス化するたびにリストに追加してボールがまだフィールドにいるか調べるリスト　
+    [SerializeField] UnitSelect unitSelect;
 
 
     public bool next = false;//線を引き終わったかどうか 
@@ -90,7 +91,7 @@ public class BattleSystem : MonoBehaviour
 
 
     //バトルが始まったら
-    private void Awake()
+    private void Start()
     {
         CurrentBState = BattleState.StartTurn;
 
@@ -100,21 +101,21 @@ public class BattleSystem : MonoBehaviour
 
             if (player1Unit != null)
             {
-                player1Unit.SetUp();//Unitの生成
+                player1Unit.SetUp(unitSelect.PlayerUnits[0]);//Unitの生成
                 Player1Alive = true;//Player生存フラグをON
                 AlivePlayers.Add(player1Point);//敵の標的になるPointのオブジェクトをリストに
                 player1Hud.SetData(player1Unit.Unit);//プレイヤーのHudを出す
             }
             if (player2Unit != null)
             {
-                player2Unit.SetUp();
+                player2Unit.SetUp(unitSelect.PlayerUnits[1]);
                 Player2Alive = true;
                 AlivePlayers.Add(player2Point);
                 player2Hud.SetData(player2Unit.Unit);
             }
             if (player3Unit != null)
             {
-                player3Unit.SetUp();
+                player3Unit.SetUp(unitSelect.PlayerUnits[2]);
                 Player3Alive = true;
                 AlivePlayers.Add(player3Point);
                 player3Hud.SetData(player3Unit.Unit);
@@ -122,7 +123,7 @@ public class BattleSystem : MonoBehaviour
             }
             if (enemy1Unit != null)
             {
-                enemy1Unit.SetUp();
+                enemy1Unit.SetUp(unitSelect.EnemyParty[0]);
                 Enemy1Alive = true;
                 AliveEnemies.Add(enemy1Point);
                 enemy1Hud.SetData(enemy1Unit.Unit);
@@ -130,14 +131,14 @@ public class BattleSystem : MonoBehaviour
             }
             if (enemy2Unit != null)
             {
-                enemy2Unit.SetUp();
+                enemy2Unit.SetUp(unitSelect.EnemyParty[1]);
                 Enemy2Alive = true;
                 AliveEnemies.Add(enemy2Point);
                 enemy2Hud.SetData(enemy2Unit.Unit);
             }
             if (enemy3Unit != null)
             {
-                enemy3Unit.SetUp();
+                enemy3Unit.SetUp(unitSelect.EnemyParty[2]);
                 Enemy3Alive = true;
                 AliveEnemies.Add(enemy3Point);
                 enemy3Hud.SetData(enemy3Unit.Unit);
