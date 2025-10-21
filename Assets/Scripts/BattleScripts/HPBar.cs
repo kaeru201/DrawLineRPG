@@ -5,23 +5,26 @@ using UnityEngine.UI;
 //HPBarとUnitのHPを連動させる
 public class HPBar : MonoBehaviour
 {
-    Unit unit;
-    [SerializeField] int currentHP;
-    [SerializeField] public Slider slider;
-    [SerializeField] public int damage = 1;
+    
+    [SerializeField] public Slider slider;    
     BattleUnit myUnit;
 
+    int currentHP;
 
     void Start()
     {
-
         myUnit = transform.parent.GetComponent<BattleUnit>();
         slider.maxValue = myUnit.Unit.MaxHP;
+        slider.value = myUnit.Unit.HP;
     }
 
     void Update()
     {
-        slider.value = myUnit.Unit.HP;
+        if(currentHP != myUnit.Unit.HP)//HPが変動したら
+        {
+            currentHP = myUnit.Unit.HP;
+            slider.value = myUnit.Unit.HP;//HPBarをHPの値する
+        }
     }
 
 

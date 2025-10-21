@@ -61,7 +61,7 @@ public class BattleSystem : MonoBehaviour
 
     [SerializeField] GameObject selectAction;
     [SerializeField] GameObject readyButton;
-
+    [SerializeField] GameObject[]startPoints = new GameObject[3];//線を描き始めるPointのGameObject ターン開始時にオンにしてターン終了時オフ
     List<GameObject> alivePLayers = new List<GameObject>();　//生き残っているplayerPointを得るリスト
     List<GameObject> aliveEnemies = new List<GameObject>();
     [SerializeField] List<GameObject> aliveBalls = new List<GameObject>();//ballをインスタンス化するたびにリストに追加してボールがまだフィールドにいるか調べるリスト　
@@ -219,12 +219,6 @@ public class BattleSystem : MonoBehaviour
             }
         }
        
-
-
-
-
-
-
     }
 
     //Unitが死んでしまったかを確認するメソッド
@@ -250,6 +244,8 @@ public class BattleSystem : MonoBehaviour
                 CurrentBState = BattleState.Player1Turn;// Stateをplayer1Turnにして
                 selectAction.SetActive(true);//selectActionを起動
                 playerSkill.SetSkill(player1Unit.Unit.Skills);//player1のスキル情報をセットする
+                startPoints[0].SetActive(true);//player1のstartPointをつける
+
                 break;
 
             //引数がplayer2TurnならStateをplayer2Turnにしてplayer2のスキル情報をセットする
@@ -258,6 +254,8 @@ public class BattleSystem : MonoBehaviour
                 CurrentBState = BattleState.Player2Turn;
                 selectAction.SetActive(true);
                 playerSkill.SetSkill(player2Unit.Unit.Skills);
+                startPoints[1].SetActive(true);//player2のstartPointをつける
+
                 break;
 
             //引数がplayer3TurnならStateをplayer3Turnにしてplayer3のスキル情報をセットする
@@ -266,6 +264,8 @@ public class BattleSystem : MonoBehaviour
                 CurrentBState = BattleState.Player3Turn;
                 selectAction.SetActive(true);
                 playerSkill.SetSkill(player3Unit.Unit.Skills);
+                startPoints[2].SetActive(true);//player3のstartPointをつける
+
                 break;
 
             //引数がEnemyTurnならstateをEnemyTimeTurnに
@@ -325,10 +325,12 @@ public class BattleSystem : MonoBehaviour
         yield return new WaitUntil(() => next == true);//線を描き終わったら
         if (player == 1)//終わったのがplayer1Turnだったら
         {
+            startPoints[0].SetActive(false);//player1のstartPointを消す
             //player2が生きているなら
             if (Player2Alive)
             {
                 TurnCng(BattleState.Player2Turn);//BattleStetaをplayer2Turnに
+                
             }
             //Player3が生きているなら
             else if (Player3Alive)
@@ -343,6 +345,7 @@ public class BattleSystem : MonoBehaviour
         }
         else if (player == 2)//終わったのがplayer2Turnだったら
         {
+            startPoints[1].SetActive(false);//player2のstartPointを消す
             //Player3が生きているなら
             if (Player3Alive)
             {
@@ -355,6 +358,7 @@ public class BattleSystem : MonoBehaviour
         }
         else if (player == 3)//終わったのがplayer3Turnだったら
         {
+            startPoints[2].SetActive(false);//player3のstartPointを消す
             //EnemyTurnに
             TurnCng(BattleState.EnemyTurn);
         }

@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8766d9520f195b4280a611dd2b6fc01, type: 3}
   m_Name: TestSkill 2
   m_EditorClassIdentifier: 
-  name: "\u306A\u3050\u308B"
+  name: "\u306A\u3050\u308BSpeed25"
   description: "\u306A\u3050\u308B2"
-  skilType: 0
+  skillType: 0
   power: 10
-  penetrationPower: 1
-  maxLineRange: 5
-  speed: 75
+  penetrationPower: 10
+  maxLineRange: 20
+  speed: 25
   numberAttacks: 1

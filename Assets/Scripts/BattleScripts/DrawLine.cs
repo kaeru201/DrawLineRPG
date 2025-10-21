@@ -68,7 +68,21 @@ public class DrawLine : MonoBehaviour
                 currentLineRange = 0;
                 ready = false;
                 //y軸は少し上からZ軸は適当
-                AddLine(new Vector3(startPosition.position.x, startPosition.position.y + 0.5f, fixedDrawZ));
+
+                //マウスを押した時にStartPointの中だったら
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                Debug.Log(ray);
+                RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction);
+
+                if (hit.collider == null) return;
+
+                else if (hit.collider.CompareTag("StartPoint"))
+                {
+                    AddLine(new Vector3(mousePos.x, mousePos.y, fixedDrawZ));
+
+                }
+                
+                //AddLine(new Vector3(startPosition.position.x, startPosition.position.y + 0.5f, fixedDrawZ));
 
             }
 
@@ -85,16 +99,16 @@ public class DrawLine : MonoBehaviour
                 //最後点と今のマウスの位置の差
                 float distanceMouse = Vector2.Distance(lastAddPoint, mousePos);
 
-                if (distanceMouse < minMouseMove) return;//しきい値より動かなかったら線を描かない
+                // if (distanceMouse < minMouseMove) return;//しきい値より動かなかったら線を描かない
 
                 //もししきい値よりマウスが離れたら
-                if (distanceMouse > 0.1f)
+                if (distanceMouse <= 1f && distanceMouse >= 0.001f)
                 {
                     //ベクトル
-                    Vector3 direction = (mousePos - lastAddPoint).normalized;
+                    // Vector3 direction = (mousePos - lastAddPoint).normalized;
 
                     //しきい値の大きさのベクトル分の最後の点を記憶して代わりにそこに点を引く
-                    Vector3 newPoint = lastAddPoint + direction * 0.1f;
+                    Vector3 newPoint = mousePos;   //lastAddPoint +  * 0.1f;
 
                     float lengthToAdd = Vector3.Distance(lastAddPoint, newPoint);
 
