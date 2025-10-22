@@ -472,14 +472,16 @@ public class BattleSystem : MonoBehaviour
             //敵が誰も生き残っていないのなら
             else if (!Enemy1Alive && !Enemy2Alive && !Enemy3Alive)
             {
-                //playerUnitに経験値を配る
 
                 //勝利画面
 
+                //playerUnitに経験値を配る
+                GainExp();
                 //少し待ってから
                 yield return new WaitForSeconds(1); 
                 //勝利処理
                 TurnCng(BattleState.WinTurn);
+                                
             }
             //どちらの陣営にも誰かは生き残っている場合
             else
@@ -498,6 +500,20 @@ public class BattleSystem : MonoBehaviour
 
         }
 
+    }
+
+    //倒した敵に応じて経験値をPlayerに与えるメソッド
+    void GainExp()
+    {
+        
+        //plyaerUnit全員に倒した敵に対応する経験値
+        int enemyEXP = enemy1Unit.Unit.MaxHP * enemy1Unit.Unit.Level + enemy2Unit.Unit.MaxHP * enemy2Unit.Unit.Level + enemy3Unit.Unit.MaxHP * enemy3Unit.Unit.Level;
+        int Exp = Mathf.FloorToInt( enemyEXP / 10);
+        //PlayerのExpに代入する
+        //対戦が終了したらダイヤログが出てきてどれだけ経験値を得たか
+
+        //もしレベルアップするなら
+        //if()
     }
 
     //ボールが誰かに当たった時のダメージ計算をするメソッド(AttackBallかRnemyBallで発動)

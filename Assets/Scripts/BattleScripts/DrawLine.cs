@@ -98,12 +98,12 @@ public class DrawLine : MonoBehaviour
 
 
                 //もししきい値よりマウスが離れなかったら、かつしきい値よりマウスが離れたら
-                if (distanceMouse <= 1f && distanceMouse >= 0.3f)
+                if (distanceMouse <= 0.3f && distanceMouse >= 0.1f)
                 {
                                         
                     Vector3 newPoint = mousePos; //新しい点をマウスの座標にして
 
-                    float lengthToAdd = Vector3.Distance(lastAddPoint, newPoint) * 0.5f;//あとどれくらい描けるかを取得する変数
+                    float lengthToAdd = Vector3.Distance(lastAddPoint, newPoint) * 0.25f;//あとどれくらい描けるかを取得する変数
 
 
 

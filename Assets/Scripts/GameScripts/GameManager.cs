@@ -1,3 +1,4 @@
+using System.Xml.Serialization;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -5,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public  enum GameState
 { 
+    SelectParty,
     Adventure,
     InBattle,
     GemeOver,
@@ -17,7 +19,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        currentState = GameState.Adventure;//まず現在のstetaをアドベンチャーに
+        //currentState = GameState.Adventure;//まず現在のstetaをアドベンチャーに
     }
 
     
@@ -28,12 +30,19 @@ public class GameManager : MonoBehaviour
 
     //何かをきっかけに発動(一旦ボタン)
     //stateをInBattleにしてBattleSceneに移動
+    public void AdventureTurnStart()
+    {
+        currentState = GameState.Adventure;
+        SceneManager.LoadScene("AdventureScene");//シーンをアドベンチャーシーンに
+    }
+
+    //何かをきっかけに発動(一旦ボタン)
+    //stateをInBattleにしてBattleSceneに移動
     public void BattleStart()
     {
         currentState = GameState.InBattle;
         SceneManager.LoadScene("BattleScene");//シーンをバトルシーンに
-
-        //バトルするUnitをBattleSceneに
+                
     }
 
 }

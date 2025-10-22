@@ -25,7 +25,7 @@ MonoBehaviour:
   m_MinSize: {x: 400, y: 100}
   m_MaxSize: {x: 32384, y: 16192}
   vertical: 0
-  controlID: 1184
+  controlID: 21597
   draggingID: 0
 --- !u!114 &2
 MonoBehaviour:
@@ -96,7 +96,7 @@ MonoBehaviour:
     m_HSlider: 0
     m_VSlider: 0
     m_IgnoreScrollWheelUntilClicked: 0
-    m_EnableMouseInput: 0
+    m_EnableMouseInput: 1
     m_EnableSliderZoomHorizontal: 0
     m_EnableSliderZoomVertical: 0
     m_UniformScale: 1
@@ -152,7 +152,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 1185
+  controlID: 21598
   draggingID: 0
 --- !u!114 &4
 MonoBehaviour:
@@ -173,8 +173,8 @@ MonoBehaviour:
     y: 0
     width: 1040
     height: 573
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 201, y: 226}
+  m_MaxSize: {x: 4001, y: 4026}
   m_ActualView: {fileID: 5}
   m_Panes:
   - {fileID: 5}
@@ -787,9 +787,9 @@ MonoBehaviour:
   m_AudioPlay: 0
   m_DebugDrawModesUseInteractiveLightBakingData: 0
   m_Position:
-    m_Target: {x: -25.572718, y: -1.1470613, z: 0.030506179}
+    m_Target: {x: 441.4074, y: 380.54605, z: -5.5925994}
     speed: 2
-    m_Value: {x: -25.572718, y: -1.1470613, z: 0.030506179}
+    m_Value: {x: 441.4074, y: 380.54605, z: -5.5925994}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -839,9 +839,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 6.949612
+    m_Target: 662.338
     speed: 2
-    m_Value: 6.949612
+    m_Value: 662.338
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -899,7 +899,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 50}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 1186
+  controlID: 21599
   draggingID: 0
 --- !u!114 &7
 MonoBehaviour:
@@ -1013,7 +1013,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 100}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 1238
+  controlID: 21687
   draggingID: 0
 --- !u!114 &11
 MonoBehaviour:
@@ -1080,9 +1080,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 06bb0000
-      m_LastClickedID: 47878
-      m_ExpandedIDs: 74f2ffff0cfbffffe0ba0000cebb000024bc00003ebc000060bc0000
+      m_SelectedIDs: f42c0100
+      m_LastClickedID: 0
+      m_ExpandedIDs: 0e2dfdff7c3afdff6645fdff9c46fdff4051fdffe452fdff706dfdff2e74fdff949bfdff209efdff56b1fdff12bafdff3cbbfdff54befdff6ec8fdff42c9fdff28cafdff56cbfdff44ccfdff2acdfdff74f2ffff0cfbffffe0ba0000cebb000024bc00003ebc000060bc0000a8bc000066bd00004c2d010054300100663101008e3b0100523c0100403d0100b03d0100d23d01001a3e0100d83e010072460100384b0100644c0100dc4c010002510100
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1180,7 +1180,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Resources/Skills
+    - Assets/Scenes
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -1190,16 +1190,16 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/Resources/Skills
+  - Assets/Scenes
   m_LastFoldersGridSize: 16
   m_LastProjectPath: E:\Unity\Unity\LevelUPRougeBattle
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 88b50000
-    m_LastClickedID: 46472
-    m_ExpandedIDs: 0000000006b5000008b500000ab500000cb500000eb5000010b5000012b5000014b5000016b50000
+    m_SelectedIDs: 8cb50000
+    m_LastClickedID: 46476
+    m_ExpandedIDs: 0000000006b5000008b500000ab500000cb5000010b5000012b5000014b5000016b5000084b500009e310100
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1254,24 +1254,24 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 06bb0000
-    m_LastClickedInstanceID: 47878
+    m_SelectedInstanceIDs: f42c0100
+    m_LastClickedInstanceID: 77044
     m_HadKeyboardFocusLastEvent: 1
-    m_ExpandedInstanceIDs: c62300005cb20000488a010000000000aeb50000
+    m_ExpandedInstanceIDs: c62300005cb20000488a0100aeb5000000000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: 
-      m_OriginalName: 
+      m_Name: TitleScene
+      m_OriginalName: TitleScene
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 0
+      m_UserData: 47734
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 11
+      m_OriginalEventType: 0
       m_IsRenamingFilename: 1
       m_TrimLeadingAndTrailingWhitespace: 0
       m_ClientGUIView: {fileID: 13}
