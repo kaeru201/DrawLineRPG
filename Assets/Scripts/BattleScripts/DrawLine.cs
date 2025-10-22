@@ -12,8 +12,7 @@ public class DrawLine : MonoBehaviour
     Vector3 startPosition;
 
     [SerializeField] float maxLineRange;//DrawIntelligenceから値を代入
-    int posCount;//
-    float minMouseMove;
+    int posCount;//    
     [SerializeField] bool isDrawing = false;//描き続けられるか
     [SerializeField] bool ready = false;
     public bool Draw { get; set; } = false; //描き始められえるか　DrawIntelligenceから個別にtrueにする変数
@@ -31,7 +30,7 @@ public class DrawLine : MonoBehaviour
     void Start()
     {
         lineRenderer = GetComponent<LineRenderer>();
-        
+        startPosition = transform.position;//描きなおす時の初期地点をこのオブジェクトの場所から
 
         lineRenderer.startWidth = 0.1f;
         lineRenderer.endWidth = 0.1f;
@@ -67,20 +66,18 @@ public class DrawLine : MonoBehaviour
                 lineRenderer.positionCount = 0;
                 currentLineRange = 0;
                 ready = false;
-               
+
                 //マウスを押した時にStartPointの中だったら
-                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);                
-                RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction);
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                RaycastHit2D hit = Physics2D.Raycast((Vector2)ray.origin, (Vector2)ray.direction);
 
                 if (hit.collider == null) return;
 
-                else if (hit.collider.CompareTag("StartPoint"))
+                else if (hit.collider.CompareTag("StartPoint"))//startPointだったら
                 {
-                    AddLine(mousePos);//マウスの座標に点を置く
-                    startPosition = mousePos;
-                    
+                    AddLine(mousePos);//マウスの座標に点を置く                   
                 }
-                
+
                 //AddLine(new Vector3(startPosition.position.x, startPosition.position.y + 0.5f, fixedDrawZ));
 
             }
@@ -98,22 +95,19 @@ public class DrawLine : MonoBehaviour
                 //最後点と今のマウスの位置の差
                 float distanceMouse = Vector2.Distance(lastAddPoint, mousePos);
 
-                // if (distanceMouse < minMouseMove) return;//しきい値より動かなかったら線を描かない
 
-                //もししきい値よりマウスが離れたら
-                if (distanceMouse <= 1f && distanceMouse >= 0.001f)
+
+                //もししきい値よりマウスが離れなかったら、かつしきい値よりマウスが離れたら
+                if (distanceMouse <= 1f && distanceMouse >= 0.3f)
                 {
-                    //ベクトル
-                    // Vector3 direction = (mousePos - lastAddPoint).normalized;
+                                        
+                    Vector3 newPoint = mousePos; //新しい点をマウスの座標にして
 
-                    //しきい値の大きさのベクトル分の最後の点を記憶して代わりにそこに点を引く
-                    Vector3 newPoint = mousePos;   //lastAddPoint +  * 0.1f;
-
-                    float lengthToAdd = Vector3.Distance(lastAddPoint, newPoint);
+                    float lengthToAdd = Vector3.Distance(lastAddPoint, newPoint) * 0.5f;//あとどれくらい描けるかを取得する変数
 
 
 
-                    AddLine(newPoint);
+                    AddLine(newPoint);//点を追加する
 
                     currentLineRange += lengthToAdd;
                 }

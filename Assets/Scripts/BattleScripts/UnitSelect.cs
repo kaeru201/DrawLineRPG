@@ -10,6 +10,8 @@ public class UnitSelect : MonoBehaviour
         
     Unit[] enemyParty = new Unit[3];
 
+
+    [SerializeField] Unit[] TestEnemy = new Unit[3];//BattleSceneからでも戦えるように一時的に配置する敵　あとで消してください
    
     public Unit[] PlayerUnits { get => playerUnits; set => playerUnits = value; }
     public Unit[] EnemyParty { get => enemyParty; set => enemyParty = value; }
@@ -17,6 +19,15 @@ public class UnitSelect : MonoBehaviour
 
     private void Awake()
     {
+        enemyUnits = new List<Unit>();
+
+        //テスト用に追加　☆あとで消してください☆
+        for (int i = 0; i < TestEnemy.Length; i++)
+        {
+            enemyUnits.Add(TestEnemy[i]);
+        }
+
+
        　//敵を3体埋まるまでenemyUnitsリストからランダムに配置
         for (int i = 0; i < 3; i++)
         {
