@@ -70,6 +70,7 @@ public class BattleSystem : MonoBehaviour
 
     public bool next = false;//線を引き終わったかどうか 
     bool[] just1DeadUnits = new bool[6];//一回だけ死亡判定させる変数(player1=0,player2=1.enemy1=3)
+    int cutExp = 5;//取得する経験値をどれだけ減らすかの変数　ポートフォリオ用に下げていますが、実際は8くらい想定
 
 
     public bool Player1Alive { get; set; } = false;
@@ -97,25 +98,25 @@ public class BattleSystem : MonoBehaviour
 
         if (CurrentBState == BattleState.StartTurn)
         {
-
+            
 
             if (player1Unit != null)
             {
-                player1Unit.SetUp(unitSelect.PlayerUnits[0]);//Unitの生成
+                player1Unit.SetUp(UnitSelect.playerUnits[0]);//Unitの生成
                 Player1Alive = true;//Player生存フラグをON
                 AlivePlayers.Add(player1Point);//敵の標的になるPointのオブジェクトをリストに
                 player1Hud.SetData(player1Unit.Unit);//プレイヤーのHudを出す
             }
             if (player2Unit != null)
             {
-                player2Unit.SetUp(unitSelect.PlayerUnits[1]);
+                player2Unit.SetUp(UnitSelect.playerUnits[1]);
                 Player2Alive = true;
                 AlivePlayers.Add(player2Point);
                 player2Hud.SetData(player2Unit.Unit);
             }
             if (player3Unit != null)
             {
-                player3Unit.SetUp(unitSelect.PlayerUnits[2]);
+                player3Unit.SetUp(UnitSelect.playerUnits[2]);
                 Player3Alive = true;
                 AlivePlayers.Add(player3Point);
                 player3Hud.SetData(player3Unit.Unit);
@@ -144,7 +145,7 @@ public class BattleSystem : MonoBehaviour
                 enemy3Hud.SetData(enemy3Unit.Unit);
             }
 
-
+            Debug.Log(player1Unit.Unit.Exp);
         }
 
         //生成したプレイヤーユニットの中で若い数のplayerUnitターンからスタート
@@ -468,6 +469,8 @@ public class BattleSystem : MonoBehaviour
                 yield return new WaitForSeconds(1);
                 //敗北処理
                 TurnCng(BattleState.LoseTurn);
+                
+
             }
             //敵が誰も生き残っていないのなら
             else if (!Enemy1Alive && !Enemy2Alive && !Enemy3Alive)
@@ -508,13 +511,35 @@ public class BattleSystem : MonoBehaviour
         
         //plyaerUnit全員に倒した敵に対応する経験値
         int enemyEXP = enemy1Unit.Unit.MaxHP * enemy1Unit.Unit.Level + enemy2Unit.Unit.MaxHP * enemy2Unit.Unit.Level + enemy3Unit.Unit.MaxHP * enemy3Unit.Unit.Level;
-        int Exp = Mathf.FloorToInt( enemyEXP / 10);
+        int gainExp = Mathf.FloorToInt( enemyEXP / cutExp);
         //PlayerのExpに代入する
+        player1Unit.Unit.Exp += gainExp;
+        player2Unit.Unit.Exp += gainExp;
+        player3Unit.Unit.Exp += gainExp;
         //対戦が終了したらダイヤログが出てきてどれだけ経験値を得たか
 
+        Debug.Log(gainExp);
+
         //もしレベルアップするなら
-        //if()
+        if (player1Unit.Unit.LevelUP())//player1がレベルアップするかどうか
+        {
+            //本当はダイヤログではなく、終了ログに出す
+            Debug.Log(player1Unit.Unit.UnitBase.Name + "は" +player1Unit.Unit.Level + "になった");
+        }
+        if(player2Unit.Unit.LevelUP())//player2がレベルアップするかどうか
+        {
+            //本当はダイヤログではなく、終了ログに出す
+            Debug.Log(player2Unit.Unit.UnitBase.Name + "は" + player2Unit.Unit.Level + "になった");
+        }
+        if (player3Unit.Unit.LevelUP())//player3がレベルアップするかどうか
+        {
+            //本当はダイヤログではなく、終了ログに出す
+            Debug.Log(player3Unit.Unit.UnitBase.Name + "は" + player3Unit.Unit.Level + "になった");
+        }
+
     }
+
+   
 
     //ボールが誰かに当たった時のダメージ計算をするメソッド(AttackBallかRnemyBallで発動)
     public int Damage(int myPower, int UnitNum, BattleUnit collisionUnit)

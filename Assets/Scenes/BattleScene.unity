@@ -2716,7 +2716,7 @@ MonoBehaviour:
     level: 2
   TestEnemy:
   - unitBase: {fileID: 11400000, guid: b9d5481d461e24d4086bd28e8377fea4, type: 2}
-    level: 2
+    level: 10
   - unitBase: {fileID: 11400000, guid: b9d5481d461e24d4086bd28e8377fea4, type: 2}
     level: 2
   - unitBase: {fileID: 11400000, guid: b9d5481d461e24d4086bd28e8377fea4, type: 2}

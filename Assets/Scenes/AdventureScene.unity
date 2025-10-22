@@ -913,7 +913,7 @@ GameObject:
   - component: {fileID: 836560994}
   - component: {fileID: 836560998}
   - component: {fileID: 836560997}
-  - component: {fileID: 836560996}
+  - component: {fileID: 836560999}
   - component: {fileID: 836560995}
   m_Layer: 5
   m_Name: Boss1
@@ -998,8 +998,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 836560996}
-        m_TargetAssemblyTypeName: UnitTeam, Assembly-CSharp
+      - m_Target: {fileID: 836560999}
+        m_TargetAssemblyTypeName: EnemyTeam, Assembly-CSharp
         m_MethodName: SetEnemyUnit
         m_Mode: 1
         m_Arguments:
@@ -1010,32 +1010,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &836560996
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 836560993}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 841e42698341d5c488133aa3ff355309, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerTeams:
-  - unitBase: {fileID: 0}
-    level: 0
-  - unitBase: {fileID: 0}
-    level: 0
-  - unitBase: {fileID: 0}
-    level: 0
-  enemyTeams:
-  - unitBase: {fileID: 11400000, guid: de94640f923dc1843a27e2fd86935da6, type: 2}
-    level: 9
-  - unitBase: {fileID: 11400000, guid: 105d08b5b309a884b9756572e1081539, type: 2}
-    level: 10
-  - unitBase: {fileID: 11400000, guid: 31571bce34da7b341bc70cd0951423d0, type: 2}
-    level: 7
 --- !u!114 &836560997
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1074,6 +1048,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 836560993}
   m_CullTransparentMesh: 1
+--- !u!114 &836560999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 836560993}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16e4b60b6c1e8f0428a951bae2b5333b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyTeams:
+  - unitBase: {fileID: 11400000, guid: 105d08b5b309a884b9756572e1081539, type: 2}
+    level: 10
+  - unitBase: {fileID: 11400000, guid: 3918fdcb4a19b07438a91484c5984075, type: 2}
+    level: 7
+  - unitBase: {fileID: 11400000, guid: 77b647debca9b684eae29a774b8feb5b, type: 2}
+    level: 6
 --- !u!1 &1316892743
 GameObject:
   m_ObjectHideFlags: 0
@@ -1201,7 +1194,7 @@ GameObject:
   - component: {fileID: 1714985928}
   - component: {fileID: 1714985932}
   - component: {fileID: 1714985931}
-  - component: {fileID: 1714985930}
+  - component: {fileID: 1714985933}
   - component: {fileID: 1714985929}
   m_Layer: 5
   m_Name: Mob2
@@ -1286,8 +1279,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1714985930}
-        m_TargetAssemblyTypeName: UnitTeam, Assembly-CSharp
+      - m_Target: {fileID: 1714985933}
+        m_TargetAssemblyTypeName: EnemyTeam, Assembly-CSharp
         m_MethodName: SetEnemyUnit
         m_Mode: 1
         m_Arguments:
@@ -1298,36 +1291,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &1714985930
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1714985927}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 841e42698341d5c488133aa3ff355309, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerTeams:
-  - unitBase: {fileID: 0}
-    level: 0
-  - unitBase: {fileID: 0}
-    level: 0
-  - unitBase: {fileID: 0}
-    level: 0
-  enemyTeams:
-  - unitBase: {fileID: 11400000, guid: 31571bce34da7b341bc70cd0951423d0, type: 2}
-    level: 2
-  - unitBase: {fileID: 11400000, guid: 106db747e613e1c419ca1534fc15f4ae, type: 2}
-    level: 2
-  - unitBase: {fileID: 11400000, guid: 1fdccc5a9baa9a343b8d514b386a4363, type: 2}
-    level: 2
-  - unitBase: {fileID: 11400000, guid: 9df5febd6c80be449a038dd75bdc44a7, type: 2}
-    level: 3
-  - unitBase: {fileID: 11400000, guid: 6165fbd9b0b43b6468716737db8980e5, type: 2}
-    level: 3
 --- !u!114 &1714985931
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1366,6 +1329,29 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1714985927}
   m_CullTransparentMesh: 1
+--- !u!114 &1714985933
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1714985927}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16e4b60b6c1e8f0428a951bae2b5333b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyTeams:
+  - unitBase: {fileID: 11400000, guid: 6165fbd9b0b43b6468716737db8980e5, type: 2}
+    level: 2
+  - unitBase: {fileID: 11400000, guid: 9df5febd6c80be449a038dd75bdc44a7, type: 2}
+    level: 2
+  - unitBase: {fileID: 11400000, guid: 106db747e613e1c419ca1534fc15f4ae, type: 2}
+    level: 2
+  - unitBase: {fileID: 11400000, guid: 31571bce34da7b341bc70cd0951423d0, type: 2}
+    level: 2
+  - unitBase: {fileID: 11400000, guid: 1fdccc5a9baa9a343b8d514b386a4363, type: 2}
+    level: 2
 --- !u!1 &2011236855
 GameObject:
   m_ObjectHideFlags: 0
@@ -1463,7 +1449,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 2011236860}
-        m_TargetAssemblyTypeName: UnitTeam, Assembly-CSharp
+        m_TargetAssemblyTypeName: EnemyTeam, Assembly-CSharp
         m_MethodName: SetEnemyUnit
         m_Mode: 1
         m_Arguments:
@@ -1521,23 +1507,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 2011236855}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 841e42698341d5c488133aa3ff355309, type: 3}
+  m_Script: {fileID: 11500000, guid: 16e4b60b6c1e8f0428a951bae2b5333b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerTeams:
-  - unitBase: {fileID: 0}
-    level: 0
-  - unitBase: {fileID: 0}
-    level: 0
-  - unitBase: {fileID: 0}
-    level: 0
   enemyTeams:
-  - unitBase: {fileID: 11400000, guid: b9d5481d461e24d4086bd28e8377fea4, type: 2}
-    level: 2
   - unitBase: {fileID: 11400000, guid: 77b647debca9b684eae29a774b8feb5b, type: 2}
-    level: 2
-  - unitBase: {fileID: 11400000, guid: de94640f923dc1843a27e2fd86935da6, type: 2}
-    level: 2
+    level: 1
+  - unitBase: {fileID: 11400000, guid: b9d5481d461e24d4086bd28e8377fea4, type: 2}
+    level: 1
+  - unitBase: {fileID: 11400000, guid: b9d5481d461e24d4086bd28e8377fea4, type: 2}
+    level: 1
 --- !u!1001 &4827905900006559744
 PrefabInstance:
   m_ObjectHideFlags: 0

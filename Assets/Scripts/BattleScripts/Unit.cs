@@ -7,26 +7,26 @@ public class Unit
 {
 
     //PlayerHudの時にunitBaseからUnitを参照するためにpublic (プロバティ)
-    [SerializeField]  UnitBase unitBase;
+    [SerializeField] UnitBase unitBase;
     [SerializeField] int level;
 
     private int hp;
-    //使える技
-    private List<Skill> skills;
+    private List<Skill> skills;//使える技
+    int exp;//経験値
 
     public UnitBase UnitBase { get => unitBase; }
-    public int Level { get => level;}
+    public int Level { get => level; set => level = value; }
     public int HP { get => hp; set => hp = value; }
     public List<Skill> Skills { get => skills; set => skills = value; }
+    public int Exp { get => exp; set => exp = value; }
 
 
 
     //生成時の初期設定
     public void Init()
     {
-        //UnitBase = uBase;
-        //Level = uLevel;
-        HP = MaxHP; //参考にした資料だとuBase.MaxHPにしていたよくわからないし、バグってたのでそのままこのクラスのMaxHPを参照している
+        
+        HP = MaxHP; 
 
         Skills = new List<Skill>();
 
@@ -38,7 +38,20 @@ public class Unit
                 Skills.Add(new Skill(learnableSkill.SkillBase));
             }
         }
+              
 
+    }
+
+    //レベルアップするかどうか
+    public bool LevelUP()
+    {
+        if (Exp > UnitBase.GetExpForLevel(Level + 1))//もしレベルアップするなら
+        {
+            Level++;//レベルを+1
+            return true;
+        }
+
+        return false;
     }
 
     //レベルに応じたステータスを返すプロパティ
@@ -55,6 +68,8 @@ public class Unit
     {
         get => Mathf.FloorToInt((UnitBase.Defense * Level) / 100f) + 5;
     }
+
+
     //public int Speed
     //{
     //    get => Mathf.FloorToInt((UnitBase.Speed * Level) / 100f) + 5;

@@ -40,6 +40,13 @@ public class UnitBase : ScriptableObject
 
     public List<LearnableSkill> LearnableSkills { get => learnableSkills; }
 
+    //レベルに応じた必要経験値
+    public int GetExpForLevel(int level)
+    {
+        int gainExp = level * level * level;
+        return gainExp;
+    }
+
 
 }
 

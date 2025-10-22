@@ -1,32 +1,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//PartySelectSceneで選ばれたpartyを負けるまで取得しているスクリプト
 //AdventureSceneのUnitTeamからどの敵か情報を得て、Unitを配置するスクリプト
 public class UnitSelect : MonoBehaviour
 {
-    [SerializeField] Unit[] playerUnits = new Unit[3]; //一旦playerUnitはここで設定(あとで違うところから)
-     public static List<Unit>  enemyUnits;
+    public static Unit[] playerUnits = new Unit[3]; //Static化してPlayerUnitをここで保管
+     public static List<Unit>  enemyUnits;//enemyを振り分ける前のlist (4体以上Listに入ってくる可能があるため振り分ける必要がある)
     
         
     Unit[] enemyParty = new Unit[3];
-
-
-    [SerializeField] Unit[] TestEnemy = new Unit[3];//BattleSceneからでも戦えるように一時的に配置する敵　あとで消してください
-   
-    public Unit[] PlayerUnits { get => playerUnits; set => playerUnits = value; }
+      
+       
     public Unit[] EnemyParty { get => enemyParty; set => enemyParty = value; }
 
 
     private void Awake()
     {
-        enemyUnits = new List<Unit>();
-
-        //テスト用に追加　☆あとで消してください☆
-        for (int i = 0; i < TestEnemy.Length; i++)
-        {
-            enemyUnits.Add(TestEnemy[i]);
-        }
-
+        //enemyUnits = new List<Unit>();
+              
 
        　//敵を3体埋まるまでenemyUnitsリストからランダムに配置
         for (int i = 0; i < 3; i++)
@@ -37,14 +29,14 @@ public class UnitSelect : MonoBehaviour
         }
 
         //Unitの初期設定
-        PlayerUnits[0].Init();
-        PlayerUnits[1].Init();
-        PlayerUnits[2].Init();
+        playerUnits[0].Init();
+        playerUnits[1].Init();
+        playerUnits[2].Init();
         EnemyParty[0].Init();
         EnemyParty[1].Init();
         EnemyParty[2].Init();
 
-        //戦闘が終わったらenemyUnitsの要素を全部リセット    
+        //振り分けが終わったらenemyUnitsの要素を全部リセット    
         enemyUnits.Clear();
     }
        

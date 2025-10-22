@@ -522,12 +522,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerTeams:
-  - unitBase: {fileID: 0}
-    level: 0
-  - unitBase: {fileID: 0}
-    level: 0
-  - unitBase: {fileID: 0}
-    level: 0
+  - unitBase: {fileID: 11400000, guid: de94640f923dc1843a27e2fd86935da6, type: 2}
+    level: 2
+  - unitBase: {fileID: 11400000, guid: 0840d5b655e0df44d964b7d29ba00b89, type: 2}
+    level: 1
+  - unitBase: {fileID: 11400000, guid: 1fdccc5a9baa9a343b8d514b386a4363, type: 2}
+    level: 1
   enemyTeams: []
 --- !u!114 &299379423
 MonoBehaviour:
