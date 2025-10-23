@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d8766d9520f195b4280a611dd2b6fc01, type: 3}
-  m_Name: TestGeneralMagic
+  m_Name: GeneralMagic
   m_EditorClassIdentifier: 
-  name: "\u30C6\u30B9\u30C8\u7528\u4E00\u822C\u7684\u9B54\u6CD5"
-  description: "\u30BF\u30A4\u30D7:\u653B\u6483  \u3000 \u5A01\u529B:10 \u8CAB\u901A\u529B:3\n\u8DDD\u96E2:10
-    \u901F\u3055:10 \u653B\u6483\u56DE\u6570:1\n\u3053\u308C\u306F\u4E00\u822C\u7684\u306A\u9B54\u6CD5\u3067\u3059"
+  name: "\u4E00\u822C\u7684\u9B54\u6CD5"
+  description: "\u30BF\u30A4\u30D7:\u653B\u6483  \u3000 \u5A01\u529B:30 \u8CAB\u901A\u529B:5\n\u8DDD\u96E2:10
+    \u901F\u3055:10 \u653B\u6483\u56DE\u6570:1\n\n\u3053\u308C\u306F\u4E00\u822C\u7684\u306A\u9B54\u6CD5\u3067\u3059"
   skillType: 0
   power: 10
-  penetrationPower: 3
+  penetrationPower: 5
   maxLineRange: 10
   speed: 10
   numberAttacks: 1

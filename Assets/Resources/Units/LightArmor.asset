@@ -24,3 +24,5 @@ MonoBehaviour:
     level: 0
   - skillBase: {fileID: 11400000, guid: 535893718a16cd04987dab402dae1421, type: 2}
     level: 0
+  - skillBase: {fileID: 11400000, guid: 61a8f9cbb04cb24419eee4009ab27754, type: 2}
+    level: 2
