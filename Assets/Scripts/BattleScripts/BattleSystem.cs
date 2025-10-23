@@ -47,8 +47,10 @@ public class BattleSystem : MonoBehaviour
     [SerializeField] DrawIntelligence intelligence;
     [SerializeField] SkillSelection playerSkill;
     [SerializeField] EnemyDraw[] enemyDraw = new EnemyDraw[3];
-    [SerializeField] GameObject dialogObj;
+    [SerializeField] GameObject dialogObj;//ダイヤログオブジェクト
     public Dialog dialog;
+    [SerializeField] GameObject endDialogObj;//エンドダイヤログオブジェクト
+    public Dialog endDialog;
 
     [SerializeField] public BattleState CurrentBState; //{ get; set; }
 
@@ -61,7 +63,7 @@ public class BattleSystem : MonoBehaviour
 
     [SerializeField] GameObject selectAction;
     [SerializeField] GameObject readyButton;
-    [SerializeField] GameObject[]startPoints = new GameObject[3];//線を描き始めるPointのGameObject ターン開始時にオンにしてターン終了時オフ
+    [SerializeField] GameObject[] startPoints = new GameObject[3];//線を描き始めるPointのGameObject ターン開始時にオンにしてターン終了時オフ
     List<GameObject> alivePLayers = new List<GameObject>();　//生き残っているplayerPointを得るリスト
     List<GameObject> aliveEnemies = new List<GameObject>();
     [SerializeField] List<GameObject> aliveBalls = new List<GameObject>();//ballをインスタンス化するたびにリストに追加してボールがまだフィールドにいるか調べるリスト　
@@ -71,6 +73,7 @@ public class BattleSystem : MonoBehaviour
     public bool next = false;//線を引き終わったかどうか 
     bool[] just1DeadUnits = new bool[6];//一回だけ死亡判定させる変数(player1=0,player2=1.enemy1=3)
     int cutExp = 5;//取得する経験値をどれだけ減らすかの変数　ポートフォリオ用に下げていますが、実際は8くらい想定
+    int gainExp;
 
 
     public bool Player1Alive { get; set; } = false;
@@ -86,7 +89,7 @@ public class BattleSystem : MonoBehaviour
     public List<GameObject> AlivePlayers { get => alivePLayers; set => alivePLayers = value; }
     public List<GameObject> AliveEnemies { get => aliveEnemies; set => aliveEnemies = value; }
     public List<GameObject> AliveBalls { get => aliveBalls; set => aliveBalls = value; }
-   
+
 
 
 
@@ -94,11 +97,12 @@ public class BattleSystem : MonoBehaviour
     //バトルが始まったら
     private void Start()
     {
+
         CurrentBState = BattleState.StartTurn;
 
         if (CurrentBState == BattleState.StartTurn)
         {
-            
+
 
             if (player1Unit != null)
             {
@@ -145,7 +149,6 @@ public class BattleSystem : MonoBehaviour
                 enemy3Hud.SetData(enemy3Unit.Unit);
             }
 
-            Debug.Log(player1Unit.Unit.Exp);
         }
 
         //生成したプレイヤーユニットの中で若い数のplayerUnitターンからスタート
@@ -160,7 +163,7 @@ public class BattleSystem : MonoBehaviour
     {
         //player1の死亡がまだ行われていないなら
         if (!just1DeadUnits[0])
-        { 
+        {
             //もしUnitが死んでしまったら
             if (Death(player1Unit))
             {
@@ -170,7 +173,7 @@ public class BattleSystem : MonoBehaviour
                 just1DeadUnits[0] = true;
             }
         }
-        if(!just1DeadUnits[1])
+        if (!just1DeadUnits[1])
         {
             if (Death(player2Unit))
             {
@@ -180,7 +183,7 @@ public class BattleSystem : MonoBehaviour
                 just1DeadUnits[1] = true;
             }
         }
-        if(!just1DeadUnits[2])
+        if (!just1DeadUnits[2])
         {
             if (Death(player3Unit))
             {
@@ -190,7 +193,7 @@ public class BattleSystem : MonoBehaviour
                 just1DeadUnits[2] = true;
             }
         }
-       if(!just1DeadUnits[3])
+        if (!just1DeadUnits[3])
         {
             if (Death(enemy1Unit))
             {
@@ -200,7 +203,7 @@ public class BattleSystem : MonoBehaviour
                 just1DeadUnits[3] = true;
             }
         }
-        if(!just1DeadUnits[4])
+        if (!just1DeadUnits[4])
         {
             if (Death(enemy2Unit))
             {
@@ -220,12 +223,12 @@ public class BattleSystem : MonoBehaviour
                 just1DeadUnits[5] = true;
             }
         }
-       
+
     }
 
     //Unitが死んでしまったかを確認するメソッド
     bool Death(BattleUnit battleUnit)
-    {       
+    {
 
         bool death = battleUnit.Unit.HP <= 0;//UnitのHpが0以下になったらdeathをtrue        
         if (death) battleUnit.gameObject.GetComponent<Image>().enabled = false;
@@ -298,14 +301,12 @@ public class BattleSystem : MonoBehaviour
             case BattleState.LoseTurn:
 
                 CurrentBState = BattleState.LoseTurn;
-                Debug.Log("負けたよ");
                 SceneManager.LoadScene("TitleScene");
                 break;
 
             case BattleState.WinTurn:
 
                 CurrentBState = BattleState.WinTurn;
-                Debug.Log("勝ったよ");
                 SceneManager.LoadScene("AdventureScene");
                 break;
 
@@ -332,7 +333,7 @@ public class BattleSystem : MonoBehaviour
             if (Player2Alive)
             {
                 TurnCng(BattleState.Player2Turn);//BattleStetaをplayer2Turnに
-                
+
             }
             //Player3が生きているなら
             else if (Player3Alive)
@@ -368,10 +369,6 @@ public class BattleSystem : MonoBehaviour
 
     }
 
-    
-
-
-
 
 
     //線を描いてそれを待ってからEnemyターンにするコルーチン　後で消すかも
@@ -383,22 +380,22 @@ public class BattleSystem : MonoBehaviour
 
         if (Enemy1Alive)
         {
-            enemyDraw[0].DrawEnemy(intelligence.enemySkillTypes[0]);//線を書く時にSkillTypeの情報も渡す
-
+            enemyDraw[0].LineColor(intelligence.enemySkillTypes[0]);//SkillTypeに応じた線を描く時の色を変える
+            enemyDraw[0].DrawEnemy(intelligence.enemySkillTypes[0]);//線を描く時にSkillTypeの情報も渡す
         }
         if (Enemy2Alive)
         {
+            enemyDraw[1].LineColor(intelligence.enemySkillTypes[1]);
             enemyDraw[1].DrawEnemy(intelligence.enemySkillTypes[1]);
         }
         if (Enemy3Alive)
         {
+            enemyDraw[2].LineColor(intelligence.enemySkillTypes[2]);
             enemyDraw[2].DrawEnemy(intelligence.enemySkillTypes[2]);
         }
         yield return new WaitForSeconds(1f);//ちょっと待ってから
         TurnCng(BattleState.BattleTurn);//BattaleTurnに
         yield break;
-
-
 
     }
 
@@ -468,28 +465,30 @@ public class BattleSystem : MonoBehaviour
             {
                 yield return new WaitForSeconds(1);
                 //敗北処理
+                yield return StartCoroutine(EndDialog(BattleState.LoseTurn));
+
                 TurnCng(BattleState.LoseTurn);
-                
+
 
             }
             //敵が誰も生き残っていないのなら
             else if (!Enemy1Alive && !Enemy2Alive && !Enemy3Alive)
             {
 
-                //勝利画面
-
                 //playerUnitに経験値を配る
                 GainExp();
+                //ダイヤログメソッドを発動　終わるまで待機
+                yield return StartCoroutine(EndDialog(BattleState.WinTurn));
+
                 //少し待ってから
-                yield return new WaitForSeconds(1); 
+                //yield return new WaitForSeconds(1);
                 //勝利処理
                 TurnCng(BattleState.WinTurn);
-                                
+
             }
             //どちらの陣営にも誰かは生き残っている場合
             else
-            {
-                Debug.Log("もっかい!");
+            {                
                 TurnCng(BattleState.WaitNextTurn);//リセットするターン
                 yield return new WaitForSeconds(1);//
                 //もう一巡
@@ -508,38 +507,79 @@ public class BattleSystem : MonoBehaviour
     //倒した敵に応じて経験値をPlayerに与えるメソッド
     void GainExp()
     {
-        
+
         //plyaerUnit全員に倒した敵に対応する経験値
         int enemyEXP = enemy1Unit.Unit.MaxHP * enemy1Unit.Unit.Level + enemy2Unit.Unit.MaxHP * enemy2Unit.Unit.Level + enemy3Unit.Unit.MaxHP * enemy3Unit.Unit.Level;
-        int gainExp = Mathf.FloorToInt( enemyEXP / cutExp);
+        gainExp = Mathf.FloorToInt(enemyEXP / cutExp);
         //PlayerのExpに代入する
         player1Unit.Unit.Exp += gainExp;
         player2Unit.Unit.Exp += gainExp;
         player3Unit.Unit.Exp += gainExp;
         //対戦が終了したらダイヤログが出てきてどれだけ経験値を得たか
 
-        Debug.Log(gainExp);
-
-        //もしレベルアップするなら
-        if (player1Unit.Unit.LevelUP())//player1がレベルアップするかどうか
-        {
-            //本当はダイヤログではなく、終了ログに出す
-            Debug.Log(player1Unit.Unit.UnitBase.Name + "は" +player1Unit.Unit.Level + "になった");
-        }
-        if(player2Unit.Unit.LevelUP())//player2がレベルアップするかどうか
-        {
-            //本当はダイヤログではなく、終了ログに出す
-            Debug.Log(player2Unit.Unit.UnitBase.Name + "は" + player2Unit.Unit.Level + "になった");
-        }
-        if (player3Unit.Unit.LevelUP())//player3がレベルアップするかどうか
-        {
-            //本当はダイヤログではなく、終了ログに出す
-            Debug.Log(player3Unit.Unit.UnitBase.Name + "は" + player3Unit.Unit.Level + "になった");
-        }
+        // Debug.Log(gainExp);
+                       
 
     }
 
-   
+    //ゲームエンドダイヤログを表示して、Listの分だけ流す
+    IEnumerator EndDialog(BattleState state)
+    {
+        endDialogObj.SetActive(true);//ダイヤログオブジェクトをON
+
+        //もし勝ちだったら
+        if (state == BattleState.WinTurn)
+        {
+            //ダイヤログに流れて欲しい順番でAddEndDiaLogListメソッドでリストに追加
+            endDialog.AddEndDialogList("あなたのパーティーの勝利です!");
+            endDialog.AddEndDialogList("あなたのパーティーはそれぞれ" + gainExp + "経験値を得た!");
+
+            //もしレベルアップするなら
+            if (player1Unit.Unit.LevelUP())//player1がレベルアップするかどうか
+            {
+                //本当はダイヤログではなく、終了ログに出す
+                endDialog.AddEndDialogList(player1Unit.Unit.UnitBase.Name + "は" + player1Unit.Unit.Level + "レベルになった");
+            }
+            if (player2Unit.Unit.LevelUP())//player2がレベルアップするかどうか
+            {
+                //本当はダイヤログではなく、終了ログに出す
+                endDialog.AddEndDialogList(player2Unit.Unit.UnitBase.Name + "は" + player2Unit.Unit.Level + "レベルになった");
+            }
+            if (player3Unit.Unit.LevelUP())//player3がレベルアップするかどうか
+            {
+                //本当はダイヤログではなく、終了ログに出す
+                endDialog.AddEndDialogList(player3Unit.Unit.UnitBase.Name + "は" + player3Unit.Unit.Level + "レベルになった");
+            }
+
+        }
+        //もし負けだったら
+        else if (state == BattleState.LoseTurn)
+        {
+            endDialog.AddEndDialogList("あなたのパーティーは敗北しました…");
+            endDialog.AddEndDialogList("新しいパーティーを選んでください");
+        }
+
+        //右クリックを押されるたびにendDialogsリストの中身全てを繰り返し終わるまでダイヤログにテキストを出す
+        for (int i = 0; i < endDialog.endDialogs.Count; i++)
+        {
+            string dailog = endDialog.endDialogs[i];
+            endDialog.AddDialog(dailog);
+            while (!Input.GetMouseButtonDown(0))//右されていないのなら何もしない
+            {
+                yield return null;
+            }
+            yield return new WaitForSeconds(0.1f);
+        }
+        yield return new WaitForSeconds(2f);
+        //バトルが終わったらリストをリセット
+        endDialog.endDialogs.Clear();
+        endDialog.DialogReset();
+
+        endDialogObj.SetActive(false);//終わったらオブジェクトをOFF
+        yield break;
+    }
+
+
 
     //ボールが誰かに当たった時のダメージ計算をするメソッド(AttackBallかRnemyBallで発動)
     public int Damage(int myPower, int UnitNum, BattleUnit collisionUnit)
@@ -571,12 +611,8 @@ public class BattleSystem : MonoBehaviour
             damage = (myPower * enemy3Unit.Unit.Attack) / collisionUnit.Unit.Defense;
         }
 
-        Debug.Log(damage + "ダメージだったよ");
         return damage;
 
     }
-
-
-
 
 }

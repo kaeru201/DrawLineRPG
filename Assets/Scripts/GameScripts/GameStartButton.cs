@@ -19,11 +19,6 @@ public class GameStartButton : MonoBehaviour, IPointerClickHandler, IPointerEnte
     }
 
 
-    void Update()
-    {
-
-    }
-
     //ボタンをクリックしたとき
     public void OnPointerClick(PointerEventData eventData)
     {

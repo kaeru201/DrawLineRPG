@@ -16,7 +16,7 @@ public class SkillButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
     [SerializeField] TextMeshProUGUI instruction;
     GameObject skillSelection;
 
-    
+
 
 
     void Start()
@@ -56,9 +56,6 @@ public class SkillButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
             intelligence.DrawIn(1);//線を描く
             battleSystem.PushButton(1);//battleSystemにボタンを押したかを参照させる
 
-
-
-
         }
         //もしplayer2Turnなら
         else if (battleSystem.CurrentBState == BattleState.Player2Turn)
@@ -70,8 +67,6 @@ public class SkillButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
             intelligence.DrawIn(2);
             battleSystem.PushButton(2);
 
-
-
         }
         //もしplayer3Tuneなら
         else if (battleSystem.CurrentBState == BattleState.Player3Turn)
@@ -81,7 +76,6 @@ public class SkillButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
             DrawNumberSet();
             intelligence.DrawIn(3);
             battleSystem.PushButton(3);
-
 
         }
 

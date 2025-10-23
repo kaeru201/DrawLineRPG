@@ -45,11 +45,7 @@ public class EnemyDraw : MonoBehaviour
             newPoint = transform.position;
         }
 
-
-
-
     }
-
 
 
     //BattleSystenが発動　敵が線を描くメソッド
@@ -106,8 +102,7 @@ public class EnemyDraw : MonoBehaviour
             Debug.Log("supportは実装途中");
             return transform.position;
         }
-        
-        
+               
 
     }
 
@@ -121,6 +116,24 @@ public class EnemyDraw : MonoBehaviour
         lastAddPoint = point;//今加えた点を最後に加えた点に
     }
 
-
+    //打ったスキルによって線の色を変更メソッド(
+   　public void LineColor(SkillType skillType)
+    {
+        if (skillType == SkillType.Attack)
+        {
+            lineRenderer.startColor = Color.red;
+            lineRenderer.endColor = Color.red;
+        }
+        else if (skillType == SkillType.Heal)
+        {
+            lineRenderer.startColor = Color.green;
+            lineRenderer.endColor = Color.green;
+        }
+        else
+        {
+            lineRenderer.startColor = Color.blue;
+            lineRenderer.endColor = Color.blue;
+        }
+    }
 
 }

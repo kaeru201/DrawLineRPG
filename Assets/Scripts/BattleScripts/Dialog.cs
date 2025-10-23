@@ -9,12 +9,14 @@ public class Dialog : MonoBehaviour
     
     [SerializeField] TextMeshProUGUI prefabText;
 
-    public List<TextMeshProUGUI> dialogTextObjs = new List<TextMeshProUGUI>();
+    public List<TextMeshProUGUI> dialogTextObjs = new List<TextMeshProUGUI>();//ダイヤログにテキストプレハブを管理するリスト
 
-    Vector3 startPosition = new Vector3(0, 260, 0);//初期地点
+    public List<string> endDialogs = new List<string>();//エンドダイヤログを決まった順番に出すためのリスト
+
+    [SerializeField] Vector3 startPosition;//初期地点
     Vector3 nextPosition = new Vector3();//次の出現地点
-    float dialogSpece　=　110f;//ダイヤログの間隔
-
+   [SerializeField] float dialogSpece;//ダイヤログの間隔
+    [SerializeField] int dialogLimit;//ダイヤログを表示できる上限
 
     //ダイヤログで表示するものが出るたびに他のクラスから呼ばれて、ダイヤログを更新するメソッド
     public void AddDialog(string dialog)
@@ -23,8 +25,8 @@ public class Dialog : MonoBehaviour
         //まだListに要素がないなら次の出現地点を初期地点に
         if (dialogTextObjs.Count == 0) nextPosition = startPosition;
 
-        //dialogTextの要素数が6以上だったら
-        if (dialogTextObjs.Count >= 6)
+        //dialogTextの要素数がdialogLimit以上だったら
+        if (dialogTextObjs.Count >= dialogLimit)
         {
             //要素数が1番上のオブジェクトごとテキストとListを削除して           
             Destroy(dialogTextObjs[0].gameObject);
@@ -54,6 +56,12 @@ public class Dialog : MonoBehaviour
 
         nextPosition.y -= dialogSpece;//次の出現地点を下にずらす
 
+    }
+
+    //エンドダイヤログリストに引数のstringを追加するメソッド
+    public void AddEndDialogList(string dailog)
+    {
+        endDialogs.Add(dailog);
     }
 
     //ダイヤログをリセットするメソッド(battleSystemから呼ばれる)

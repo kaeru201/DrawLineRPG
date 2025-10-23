@@ -4,8 +4,7 @@ using UnityEngine;
 //pointにアタッチするスクリプト
 //線を書くスクリプト
 public class DrawLine : MonoBehaviour
-{
-    SkillBase skillBase;
+{    
     [SerializeField] BattleSystem battleSystem;
 
     [SerializeField] LineRenderer lineRenderer;
@@ -17,7 +16,7 @@ public class DrawLine : MonoBehaviour
     [SerializeField] bool ready = false;
     public bool Draw { get; set; } = false; //描き始められえるか　DrawIntelligenceから個別にtrueにする変数
 
-
+    
 
     float currentLineRange;//現在の書いた長さ
     Vector3 lastAddPoint;//最後に追加した点を記憶しておく変数
@@ -146,6 +145,26 @@ public class DrawLine : MonoBehaviour
         lineRenderer.SetPosition(posCount, point);//一つ前の点から次の点に線を書く
         posCount++;
         lastAddPoint = point;
+    }
+
+    //打ったスキルによって線の色を変更メソッド(
+   　public void LineColor(SkillType skillType)
+    {
+        if(skillType == SkillType.Attack)
+        {
+            lineRenderer.startColor = Color.red;
+            lineRenderer.endColor = Color.red;
+        }
+        else if(skillType == SkillType.Heal)
+        {
+            lineRenderer.startColor = Color.green;
+            lineRenderer.endColor = Color.green;
+        }
+        else
+        {
+            lineRenderer.startColor = Color.blue;
+            lineRenderer.endColor = Color.blue;
+        }
     }
 
 }

@@ -63,7 +63,9 @@ public class DrawIntelligence : MonoBehaviour
         {
             PlayerPointON(player1Point);//プレイヤー1の線を引くスクリプトをつける
 
-            WhoClick(ref playerSkillNames[0],player1Point, ref playerSkillTypes[0], ref playerPowers[0], ref playerPenetionPowers[0], ref playerSpeeds[0], ref playerNumAttacks[0]);//プレイヤー1が何のスキルを打ったか
+            WhoClick(ref playerSkillNames[0], player1Point, ref playerSkillTypes[0], ref playerPowers[0], ref playerPenetionPowers[0], ref playerSpeeds[0], ref playerNumAttacks[0]);//プレイヤー1が何のスキルを打ったか
+
+            player1Point.LineColor(playerSkillTypes[0]);//撃ったスキルによって色を変えるメソッド
 
             StartCoroutine(PlayerPointOFF(player1Point));//プレイヤー1のスクリプトを消す
         }
@@ -72,7 +74,9 @@ public class DrawIntelligence : MonoBehaviour
         {
             PlayerPointON(player2Point);//プレイヤー2の線を引くスクリプトをつける
 
-            WhoClick(ref playerSkillNames[1],player2Point, ref playerSkillTypes[1], ref playerPowers[1], ref playerPenetionPowers[1], ref playerSpeeds[1], ref playerNumAttacks[1]);//プレイヤー2が何のスキルを打ったか
+            WhoClick(ref playerSkillNames[1], player2Point, ref playerSkillTypes[1], ref playerPowers[1], ref playerPenetionPowers[1], ref playerSpeeds[1], ref playerNumAttacks[1]);//プレイヤー2が何のスキルを打ったか
+
+            player2Point.LineColor(playerSkillTypes[1]);//撃ったスキルによって色を変えるメソッド
 
             StartCoroutine(PlayerPointOFF(player2Point));//プレイヤー2のスクリプトを消す
         }
@@ -82,6 +86,8 @@ public class DrawIntelligence : MonoBehaviour
             PlayerPointON(player3Point);//プレイヤー3の線を引くスクリプトをつける
 
             WhoClick(ref playerSkillNames[2], player3Point, ref playerSkillTypes[2], ref playerPowers[2], ref playerPenetionPowers[2], ref playerSpeeds[2], ref playerNumAttacks[2]);//プレイヤー3が何のスキルを打ったか
+
+            player3Point.LineColor(playerSkillTypes[2]);
 
             StartCoroutine(PlayerPointOFF(player3Point));//プレイヤー3のスクリプトを消す
         }
@@ -122,7 +128,7 @@ public class DrawIntelligence : MonoBehaviour
 
                 break;
             case 3:
-                pSkillName= SkillNames[2];
+                pSkillName = SkillNames[2];
                 pPoint.MaxLineRange = SkillRanges[2];
                 pSkillType = SkillTypes[2];
                 pPower = SkillPowers[2];
@@ -169,8 +175,6 @@ public class DrawIntelligence : MonoBehaviour
     void PlayerPointON(DrawLine pPoint)
     {
         pPoint.Draw = true;
-
-
     }
 
     //対応したUnitの線を書くスクリプトをOFFにするメソッド

@@ -1,6 +1,4 @@
 using UnityEngine;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 
 
 //インスペクター上で配置したPlayerUnitをUnitSelectのリストに追加する
@@ -20,8 +18,6 @@ public class UnitTeam : MonoBehaviour
             UnitSelect.playerUnits[i].Exp = UnitSelect.playerUnits[i].UnitBase.GetExpForLevel(UnitSelect.playerUnits[i].Level);
         }
     }
-
-
-    
+           
 
 }

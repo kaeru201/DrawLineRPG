@@ -48,6 +48,9 @@ public class Unit
         if (Exp > UnitBase.GetExpForLevel(Level + 1))//もしレベルアップするなら
         {
             Level++;//レベルを+1
+            if(Exp >UnitBase.GetExpForLevel(Level+ 1)) Level++;
+                               
+
             return true;
         }
 

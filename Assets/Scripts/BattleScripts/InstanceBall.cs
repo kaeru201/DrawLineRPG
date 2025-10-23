@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 //player、enemyどちらもアタッチする、ballをインスタンスするクラス　　どうやって生きてやつだけうつか
@@ -17,11 +18,9 @@ public class InstanceBall : MonoBehaviour
     bool e2Rdy = true;
     bool e3Rdy = true;
 
-    void Start()
-    {
+    float waitNextBall = 0.3f;
 
-    }
-
+    
 
     void Update()
     {
@@ -45,28 +44,7 @@ public class InstanceBall : MonoBehaviour
                     {
                         if (battleSystem.Player1Alive)
                         {
-
-
-                            //技の攻撃回数分インスタンス
-                            for (int i = 0; i < intelligence.playerNumAttacks[0]; i++)
-                            {
-                                GameObject player1Ball = Instantiate(objPrefab, transform.position, Quaternion.identity);//インスタンス
-                                player1Ball.transform.parent = gameObject.transform;//生成したオブジェクトをこのオブジェクトの子にする
-
-                                //player1の情報を入れる
-                                AttckBall script = player1Ball.GetComponent<AttckBall>();
-                                script.SkillName = intelligence.playerSkillNames[0];
-                                script.SkillType = intelligence.playerSkillTypes[0];
-                                script.Power = intelligence.playerPowers[0];
-                                script.PenetionPower = intelligence.playerPenetionPowers[0];
-                                script.Speed = intelligence.playerSpeeds[0];
-
-                                //ダメージ計算をする時につかう
-                                script.SetBattleSystem(battleSystem);//BallにBattleSystemを参照させるメソッド
-                                script.UnitNum = 1;//どのユニットのBallか判別するint
-
-
-                            }
+                            StartCoroutine(P1Ball());
 
                         }
                         p1Rdy = false;
@@ -79,25 +57,7 @@ public class InstanceBall : MonoBehaviour
                     {
                         if (battleSystem.Player2Alive)
                         {
-                            //攻撃回数分インスタンス
-                            for (int i = 0; i < intelligence.playerNumAttacks[1]; i++)
-                            {                                
-                                GameObject player2Ball = Instantiate(objPrefab, transform.position, Quaternion.identity);
-                                player2Ball.transform.parent = gameObject.transform;
-
-                                //player2の情報を入れる
-                                AttckBall script = player2Ball.GetComponent<AttckBall>();
-                                script.SkillName = intelligence.playerSkillNames[1];
-                                script.SkillType = intelligence.playerSkillTypes[1];
-                                script.Power = intelligence.playerPowers[1];
-                                script.PenetionPower = intelligence.playerPenetionPowers[1];
-                                script.Speed = intelligence.playerSpeeds[1];
-
-                                //ダメージ計算をする時につかう
-                                script.SetBattleSystem(battleSystem);//BallにBattleSystemを参照させるメソッド
-                                script.UnitNum = 2;//どのユニットのBallか判別するint
-
-                            }
+                           StartCoroutine (P2Ball());
 
                         }
                         p2Rdy = false;
@@ -113,25 +73,7 @@ public class InstanceBall : MonoBehaviour
                         {
 
 
-                            //攻撃回数分インスタンス
-                            for (int i = 0; i < intelligence.playerNumAttacks[2]; i++)
-                            {
-
-                                GameObject player3Ball = Instantiate(objPrefab, transform.position, Quaternion.identity);
-                                player3Ball.transform.parent = gameObject.transform;
-
-                                //player3の情報を入れる
-                                AttckBall script = player3Ball.GetComponent<AttckBall>();
-                                script.SkillName = intelligence.playerSkillNames[2];
-                                script.SkillType = intelligence.playerSkillTypes[2];
-                                script.Power = intelligence.playerPowers[2];
-                                script.PenetionPower = intelligence.playerPenetionPowers[2];
-                                script.Speed = intelligence.playerSpeeds[2];
-
-                                //ダメージ計算をする時につかう
-                                script.SetBattleSystem(battleSystem);//BallにBattleSystemを参照させるメソッド
-                                script.UnitNum = 3;//どのユニットのBallか判別するint
-                            }
+                            StartCoroutine(P3Ball());
 
                         }
                         p3Rdy = false;
@@ -145,22 +87,7 @@ public class InstanceBall : MonoBehaviour
                         if (battleSystem.Enemy1Alive)
                         {
 
-                            for (int i = 0; i < intelligence.enemyNumAttacks[0]; i++)
-                            {
-                                GameObject enemy1Ball = Instantiate(objPrefab, transform.position, Quaternion.identity);
-                                enemy1Ball.transform.parent = gameObject.transform;
-
-                                EnemyBall script = enemy1Ball.GetComponent<EnemyBall>();
-                                script.SkillName = intelligence.enemySkillNames[0];
-                                script.SkillType = intelligence.enemySkillTypes[0];
-                                script.Power = intelligence.enemyPowers[0];
-                                script.PenetionPower = intelligence.enemyPenetionPowers[0];
-                                script.Speed = intelligence.enemySpeeds[0];
-
-                                //ダメージ計算をする時につかう
-                                script.SetBattleSystem(battleSystem);//BallにBattleSystemを参照させるメソッド
-                                script.UnitNum = 4;//どのユニットのBallか判別するint
-                            }
+                           StartCoroutine(E1Ball());
                         }
                         e1Rdy = false;
                     }
@@ -172,22 +99,7 @@ public class InstanceBall : MonoBehaviour
                     {
                         if (battleSystem.Enemy2Alive)
                         {
-                            for (int i = 0; i < intelligence.enemyNumAttacks[1]; i++)
-                            {
-                                GameObject enemy2Ball = Instantiate(objPrefab, transform.position, Quaternion.identity);
-                                enemy2Ball.transform.parent = gameObject.transform;
-
-                                EnemyBall script = enemy2Ball.GetComponent<EnemyBall>();
-                                script.SkillName = intelligence.enemySkillNames[1];
-                                script.SkillType = intelligence.enemySkillTypes[1];
-                                script.Power = intelligence.enemyPowers[1];
-                                script.PenetionPower = intelligence.enemyPenetionPowers[1];
-                                script.Speed = intelligence.enemySpeeds[1];
-
-                                //ダメージ計算をする時につかう
-                                script.SetBattleSystem(battleSystem);//BallにBattleSystemを参照させるメソッド
-                                script.UnitNum = 5;//どのユニットのBallか判別するint
-                            }
+                           StartCoroutine(E2Ball());
                         }
                         e2Rdy = false;
                     }
@@ -199,22 +111,7 @@ public class InstanceBall : MonoBehaviour
                     {
                         if (battleSystem.Enemy3Alive)
                         {
-                            for (int i = 0; i < intelligence.enemyNumAttacks[2]; i++)
-                            {
-                                GameObject enemy3Ball = Instantiate(objPrefab, transform.position, Quaternion.identity);
-                                enemy3Ball.transform.parent = gameObject.transform;
-
-                                EnemyBall script = enemy3Ball.GetComponent<EnemyBall>();
-                                script.SkillName = intelligence.enemySkillNames[2];
-                                script.SkillType = intelligence.enemySkillTypes[2];
-                                script.Power = intelligence.enemyPowers[2];
-                                script.PenetionPower = intelligence.enemyPenetionPowers[2];
-                                script.Speed = intelligence.enemySpeeds[2];
-
-                                //ダメージ計算をする時につかう
-                                script.SetBattleSystem(battleSystem);//BallにBattleSystemを参照させるメソッド
-                                script.UnitNum = 6;//どのユニットのBallか判別するint
-                            }
+                            StartCoroutine(E3Ball());
                         }
                         e3Rdy = false;
                     }
@@ -228,6 +125,149 @@ public class InstanceBall : MonoBehaviour
 
     }
 
+    IEnumerator P1Ball()
+    {
 
+        //技の攻撃回数分インスタンス
+        for (int i = 0; i < intelligence.playerNumAttacks[0]; i++)
+        {
+            GameObject player1Ball = Instantiate(objPrefab, transform.position, Quaternion.identity);//インスタンス
+            player1Ball.transform.parent = gameObject.transform;//生成したオブジェクトをこのオブジェクトの子にする
 
+            //player1の情報を入れる
+            AttckBall script = player1Ball.GetComponent<AttckBall>();
+            script.SkillName = intelligence.playerSkillNames[0];
+            script.SkillType = intelligence.playerSkillTypes[0];
+            script.Power = intelligence.playerPowers[0];
+            script.PenetionPower = intelligence.playerPenetionPowers[0];
+            script.Speed = intelligence.playerSpeeds[0];
+
+            //ダメージ計算をする時につかう
+            script.SetBattleSystem(battleSystem);//BallにBattleSystemを参照させるメソッド
+            script.UnitNum = 1;//どのユニットのBallか判別するint
+
+            yield return new WaitForSeconds(waitNextBall);
+        }
+        yield break;
+    }
+    IEnumerator P2Ball()
+    {
+
+        //攻撃回数分インスタンス
+        for (int i = 0; i < intelligence.playerNumAttacks[1]; i++)
+        {
+            GameObject player2Ball = Instantiate(objPrefab, transform.position, Quaternion.identity);
+            player2Ball.transform.parent = gameObject.transform;
+
+            //player2の情報を入れる
+            AttckBall script = player2Ball.GetComponent<AttckBall>();
+            script.SkillName = intelligence.playerSkillNames[1];
+            script.SkillType = intelligence.playerSkillTypes[1];
+            script.Power = intelligence.playerPowers[1];
+            script.PenetionPower = intelligence.playerPenetionPowers[1];
+            script.Speed = intelligence.playerSpeeds[1];
+
+            //ダメージ計算をする時につかう
+            script.SetBattleSystem(battleSystem);//BallにBattleSystemを参照させるメソッド
+            script.UnitNum = 2;//どのユニットのBallか判別するint
+
+            yield return new WaitForSeconds(waitNextBall);
+        }
+        yield break;
+    }
+    IEnumerator P3Ball()
+    {
+
+        //攻撃回数分インスタンス
+        for (int i = 0; i < intelligence.playerNumAttacks[2]; i++)
+        {
+
+            GameObject player3Ball = Instantiate(objPrefab, transform.position, Quaternion.identity);
+            player3Ball.transform.parent = gameObject.transform;
+
+            //player3の情報を入れる
+            AttckBall script = player3Ball.GetComponent<AttckBall>();
+            script.SkillName = intelligence.playerSkillNames[2];
+            script.SkillType = intelligence.playerSkillTypes[2];
+            script.Power = intelligence.playerPowers[2];
+            script.PenetionPower = intelligence.playerPenetionPowers[2];
+            script.Speed = intelligence.playerSpeeds[2];
+
+            //ダメージ計算をする時につかう
+            script.SetBattleSystem(battleSystem);//BallにBattleSystemを参照させるメソッド
+            script.UnitNum = 3;//どのユニットのBallか判別するint
+
+            yield return new WaitForSeconds(waitNextBall);
+        }
+        yield break;
+    }
+    IEnumerator E1Ball()
+    {
+
+        for (int i = 0; i < intelligence.enemyNumAttacks[0]; i++)
+        {
+            GameObject enemy1Ball = Instantiate(objPrefab, transform.position, Quaternion.identity);
+            enemy1Ball.transform.parent = gameObject.transform;
+
+            EnemyBall script = enemy1Ball.GetComponent<EnemyBall>();
+            script.SkillName = intelligence.enemySkillNames[0];
+            script.SkillType = intelligence.enemySkillTypes[0];
+            script.Power = intelligence.enemyPowers[0];
+            script.PenetionPower = intelligence.enemyPenetionPowers[0];
+            script.Speed = intelligence.enemySpeeds[0];
+
+            //ダメージ計算をする時につかう
+            script.SetBattleSystem(battleSystem);//BallにBattleSystemを参照させるメソッド
+            script.UnitNum = 4;//どのユニットのBallか判別するint
+
+            yield return new WaitForSeconds(waitNextBall);
+        }
+        yield break;
+    }
+    IEnumerator E2Ball()
+    {
+
+        for (int i = 0; i < intelligence.enemyNumAttacks[1]; i++)
+        {
+            GameObject enemy2Ball = Instantiate(objPrefab, transform.position, Quaternion.identity);
+            enemy2Ball.transform.parent = gameObject.transform;
+
+            EnemyBall script = enemy2Ball.GetComponent<EnemyBall>();
+            script.SkillName = intelligence.enemySkillNames[1];
+            script.SkillType = intelligence.enemySkillTypes[1];
+            script.Power = intelligence.enemyPowers[1];
+            script.PenetionPower = intelligence.enemyPenetionPowers[1];
+            script.Speed = intelligence.enemySpeeds[1];
+
+            //ダメージ計算をする時につかう
+            script.SetBattleSystem(battleSystem);//BallにBattleSystemを参照させるメソッド
+            script.UnitNum = 5;//どのユニットのBallか判別するint
+
+            yield return new WaitForSeconds(waitNextBall);
+        }
+        yield break;
+    }
+    IEnumerator E3Ball()
+    {
+
+        for (int i = 0; i < intelligence.enemyNumAttacks[2]; i++)
+        {
+            GameObject enemy3Ball = Instantiate(objPrefab, transform.position, Quaternion.identity);
+            enemy3Ball.transform.parent = gameObject.transform;
+
+            EnemyBall script = enemy3Ball.GetComponent<EnemyBall>();
+            script.SkillName = intelligence.enemySkillNames[2];
+            script.SkillType = intelligence.enemySkillTypes[2];
+            script.Power = intelligence.enemyPowers[2];
+            script.PenetionPower = intelligence.enemyPenetionPowers[2];
+            script.Speed = intelligence.enemySpeeds[2];
+
+            //ダメージ計算をする時につかう
+            script.SetBattleSystem(battleSystem);//BallにBattleSystemを参照させるメソッド
+            script.UnitNum = 6;//どのユニットのBallか判別するint
+
+            yield return new WaitForSeconds(waitNextBall);
+        }
+        yield break;
+    }
 }
