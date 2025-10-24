@@ -381,17 +381,23 @@ public class BattleSystem : MonoBehaviour
         if (Enemy1Alive)
         {
             enemyDraw[0].LineColor(intelligence.enemySkillTypes[0]);//SkillTypeに応じた線を描く時の色を変える
-            enemyDraw[0].DrawEnemy(intelligence.enemySkillTypes[0]);//線を描く時にSkillTypeの情報も渡す
+            enemyDraw[0].DrawEnemy(intelligence.enemySkillTypes[0]);//線を描く時にSkillTypeの情報も渡す            
+            dialog.AddDialog(enemy1Unit.Unit.UnitBase.Name + "は" + intelligence.enemySkillNames[0] + "を放った");//何のスキルを撃ったかをダイヤログで表示
+            yield return new WaitForSeconds(1f);//少し待つ
         }
         if (Enemy2Alive)
         {
             enemyDraw[1].LineColor(intelligence.enemySkillTypes[1]);
             enemyDraw[1].DrawEnemy(intelligence.enemySkillTypes[1]);
+            dialog.AddDialog(enemy2Unit.Unit.UnitBase.Name + "は" + intelligence.enemySkillNames[1] + "を放った");
+            yield return new WaitForSeconds(1f);
         }
         if (Enemy3Alive)
         {
             enemyDraw[2].LineColor(intelligence.enemySkillTypes[2]);
             enemyDraw[2].DrawEnemy(intelligence.enemySkillTypes[2]);
+            dialog.AddDialog(enemy3Unit.Unit.UnitBase.Name + "は" + intelligence.enemySkillNames[2] + "を放った");
+            yield return new WaitForSeconds(1f);
         }
         yield return new WaitForSeconds(1f);//ちょっと待ってから
         TurnCng(BattleState.BattleTurn);//BattaleTurnに
@@ -417,7 +423,7 @@ public class BattleSystem : MonoBehaviour
             intelligence.enemyNumAttacks[0] = enemy1Unit.Unit.Skills[nextSkill].Skillbase.NumberAttacks;
 
             //一旦ここで選んだスキルをダイヤログで流す(演出を変える時に変更)
-            dialog.AddDialog(enemy1Unit.Unit.UnitBase.Name + "は" + intelligence.enemySkillNames[0] + "を放った");
+            
         }
         //Enemy2が生きているなら
         if (Enemy2Alive)
@@ -431,7 +437,6 @@ public class BattleSystem : MonoBehaviour
             intelligence.enemySpeeds[1] = enemy2Unit.Unit.Skills[nextSkill].Skillbase.Speed;
             intelligence.enemyNumAttacks[1] = enemy2Unit.Unit.Skills[nextSkill].Skillbase.NumberAttacks;
 
-            dialog.AddDialog(enemy2Unit.Unit.UnitBase.Name + "は" + intelligence.enemySkillNames[0] + "を放った");
         }
         //Enemy3が生きているなら
         if (Enemy3Alive)
@@ -445,7 +450,6 @@ public class BattleSystem : MonoBehaviour
             intelligence.enemySpeeds[2] = enemy3Unit.Unit.Skills[nextSkill].Skillbase.Speed;
             intelligence.enemyNumAttacks[2] = enemy3Unit.Unit.Skills[nextSkill].Skillbase.NumberAttacks;
 
-            dialog.AddDialog(enemy3Unit.Unit.UnitBase.Name + "は" + intelligence.enemySkillNames[0] + "を放った");
         }
 
     }

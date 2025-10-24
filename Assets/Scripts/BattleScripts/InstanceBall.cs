@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-//player、enemyどちらもアタッチする、ballをインスタンスするクラス　　どうやって生きてやつだけうつか
+//player、enemyどちらもアタッチする、ballをインスタンスするクラス　　余裕がある時このクラスのコードは見直し
 public class InstanceBall : MonoBehaviour
 {
     [SerializeField] GameObject objPrefab;
