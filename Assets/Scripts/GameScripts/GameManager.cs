@@ -16,23 +16,41 @@ public class GameManager : MonoBehaviour
 {
     static GameState currentState;
 
+    public bool LastBattle { get; set; } = false; 
+
     void Start()
     {
-        //currentState = GameState.Adventure;//まず現在のstetaをアドベンチャーに
+        Scene currentScene = SceneManager.GetActiveScene();
+
+        string sceneName = currentScene.name;
+
+        if(sceneName == "TitleScene")
+        {
+            SoundManager.instance.PlayBGM(BGMType.Title);
+        }
+
     }
+
 
     
-    void Update()
-    {
-        
-    }
 
-    //何かをきっかけに発動(一旦ボタン)
-    //stateをInBattleにしてBattleSceneに移動
+    //battleSceneで勝ったら呼び出されるメソッド
+    //勝った後にそれがラストバトルだったらクリアしてタイトルシーンに戻る、違うならアドベンチャーシーンに戻る
     public void AdventureTurnStart()
     {
-        currentState = GameState.Adventure;
-        SceneManager.LoadScene("AdventureScene");//シーンをアドベンチャーシーンに
+        if (LastBattle)
+        {
+            currentState = GameState.GameClear;
+            Debug.Log("ゲームクリア!");
+            SceneManager.LoadScene("TitleScene");
+        }
+        else 
+        {
+            currentState = GameState.Adventure;
+            SoundManager.instance.PlayBGM(BGMType.Title);//BGMをTitleに
+            SceneManager.LoadScene("AdventureScene");//シーンをアドベンチャーシーンに
+        }
+           
     }
 
     //何かをきっかけに発動(一旦ボタン)

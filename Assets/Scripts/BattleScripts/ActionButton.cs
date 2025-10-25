@@ -27,6 +27,7 @@ public class ActionButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
     //ボタンをクリックしたとき
     public void OnPointerClick(PointerEventData eventData)
     {
+        SoundManager.instance.PlaySE(SEType.Click);//クリック音
         nextUI.SetActive(true);//対応した次のUIを起動
         serectAction.SetActive(false);//自分の親ごと停止
 

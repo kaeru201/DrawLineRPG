@@ -44,6 +44,7 @@ public class BattleSystem : MonoBehaviour
     [SerializeField] EnemyHud enemy2Hud;
     [SerializeField] EnemyHud enemy3Hud;
 
+    [SerializeField] GameManager gameManager;
     [SerializeField] DrawIntelligence intelligence;
     [SerializeField] SkillSelection playerSkill;
     [SerializeField] EnemyDraw[] enemyDraw = new EnemyDraw[3];
@@ -72,7 +73,7 @@ public class BattleSystem : MonoBehaviour
 
     public bool next = false;//線を引き終わったかどうか 
     bool[] just1DeadUnits = new bool[6];//一回だけ死亡判定させる変数(player1=0,player2=1.enemy1=3)
-    int cutExp = 5;//取得する経験値をどれだけ減らすかの変数　ポートフォリオ用に下げていますが、実際は8くらい想定
+    int cutExp = 7;//取得する経験値をどれだけ減らすかの変数　ポートフォリオ用に下げていますが、実際は8くらい想定
     int gainExp;
 
 
@@ -306,8 +307,8 @@ public class BattleSystem : MonoBehaviour
 
             case BattleState.WinTurn:
 
-                CurrentBState = BattleState.WinTurn;
-                SceneManager.LoadScene("AdventureScene");
+                CurrentBState = BattleState.WinTurn;                
+                gameManager.AdventureTurnStart() ;
                 break;
 
         }
@@ -478,7 +479,9 @@ public class BattleSystem : MonoBehaviour
             //敵が誰も生き残っていないのなら
             else if (!Enemy1Alive && !Enemy2Alive && !Enemy3Alive)
             {
-
+                //勝ったらBGMを止めてvictorySEを流す
+                SoundManager.instance.PlayBGM(BGMType.None);
+                SoundManager.instance.PlaySE(SEType.BattleVictory);
                 //playerUnitに経験値を配る
                 GainExp();
                 //ダイヤログメソッドを発動　終わるまで待機

@@ -22,6 +22,7 @@ public class GameStartButton : MonoBehaviour, IPointerClickHandler, IPointerEnte
     //ボタンをクリックしたとき
     public void OnPointerClick(PointerEventData eventData)
     {
+        SoundManager.instance.PlaySE(SEType.Click);//クリック音
         SceneManager.LoadScene("PartySelectScene"); 
         Invoke("DefaultReset", 100f * Time.deltaTime);//クリックした時も少し待って画像をリセット
 

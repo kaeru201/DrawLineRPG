@@ -16,8 +16,8 @@ public class DrawLine : MonoBehaviour
     [SerializeField] bool ready = false;
     public bool Draw { get; set; } = false; //描き始められえるか　DrawIntelligenceから個別にtrueにする変数
 
+    [SerializeField] new AudioSource audio;
     
-
     float currentLineRange;//現在の書いた長さ
     Vector3 lastAddPoint;//最後に追加した点を記憶しておく変数
 
@@ -84,6 +84,11 @@ public class DrawLine : MonoBehaviour
             //左クリック押し続けている間かつisDrawがtrueなら
             if (Input.GetMouseButton(0) && isDrawing)
             {
+                if(!audio.isPlaying)//音がなっていなければ
+                {
+                    audio.Play();//音を出す
+                }
+
                 if (currentLineRange >= MaxLineRange)
                 {
 
@@ -119,6 +124,7 @@ public class DrawLine : MonoBehaviour
                 isDrawing = false;
                 lineRenderer.positionCount = 0;//やりなおし
                 lastAddPoint = startPosition;
+                audio.Stop();//音を消す
             }
 
             //右クリックを押した時
@@ -126,7 +132,7 @@ public class DrawLine : MonoBehaviour
             {
                 ready = true;
                 isDrawing = false;
-
+                audio.Stop();
                 //もう一度右クリックを押したら
 
                 battleSystem.next = true;

@@ -69,6 +69,7 @@ public class EnemyBall : MonoBehaviour
                     int damage = battleSystem.Damage(Power, UnitNum, battleUnit);//battleSystemのDamageメソッドを発動させてダメージ計算をする
                     battleUnit.Unit.HP -= damage;//計算した値分Hpをマイナス
                     battleSystem.dialog.AddDialog(battleUnit.Unit.UnitBase.Name + "は" + damage + " ダメージ受けた");//ダイヤログで何ダメ与えたかを流す
+                    SoundManager.instance.PlaySE(SEType.Damage);//ダメージ音
 
                 }
                 //もしスキルタイプがHealなら
@@ -76,7 +77,8 @@ public class EnemyBall : MonoBehaviour
                 {
                     //当たった相手に回復                
                     battleUnit.Unit.HP += Power;//Power分Hpをプラス
-                    battleSystem.dialog.AddDialog(battleUnit.Unit.UnitBase.Name + "は" + Power + "回復した");//ダイヤログでどれだけ回復したかを流す                     
+                    battleSystem.dialog.AddDialog(battleUnit.Unit.UnitBase.Name + "は" + Power + "回復した");//ダイヤログでどれだけ回復したかを流す
+                    SoundManager.instance.PlaySE(SEType.Heal);//回復音                                                                                     
                 }
                 //もしスキルタイプがSupportなら
                 else if (SkillType == SkillType.Support)

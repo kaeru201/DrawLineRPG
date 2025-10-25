@@ -47,6 +47,8 @@ public class SkillButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        SoundManager.instance.PlaySE(SEType.Click);//クリック音
+
         //もしplayer1Tuneなら
         if (battleSystem.CurrentBState == BattleState.Player1Turn)
         {

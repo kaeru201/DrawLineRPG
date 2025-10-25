@@ -16,9 +16,9 @@ MonoBehaviour:
   description: 
   sprite: {fileID: 21300000, guid: f8cf10555c873a248946475f64aab04c, type: 3}
   type: 2
-  maxHP: 60
-  attack: 50
-  defense: 10
+  maxHP: 157
+  attack: 128
+  defense: 65
   learnableSkills:
   - skillBase: {fileID: 11400000, guid: acf1b6f8762b88a4eaef8dceb673881f, type: 2}
     level: 0

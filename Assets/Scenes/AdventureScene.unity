@@ -913,6 +913,7 @@ GameObject:
   - component: {fileID: 836560994}
   - component: {fileID: 836560998}
   - component: {fileID: 836560997}
+  - component: {fileID: 836561000}
   - component: {fileID: 836560999}
   - component: {fileID: 836560995}
   m_Layer: 5
@@ -949,7 +950,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 836560993}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
@@ -1067,6 +1068,23 @@ MonoBehaviour:
     level: 7
   - unitBase: {fileID: 11400000, guid: 77b647debca9b684eae29a774b8feb5b, type: 2}
     level: 6
+--- !u!114 &836561000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 836560993}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb1fbabafe57a9e41830708c1e833cd6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameManager: {fileID: 1478767352}
+  enemyTeam: {fileID: 836560999}
+  lastBoss: 0
+  enemy1: 0
+  boss1: 1
 --- !u!1 &1316892743
 GameObject:
   m_ObjectHideFlags: 0
@@ -1183,6 +1201,68 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c48b92da3ea3d640aac1ee257f06f54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &1627354554
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3658495066157415799, guid: 7ce2850cc6bf694498fe5437f99b0616, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -26.067575
+      objectReference: {fileID: 0}
+    - target: {fileID: 3658495066157415799, guid: 7ce2850cc6bf694498fe5437f99b0616, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.44260922
+      objectReference: {fileID: 0}
+    - target: {fileID: 3658495066157415799, guid: 7ce2850cc6bf694498fe5437f99b0616, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.03488353
+      objectReference: {fileID: 0}
+    - target: {fileID: 3658495066157415799, guid: 7ce2850cc6bf694498fe5437f99b0616, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3658495066157415799, guid: 7ce2850cc6bf694498fe5437f99b0616, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3658495066157415799, guid: 7ce2850cc6bf694498fe5437f99b0616, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3658495066157415799, guid: 7ce2850cc6bf694498fe5437f99b0616, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3658495066157415799, guid: 7ce2850cc6bf694498fe5437f99b0616, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3658495066157415799, guid: 7ce2850cc6bf694498fe5437f99b0616, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3658495066157415799, guid: 7ce2850cc6bf694498fe5437f99b0616, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4041833573900499995, guid: 7ce2850cc6bf694498fe5437f99b0616, type: 3}
+      propertyPath: m_Name
+      value: SoundManager
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7ce2850cc6bf694498fe5437f99b0616, type: 3}
+--- !u!1 &1627354555 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4041833573900499995, guid: 7ce2850cc6bf694498fe5437f99b0616, type: 3}
+  m_PrefabInstance: {fileID: 1627354554}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1714985927
 GameObject:
   m_ObjectHideFlags: 0
@@ -1194,6 +1274,7 @@ GameObject:
   - component: {fileID: 1714985928}
   - component: {fileID: 1714985932}
   - component: {fileID: 1714985931}
+  - component: {fileID: 1714985934}
   - component: {fileID: 1714985933}
   - component: {fileID: 1714985929}
   m_Layer: 5
@@ -1230,7 +1311,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1714985927}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
@@ -1352,6 +1433,23 @@ MonoBehaviour:
     level: 2
   - unitBase: {fileID: 11400000, guid: 1fdccc5a9baa9a343b8d514b386a4363, type: 2}
     level: 2
+--- !u!114 &1714985934
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1714985927}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb1fbabafe57a9e41830708c1e833cd6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameManager: {fileID: 1478767352}
+  enemyTeam: {fileID: 1714985933}
+  lastBoss: 0
+  enemy1: 1
+  boss1: 0
 --- !u!1 &2011236855
 GameObject:
   m_ObjectHideFlags: 0
@@ -1363,6 +1461,7 @@ GameObject:
   - component: {fileID: 2011236856}
   - component: {fileID: 2011236859}
   - component: {fileID: 2011236858}
+  - component: {fileID: 2011236861}
   - component: {fileID: 2011236860}
   - component: {fileID: 2011236857}
   m_Layer: 5
@@ -1399,7 +1498,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2011236855}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
@@ -1455,6 +1554,18 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1627354555}
+        m_TargetAssemblyTypeName: EnemyTeam, Assembly-CSharp
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1517,6 +1628,23 @@ MonoBehaviour:
     level: 1
   - unitBase: {fileID: 11400000, guid: b9d5481d461e24d4086bd28e8377fea4, type: 2}
     level: 1
+--- !u!114 &2011236861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2011236855}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb1fbabafe57a9e41830708c1e833cd6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameManager: {fileID: 1478767352}
+  enemyTeam: {fileID: 2011236860}
+  lastBoss: 0
+  enemy1: 1
+  boss1: 0
 --- !u!1001 &4827905900006559744
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1583,3 +1711,4 @@ SceneRoots:
   - {fileID: 1316892747}
   - {fileID: 404229679}
   - {fileID: 4827905900006559744}
+  - {fileID: 1627354554}
