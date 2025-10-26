@@ -384,6 +384,7 @@ public class BattleSystem : MonoBehaviour
             enemyDraw[0].LineColor(intelligence.enemySkillTypes[0]);//SkillTypeに応じた線を描く時の色を変える
             enemyDraw[0].DrawEnemy(intelligence.enemySkillTypes[0]);//線を描く時にSkillTypeの情報も渡す            
             dialog.AddDialog(enemy1Unit.Unit.UnitBase.Name + "は" + intelligence.enemySkillNames[0] + "を放った");//何のスキルを撃ったかをダイヤログで表示
+            SoundManager.instance.PlaySE(SEType.Click);//選択音
             yield return new WaitForSeconds(1f);//少し待つ
         }
         if (Enemy2Alive)
@@ -391,6 +392,7 @@ public class BattleSystem : MonoBehaviour
             enemyDraw[1].LineColor(intelligence.enemySkillTypes[1]);
             enemyDraw[1].DrawEnemy(intelligence.enemySkillTypes[1]);
             dialog.AddDialog(enemy2Unit.Unit.UnitBase.Name + "は" + intelligence.enemySkillNames[1] + "を放った");
+            SoundManager.instance.PlaySE(SEType.Click);//選択音
             yield return new WaitForSeconds(1f);
         }
         if (Enemy3Alive)
@@ -398,6 +400,7 @@ public class BattleSystem : MonoBehaviour
             enemyDraw[2].LineColor(intelligence.enemySkillTypes[2]);
             enemyDraw[2].DrawEnemy(intelligence.enemySkillTypes[2]);
             dialog.AddDialog(enemy3Unit.Unit.UnitBase.Name + "は" + intelligence.enemySkillNames[2] + "を放った");
+            SoundManager.instance.PlaySE(SEType.Click);//選択音
             yield return new WaitForSeconds(1f);
         }
         yield return new WaitForSeconds(1f);//ちょっと待ってから
