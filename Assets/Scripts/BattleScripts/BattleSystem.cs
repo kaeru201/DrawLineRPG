@@ -592,33 +592,39 @@ public class BattleSystem : MonoBehaviour
 
 
     //ボールが誰かに当たった時のダメージ計算をするメソッド(AttackBallかRnemyBallで発動)
-    public int Damage(int myPower, int UnitNum, BattleUnit collisionUnit)
+    public int Damage(int skillPower, int UnitNum, BattleUnit collisionUnit)
     {
         int damage = 0;
 
         if (UnitNum == 1)//自分がPlaye1のボールだった時
         {
-            damage = (myPower * player1Unit.Unit.Attack) / collisionUnit.Unit.Defense;//スキル火力 * 自分の攻撃力 / 相手の防御力
+            //damage = (skillPower * player1Unit.Unit.Attack) / collisionUnit.Unit.Defense;//スキル火力 * 自分の攻撃力 / 相手の防御力
+            damage = (player1Unit.Unit.Level * 2 / 5 + 2) * skillPower * player1Unit.Unit.Attack / collisionUnit.Unit.Defense / 50 + 2;
         }
         else if (UnitNum == 2)//自分がPlayeのボールだった時
         {
-            damage = (myPower * player2Unit.Unit.Attack) / collisionUnit.Unit.Defense;
+            //damage = (skillPower * player2Unit.Unit.Attack) / collisionUnit.Unit.Defense;
+            damage = (player2Unit.Unit.Level * 2 / 5 + 2) * skillPower * player2Unit.Unit.Attack / collisionUnit.Unit.Defense / 50 + 2;
         }
         else if (UnitNum == 3)//自分がPlaye3のボールだった時
         {
-            damage = (myPower * player3Unit.Unit.Attack) / collisionUnit.Unit.Defense;
+            //damage = (skillPower * player3Unit.Unit.Attack) / collisionUnit.Unit.Defense;
+            damage = (player3Unit.Unit.Level * 2 / 5 + 2) * skillPower * player3Unit.Unit.Attack / collisionUnit.Unit.Defense / 50 + 2;
         }
         else if (UnitNum == 4)//自分がEnemy1のボールだった時
         {
-            damage = (myPower * enemy1Unit.Unit.Attack) / collisionUnit.Unit.Defense;
+            // damage = (skillPower * enemy1Unit.Unit.Attack) / collisionUnit.Unit.Defense;
+            damage = (enemy1Unit.Unit.Level * 2 / 5 + 2) * skillPower * enemy1Unit.Unit.Attack / collisionUnit.Unit.Defense / 50 + 2;
         }
         else if (UnitNum == 5)//自分がEnemy2のボールだった時
         {
-            damage = (myPower * enemy2Unit.Unit.Attack) / collisionUnit.Unit.Defense;
+            //damage = (skillPower * enemy2Unit.Unit.Attack) / collisionUnit.Unit.Defense;
+            damage = (enemy2Unit.Unit.Level * 2 / 5 + 2) * skillPower * enemy2Unit.Unit.Attack / collisionUnit.Unit.Defense / 50 + 2;
         }
         else if (UnitNum == 6)//自分がEnemy3のボールだった時
         {
-            damage = (myPower * enemy3Unit.Unit.Attack) / collisionUnit.Unit.Defense;
+            //damage = (skillPower * enemy3Unit.Unit.Attack) / collisionUnit.Unit.Defense;
+            damage = (enemy3Unit.Unit.Level * 2 / 5 + 2) * skillPower * enemy3Unit.Unit.Attack / collisionUnit.Unit.Defense / 50 + 2;
         }
 
         return damage;

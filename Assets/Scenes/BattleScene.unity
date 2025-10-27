@@ -1881,8 +1881,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -518.56, y: -3.4824}
-  m_SizeDelta: {x: 236.49, y: 761.03}
+  m_AnchoredPosition: {x: -518.56, y: 52.66}
+  m_SizeDelta: {x: 236.49, y: 648.74}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &177901995
 MonoBehaviour:
@@ -1901,7 +1901,7 @@ MonoBehaviour:
   endDialogs: []
   startPosition: {x: 0, y: 260, z: 0}
   dialogSpece: 110
-  dialogLimit: 6
+  dialogLimit: 5
 --- !u!114 &177901996
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4033,6 +4033,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51cbe614ab4dd044b89d56552ec40a10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  prefabDamage: {fileID: 5015108225528898245, guid: 529822967b3a2fe438df08c813866e4f, type: 3}
+  prefabHeal: {fileID: 5015108225528898245, guid: 2e42c7598c9f803429e6ff2658d13531, type: 3}
 --- !u!1 &568625175
 GameObject:
   m_ObjectHideFlags: 0
@@ -5333,6 +5335,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51cbe614ab4dd044b89d56552ec40a10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  prefabDamage: {fileID: 5015108225528898245, guid: 529822967b3a2fe438df08c813866e4f, type: 3}
+  prefabHeal: {fileID: 5015108225528898245, guid: 2e42c7598c9f803429e6ff2658d13531, type: 3}
 --- !u!1 &931761811
 GameObject:
   m_ObjectHideFlags: 0
@@ -6559,6 +6563,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51cbe614ab4dd044b89d56552ec40a10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  prefabDamage: {fileID: 5015108225528898245, guid: 529822967b3a2fe438df08c813866e4f, type: 3}
+  prefabHeal: {fileID: 5015108225528898245, guid: 2e42c7598c9f803429e6ff2658d13531, type: 3}
 --- !u!1 &1209867722
 GameObject:
   m_ObjectHideFlags: 0
@@ -9787,6 +9793,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51cbe614ab4dd044b89d56552ec40a10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  prefabDamage: {fileID: 5015108225528898245, guid: 529822967b3a2fe438df08c813866e4f, type: 3}
+  prefabHeal: {fileID: 5015108225528898245, guid: 2e42c7598c9f803429e6ff2658d13531, type: 3}
 --- !u!1 &1930531984
 GameObject:
   m_ObjectHideFlags: 0
@@ -10354,6 +10362,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51cbe614ab4dd044b89d56552ec40a10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  prefabDamage: {fileID: 5015108225528898245, guid: 529822967b3a2fe438df08c813866e4f, type: 3}
+  prefabHeal: {fileID: 5015108225528898245, guid: 2e42c7598c9f803429e6ff2658d13531, type: 3}
 --- !u!1 &2009165462
 GameObject:
   m_ObjectHideFlags: 0
@@ -10852,6 +10862,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51cbe614ab4dd044b89d56552ec40a10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  prefabDamage: {fileID: 5015108225528898245, guid: 529822967b3a2fe438df08c813866e4f, type: 3}
+  prefabHeal: {fileID: 5015108225528898245, guid: 2e42c7598c9f803429e6ff2658d13531, type: 3}
 --- !u!1 &2099541917
 GameObject:
   m_ObjectHideFlags: 0

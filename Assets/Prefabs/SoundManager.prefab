@@ -56,9 +56,8 @@ MonoBehaviour:
   bgm_enemy1Loop: {fileID: 8300000, guid: 37c18feff192c834e8f1ba62eee33d45, type: 3}
   bgm_boss1Intro: {fileID: 8300000, guid: e3a509395d7203c438e7dda08c29617b, type: 3}
   bgm_boss1Loop: {fileID: 8300000, guid: e7a830b23f617114d8574c612fe38318, type: 3}
-  se_click: {fileID: 8300000, guid: 20f78c6f7104a7c4eade6c2a7860580b, type: 3}
+  se_click: {fileID: 8300000, guid: cfcf41263c176d8409ed76663d978538, type: 3}
   se_battleStart: {fileID: 8300000, guid: 24a84a8f76fb2914baad4064dbff36a2, type: 3}
-  se_drawLine: {fileID: 8300000, guid: a9432c1990ce3e944b20def500f50e23, type: 3}
   se_damage: {fileID: 8300000, guid: d2ccb7dbf969b3b4280ef573a6d9117d, type: 3}
   se_heal: {fileID: 8300000, guid: 29a9d82b463c77f4284215ab20a68a07, type: 3}
   se_battleVictory: {fileID: 8300000, guid: 16055046b140a0e43a292749692f523b, type: 3}

@@ -1730,11 +1730,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyTeams:
   - unitBase: {fileID: 11400000, guid: 77b647debca9b684eae29a774b8feb5b, type: 2}
-    level: 1
+    level: 3
   - unitBase: {fileID: 11400000, guid: b9d5481d461e24d4086bd28e8377fea4, type: 2}
-    level: 1
+    level: 3
   - unitBase: {fileID: 11400000, guid: b9d5481d461e24d4086bd28e8377fea4, type: 2}
-    level: 1
+    level: 3
 --- !u!114 &2011236861
 MonoBehaviour:
   m_ObjectHideFlags: 0

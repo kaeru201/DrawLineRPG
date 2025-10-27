@@ -9,7 +9,7 @@ public class AttckBall : MonoBehaviour
 
     LineRenderer lineRenderer;
 
-    
+
 
     //[SerializeField]  BattleSystem battleSystem;
 
@@ -31,7 +31,7 @@ public class AttckBall : MonoBehaviour
         Speed = 0.5f / Speed;//Speedが大きければ大きいほどボールを速く
         battleSystem.AliveBalls.Add(gameObject);//AliveBallリストにこのオブジェクトを追加
         StartCoroutine(MoveBall());
-       // dialog = battleSystem.Dialog.GetComponent<Dialog>();
+        // dialog = battleSystem.Dialog.GetComponent<Dialog>();
 
     }
 
@@ -79,16 +79,19 @@ public class AttckBall : MonoBehaviour
                     //当たった相手にダメージ               
                     int damage = battleSystem.Damage(Power, UnitNum, battleUnit);//battleSystemのDamageメソッドを発動させてダメージ計算をする
                     battleUnit.Unit.HP -= damage;//計算した値分Hpをマイナス
-                    battleSystem.dialog.AddDialog(battleUnit.Unit.UnitBase.Name + "は" +  damage + " ダメージ受けた"　);//ダイヤログで何ダメ与えたかを流す
+                    battleUnit.TakeDamage(damage);//何ダメ―ジだったかを当たった敵の場所に表示
+                    battleSystem.dialog.AddDialog(battleUnit.Unit.UnitBase.Name + "は" + damage + " ダメージ受けた");//ダイヤログで何ダメ与えたかを流す
                     SoundManager.instance.PlaySE(SEType.Damage);//ダメージ音
                 }
 
                 //もしスキルタイプがHealなら
                 else if (SkillType == SkillType.Heal)
                 {
-                     //当たった相手に回復
-                     battleUnit.Unit.HP += Power;//Hpをプラス
-                    battleSystem.dialog.AddDialog(battleUnit.Unit.UnitBase.Name + "は" + Power + "回復した");//ダイヤログでどれだけ回復したかを流す
+                    //当たった相手に回復
+                    int heal = Power / 5;
+                    battleUnit.Unit.HP += heal;//Hpをプラス
+                    battleUnit.TakeHeal(heal);//何回復だったかを当たった敵の場所に表示
+                    battleSystem.dialog.AddDialog(battleUnit.Unit.UnitBase.Name + "は" + heal + "回復した");//ダイヤログでどれだけ回復したかを流す
                     SoundManager.instance.PlaySE(SEType.Heal);//回復音
                 }
 
