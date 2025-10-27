@@ -20,5 +20,5 @@ MonoBehaviour:
   attack: 64
   defense: 70
   learnableSkills:
-  - skillBase: {fileID: 11400000, guid: 7220b50cc5e0b1240b0628eca1b05c57, type: 2}
-    level: 1
+  - skillBase: {fileID: 11400000, guid: d8bde1b0ab6cb74479f1fa82f6169484, type: 2}
+    level: 0

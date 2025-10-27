@@ -10,21 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6e14ec13d82b61941968d61c85626b59, type: 3}
-  m_Name: LightArmorLv2
+  m_Name: DragonZombieLv3
   m_EditorClassIdentifier: 
-  name: "\u5149\u306E\u5DE8\u93A7"
-  description: "\u3072\u304B\u308A\u306E\u304D\u3087\u304C\u3044"
-  sprite: {fileID: 21300000, guid: 7d95ad09bc4b617439b6cb60cd70bd4e, type: 3}
-  type: 4
-  maxHP: 450
-  attack: 93
-  defense: 102
+  name: "\u30C9\u30E9\u30B4\u30F3\u30BE\u30F3\u30D3"
+  description: 
+  sprite: {fileID: 21300000, guid: 0ac96441c79ab3b46947fba6a689a03b, type: 3}
+  type: 5
+  maxHP: 360
+  attack: 150
+  defense: 150
   learnableSkills:
   - skillBase: {fileID: 11400000, guid: d8bde1b0ab6cb74479f1fa82f6169484, type: 2}
+    level: 0
+  - skillBase: {fileID: 11400000, guid: 3aa82eb7faa4cd14b98b184e8d3055e1, type: 2}
     level: 2
-  - skillBase: {fileID: 11400000, guid: 98efd60c4b75d2043add0c56d0f973fa, type: 2}
-    level: 6
-  - skillBase: {fileID: 11400000, guid: 7220b50cc5e0b1240b0628eca1b05c57, type: 2}
-    level: 8
   - skillBase: {fileID: 11400000, guid: 0ef571b3f2375254daedfff567c6935a, type: 2}
+    level: 9
+  - skillBase: {fileID: 11400000, guid: 730a40e4a2c2d0643b1bac2b9ff64594, type: 2}
     level: 15
+  - skillBase: {fileID: 11400000, guid: 33d283f219a74f54d8395a310f7ab04f, type: 2}
+    level: 60

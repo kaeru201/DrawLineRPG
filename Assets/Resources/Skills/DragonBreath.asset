@@ -10,13 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d8766d9520f195b4280a611dd2b6fc01, type: 3}
-  m_Name: TestSkill 6
+  m_Name: DragonBreath
   m_EditorClassIdentifier: 
-  name: "\u306A\u3050\u308B 6"
-  description: "\u306A\u3050\u308B6"
-  skilType: 0
-  power: 10
-  penetrationPower: 1
-  maxLineRange: 5
-  speed: 50
+  name: "\u30C9\u30E9\u30B4\u30F3\u30D6\u30EC\u30B9"
+  description: "\u30BF\u30A4\u30D7:\u653B\u6483  \u3000 \u5A01\u529B:70 \u8CAB\u901A\u529B:6
+    \n\u8DDD\u96E2:20 \u901F\u3055:9 \u653B\u6483\u56DE\u6570:1\n\n\u30C9\u30E9\u30B4\u30F3\u306E\u606F"
+  skillType: 0
+  power: 70
+  penetrationPower: 6
+  maxLineRange: 20
+  speed: 9
   numberAttacks: 1

@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d8766d9520f195b4280a611dd2b6fc01, type: 3}
-  m_Name: HealMagic
+  m_Name: EggAttackLv2
   m_EditorClassIdentifier: 
-  name: "\u4E00\u822C\u56DE\u5FA9\u9B54\u6CD5"
-  description: "\u30BF\u30A4\u30D7:\u56DE\u5FA9  \u3000 \u5A01\u529B:30 \u8CAB\u901A\u529B:1\n\u8DDD\u96E2:20
-    \u901F\u3055:15 \u653B\u6483\u56DE\u6570:1\n\n\u5473\u65B9\u3092\u56DE\u5FA9"
-  skillType: 1
-  power: 30
-  penetrationPower: 1
+  name: "\u305F\u307E\u3054\u3067\u5272\u308B"
+  description: "\u30BF\u30A4\u30D7:\u653B\u6483  \u3000 \u5A01\u529B:80 \u8CAB\u901A\u529B:1
+    \n\u8DDD\u96E2:20 \u901F\u3055:16 \u653B\u6483\u56DE\u6570:1\n\n\u305F\u307E\u3054\u3067\u3042\u308B\u3053\u3068\u3092\u6700\u5927\u9650\u306B\u6D3B\u304B\u3057\u305F\u7279\u653B\u6280"
+  skillType: 0
+  power: 80
+  penetrationPower: 3
   maxLineRange: 20
-  speed: 15
+  speed: 16
   numberAttacks: 1

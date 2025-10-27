@@ -77,7 +77,7 @@ public class EnemyBall : MonoBehaviour
                 else if (SkillType == SkillType.Heal)
                 {
                     //当たった相手に回復
-                    int heal = Power / 5;
+                    int heal = Power;
                     battleUnit.Unit.HP += heal;//Hpをプラス
                     battleUnit.TakeHeal(heal);//何回復だったかを当たった敵の場所に表示
                     battleSystem.dialog.AddDialog(battleUnit.Unit.UnitBase.Name + "は" + heal + "回復した");//ダイヤログでどれだけ回復したかを流す

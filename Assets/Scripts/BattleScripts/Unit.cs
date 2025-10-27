@@ -45,16 +45,26 @@ public class Unit
     //レベルアップするかどうか
     public bool LevelUP()
     {
-        if (Exp > UnitBase.GetExpForLevel(Level + 1))//もしレベルアップするなら
-        {
-            Level++;//レベルを+1
-            if(Exp >UnitBase.GetExpForLevel(Level+ 1)) Level++;
-                               
+        bool levelUP = false;
 
-            return true;
+        while(Exp >= UnitBase.GetExpForLevel(Level +  1))
+        {
+            Level++;
+            levelUP = true;
         }
 
-        return false;
+        return levelUP;
+
+        //if (Exp > UnitBase.GetExpForLevel(Level + 1))//もしレベルアップするなら
+        //{
+        //    Level++;//レベルを+1
+        //    if(Exp >UnitBase.GetExpForLevel(Level+ 1)) Level++;
+                               
+
+        //    return true;
+        //}
+
+        //return false;
     }
 
     //レベルに応じたステータスを返すプロパティ

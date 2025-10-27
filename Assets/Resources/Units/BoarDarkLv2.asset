@@ -10,21 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6e14ec13d82b61941968d61c85626b59, type: 3}
-  m_Name: LightArmorLv2
+  m_Name: BoarDarkLv2
   m_EditorClassIdentifier: 
-  name: "\u5149\u306E\u5DE8\u93A7"
-  description: "\u3072\u304B\u308A\u306E\u304D\u3087\u304C\u3044"
-  sprite: {fileID: 21300000, guid: 7d95ad09bc4b617439b6cb60cd70bd4e, type: 3}
-  type: 4
-  maxHP: 450
-  attack: 93
-  defense: 102
+  name: "\u95C7\u306E\u30A4\u30CE\u30B7\u30B7"
+  description: 
+  sprite: {fileID: 21300000, guid: 627ae9d73b9f34f49a565f07d814d3a6, type: 3}
+  type: 5
+  maxHP: 360
+  attack: 130
+  defense: 70
   learnableSkills:
   - skillBase: {fileID: 11400000, guid: d8bde1b0ab6cb74479f1fa82f6169484, type: 2}
-    level: 2
-  - skillBase: {fileID: 11400000, guid: 98efd60c4b75d2043add0c56d0f973fa, type: 2}
-    level: 6
+    level: 0
   - skillBase: {fileID: 11400000, guid: 7220b50cc5e0b1240b0628eca1b05c57, type: 2}
-    level: 8
+    level: 5
   - skillBase: {fileID: 11400000, guid: 0ef571b3f2375254daedfff567c6935a, type: 2}
-    level: 15
+    level: 14
+  - skillBase: {fileID: 11400000, guid: c7272fc2f2641624eb98a77006db9876, type: 2}
+    level: 20
+  - skillBase: {fileID: 11400000, guid: 2b3abcc3c25201544b5c2f537d5e14dc, type: 2}
+    level: 22

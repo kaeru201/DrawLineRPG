@@ -73,7 +73,7 @@ public class BattleSystem : MonoBehaviour
 
     public bool next = false;//線を引き終わったかどうか 
     bool[] just1DeadUnits = new bool[6];//一回だけ死亡判定させる変数(player1=0,player2=1.enemy1=3)
-    int cutExp = 7;//取得する経験値をどれだけ減らすかの変数　ポートフォリオ用に下げていますが、実際は8くらい想定
+    int cutExp = 1;//取得する経験値をどれだけ減らすかの変数　ポートフォリオ用に下げていますが、実際は8くらい想定
     int gainExp;
 
 
@@ -524,12 +524,8 @@ public class BattleSystem : MonoBehaviour
         //PlayerのExpに代入する
         player1Unit.Unit.Exp += gainExp;
         player2Unit.Unit.Exp += gainExp;
-        player3Unit.Unit.Exp += gainExp;
-        //対戦が終了したらダイヤログが出てきてどれだけ経験値を得たか
-
-        // Debug.Log(gainExp);
+        player3Unit.Unit.Exp += gainExp;               
                        
-
     }
 
     //ゲームエンドダイヤログを表示して、Listの分だけ流す

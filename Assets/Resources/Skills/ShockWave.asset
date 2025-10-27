@@ -10,13 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d8766d9520f195b4280a611dd2b6fc01, type: 3}
-  m_Name: TestSkill 1
+  m_Name: ShockWave
   m_EditorClassIdentifier: 
-  name: "\u306A\u3050\u308B 5m"
-  description: "\u306A\u3050\u308B1"
-  skilType: 1
-  power: 10
-  penetrationPower: 1
-  maxLineRange: 5
-  speed: 75
-  numberAttacks: 1
+  name: "\u885D\u6483\u6CE2"
+  description: "\u30BF\u30A4\u30D7:\u653B\u6483  \u3000 \u5A01\u529B:40 \u8CAB\u901A\u529B:2\n\u8DDD\u96E2:10\u901F\u3055:10
+    \u653B\u6483\u56DE\u6570:2\n\n\u885D\u6483\u7684"
+  skillType: 0
+  power: 40
+  penetrationPower: 2
+  maxLineRange: 10
+  speed: 10
+  numberAttacks: 2
