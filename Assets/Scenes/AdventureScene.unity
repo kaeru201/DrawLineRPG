@@ -420,7 +420,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Boss1 Lv:10
+  m_text: Boss1 Lv:13
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1746,16 +1746,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyTeams:
-  - unitBase: {fileID: 11400000, guid: 6165fbd9b0b43b6468716737db8980e5, type: 2}
-    level: 7
-  - unitBase: {fileID: 11400000, guid: 9df5febd6c80be449a038dd75bdc44a7, type: 2}
-    level: 7
-  - unitBase: {fileID: 11400000, guid: 106db747e613e1c419ca1534fc15f4ae, type: 2}
-    level: 7
-  - unitBase: {fileID: 11400000, guid: 31571bce34da7b341bc70cd0951423d0, type: 2}
-    level: 7
-  - unitBase: {fileID: 11400000, guid: 1fdccc5a9baa9a343b8d514b386a4363, type: 2}
-    level: 7
+  - unitBase: {fileID: 11400000, guid: e87249aba69b98341a661fd6351c0040, type: 2}
+    level: 20
+  - unitBase: {fileID: 11400000, guid: 87507e4b690c8b1459e12bf0eb96c480, type: 2}
+    level: 22
+  - unitBase: {fileID: 11400000, guid: 35b45d90265310248aad7b31e4f7bada, type: 2}
+    level: 19
 --- !u!114 &1327621946
 MonoBehaviour:
   m_ObjectHideFlags: 0

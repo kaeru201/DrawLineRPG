@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
 {
     static GameState currentState;
 
-    public bool LastBattle { get; set; } = false; 
+    public static bool LastBattle { get; set; } = false; 
 
     void Start()
     {
@@ -41,8 +41,9 @@ public class GameManager : MonoBehaviour
         if (LastBattle)
         {
             currentState = GameState.GameClear;
-            Debug.Log("ゲームクリア!");
-            SceneManager.LoadScene("TitleScene");
+            Debug.Log("ゲームクリア!");            
+            SceneManager.LoadScene("ClearScene");
+            SoundManager.instance.PlaySE(SEType.BattleVictory);
         }
         else 
         {

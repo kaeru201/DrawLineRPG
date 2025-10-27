@@ -10,23 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6e14ec13d82b61941968d61c85626b59, type: 3}
-  m_Name: LightArmor
+  m_Name: FairyQueenLv2
   m_EditorClassIdentifier: 
-  name: "\u5149\u306E\u30A2\u30FC\u30DE\u30FC"
+  name: "\u5996\u7CBE\u306E\u5973\u738B"
   description: 
-  sprite: {fileID: 21300000, guid: 0ba03cc1adf0864489a32e9f27f20af8, type: 3}
+  sprite: {fileID: 21300000, guid: 50b783edd493f944591cb79a0460d24d, type: 3}
   type: 4
-  maxHP: 300
-  attack: 70
-  defense: 80
+  maxHP: 180
+  attack: 105
+  defense: 75
   learnableSkills:
   - skillBase: {fileID: 11400000, guid: d8bde1b0ab6cb74479f1fa82f6169484, type: 2}
     level: 0
-  - skillBase: {fileID: 11400000, guid: 7220b50cc5e0b1240b0628eca1b05c57, type: 2}
-    level: 5
-  - skillBase: {fileID: 11400000, guid: 98efd60c4b75d2043add0c56d0f973fa, type: 2}
-    level: 7
-  - skillBase: {fileID: 11400000, guid: 0ef571b3f2375254daedfff567c6935a, type: 2}
-    level: 16
+  - skillBase: {fileID: 11400000, guid: 08e0b5d56eae3944bba7af8356ff204a, type: 2}
+    level: 8
   - skillBase: {fileID: 11400000, guid: 2b3abcc3c25201544b5c2f537d5e14dc, type: 2}
+    level: 20
+  - skillBase: {fileID: 11400000, guid: 8d7df7c80c4f9cb48adbef8c16029d1e, type: 2}
     level: 25

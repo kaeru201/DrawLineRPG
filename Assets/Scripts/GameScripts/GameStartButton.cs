@@ -12,6 +12,8 @@ public class GameStartButton : MonoBehaviour, IPointerClickHandler, IPointerEnte
     [SerializeField] Image image;
     [SerializeField] RectTransform textTransform;
 
+    [SerializeField] string nextScene;//押したときどのシーンに行くか(インスペクター上で設定)
+
     void Start()
     {
         image = GetComponent<Image>();
@@ -23,7 +25,7 @@ public class GameStartButton : MonoBehaviour, IPointerClickHandler, IPointerEnte
     public void OnPointerClick(PointerEventData eventData)
     {
         SoundManager.instance.PlaySE(SEType.Click);//クリック音
-        SceneManager.LoadScene("PartySelectScene"); 
+        SceneManager.LoadScene(nextScene); 
         Invoke("DefaultReset", 100f * Time.deltaTime);//クリックした時も少し待って画像をリセット
 
     }

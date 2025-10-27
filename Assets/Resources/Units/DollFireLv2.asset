@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e14ec13d82b61941968d61c85626b59, type: 3}
+  m_Name: DollFireLv2
+  m_EditorClassIdentifier: 
+  name: "\u708E\u4EBA\u5F62"
+  description: 
+  sprite: {fileID: 21300000, guid: 40a96ccabe9e5d647bc6d54a315bc8b4, type: 3}
+  type: 0
+  maxHP: 300
+  attack: 70
+  defense: 80
+  learnableSkills:
+  - skillBase: {fileID: 11400000, guid: 1d60013675a0d8145a966dfb90325e33, type: 2}
+    level: 0

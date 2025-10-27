@@ -565,7 +565,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 8eb69fafe4f719b49bb2dd1a7358aaaa, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 43a7d98bd4222b64e933596512dc09ad, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -701,7 +701,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 7066e0747291df44fa5c2bf93bee3a6e, type: 3}
+  m_Sprite: {fileID: 3631505275917789986, guid: 78923a06ed21cb94285095240ee854f9, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -732,7 +732,7 @@ GameObject:
   - component: {fileID: 1070127471}
   - component: {fileID: 1070127473}
   m_Layer: 5
-  m_Name: StartButton
+  m_Name: TitleButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -812,7 +812,7 @@ MonoBehaviour:
   defaultImage: {fileID: 21300000, guid: 2be7b70e984b51444aca9c12ae4723a7, type: 3}
   image: {fileID: 1070127471}
   textTransform: {fileID: 1878625485}
-  nextScene: PartySelectScene
+  nextScene: TitleScene
 --- !u!1 &1739858899
 GameObject:
   m_ObjectHideFlags: 0
@@ -870,7 +870,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "DrawLineRPG(\u4EEE)"
+  m_text: GameClear!!!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b4cea9555dce74f499716de05ecf315c, type: 2}
   m_sharedMaterial: {fileID: -5130981147058709841, guid: b4cea9555dce74f499716de05ecf315c, type: 2}
@@ -879,8 +879,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278517504
+  m_fontColor: {r: 0, g: 1, b: 0.016809225, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -897,13 +897,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 96.5
-  m_fontSizeBase: 96.5
+  m_fontSize: 127.6
+  m_fontSizeBase: 127.6
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 2
+  m_fontStyle: 3
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -1006,7 +1006,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Start
+  m_text: "Title\u3078\u623B\u308B"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 34044430d0956694c99af6fc88cae2f5, type: 2}
   m_sharedMaterial: {fileID: -5130981147058709841, guid: 34044430d0956694c99af6fc88cae2f5, type: 2}

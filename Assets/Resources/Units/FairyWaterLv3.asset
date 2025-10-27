@@ -10,21 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6e14ec13d82b61941968d61c85626b59, type: 3}
-  m_Name: GlassEgg
+  m_Name: FairyWaterLv3
   m_EditorClassIdentifier: 
-  name: "\u8349\u306E\u305F\u307E\u3054"
-  description: "\u304F\u3055\u306E\u305F\u307E\u3054"
-  sprite: {fileID: 21300000, guid: 7d191fae8e7fba14284166a92722a890, type: 3}
-  type: 3
-  maxHP: 220
+  name: "\u6C34\u306E\u5996\u7CBE"
+  description: 
+  sprite: {fileID: 21300000, guid: a24ddceea99468b4d9d0a7f89ce02a3f, type: 3}
+  type: 0
+  maxHP: 200
   attack: 80
-  defense: 70
+  defense: 80
   learnableSkills:
-  - skillBase: {fileID: 11400000, guid: d8bde1b0ab6cb74479f1fa82f6169484, type: 2}
+  - skillBase: {fileID: 11400000, guid: 7220b50cc5e0b1240b0628eca1b05c57, type: 2}
     level: 0
-  - skillBase: {fileID: 11400000, guid: 9a6b1d295b62f934f9361df96470253b, type: 2}
-    level: 7
-  - skillBase: {fileID: 11400000, guid: 98793ec954ccddf49b257358e83c25b2, type: 2}
-    level: 15
+  - skillBase: {fileID: 11400000, guid: 41e280fc34b8a40488096551515730f8, type: 2}
+    level: 10
   - skillBase: {fileID: 11400000, guid: 535893718a16cd04987dab402dae1421, type: 2}
     level: 19

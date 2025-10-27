@@ -10,23 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6e14ec13d82b61941968d61c85626b59, type: 3}
-  m_Name: LightArmor
+  m_Name: GolemGrassLv3
   m_EditorClassIdentifier: 
-  name: "\u5149\u306E\u30A2\u30FC\u30DE\u30FC"
+  name: "\u8349\u306E\u30B4\u30FC\u30EC\u30E0"
   description: 
-  sprite: {fileID: 21300000, guid: 0ba03cc1adf0864489a32e9f27f20af8, type: 3}
-  type: 4
+  sprite: {fileID: 21300000, guid: 47f75cb2b5028cf4f8361c5591792e2f, type: 3}
+  type: 0
   maxHP: 300
-  attack: 70
-  defense: 80
+  attack: 60
+  defense: 100
   learnableSkills:
   - skillBase: {fileID: 11400000, guid: d8bde1b0ab6cb74479f1fa82f6169484, type: 2}
     level: 0
-  - skillBase: {fileID: 11400000, guid: 7220b50cc5e0b1240b0628eca1b05c57, type: 2}
-    level: 5
-  - skillBase: {fileID: 11400000, guid: 98efd60c4b75d2043add0c56d0f973fa, type: 2}
-    level: 7
   - skillBase: {fileID: 11400000, guid: 0ef571b3f2375254daedfff567c6935a, type: 2}
-    level: 16
-  - skillBase: {fileID: 11400000, guid: 2b3abcc3c25201544b5c2f537d5e14dc, type: 2}
-    level: 25
+    level: 12
+  - skillBase: {fileID: 11400000, guid: 98efd60c4b75d2043add0c56d0f973fa, type: 2}
+    level: 20
