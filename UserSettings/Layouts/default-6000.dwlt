@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1920
     height: 989
   m_ShowMode: 4
-  m_Title: Hierarchy
+  m_Title: Project
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -120,7 +120,7 @@ MonoBehaviour:
   m_MinSize: {x: 400, y: 100}
   m_MaxSize: {x: 32384, y: 16192}
   vertical: 0
-  controlID: 76
+  controlID: 7659
   draggingID: 0
 --- !u!114 &6
 MonoBehaviour:
@@ -146,7 +146,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 16
+  controlID: 7530
   draggingID: 0
 --- !u!114 &7
 MonoBehaviour:
@@ -198,7 +198,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 50}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 25
+  controlID: 7531
   draggingID: 0
 --- !u!114 &9
 MonoBehaviour:
@@ -276,7 +276,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 100}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 77
+  controlID: 7583
   draggingID: 0
 --- !u!114 &12
 MonoBehaviour:
@@ -297,8 +297,8 @@ MonoBehaviour:
     y: 0
     width: 477
     height: 409
-  m_MinSize: {x: 202, y: 226}
-  m_MaxSize: {x: 4002, y: 4026}
+  m_MinSize: {x: 201, y: 226}
+  m_MaxSize: {x: 4001, y: 4026}
   m_ActualView: {fileID: 18}
   m_Panes:
   - {fileID: 18}
@@ -379,7 +379,7 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 0
-    y: 24
+    y: 652
     width: 589
     height: 334
   m_SerializedDataModeController:
@@ -480,7 +480,7 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 0
-    y: 24
+    y: 79
     width: 1037
     height: 547
   m_SerializedDataModeController:
@@ -1065,9 +1065,9 @@ MonoBehaviour:
   m_AudioPlay: 0
   m_DebugDrawModesUseInteractiveLightBakingData: 0
   m_Position:
-    m_Target: {x: -21.972012, y: 1.1209605, z: 7.633618}
+    m_Target: {x: 342.26245, y: 392.23282, z: 1.7703841}
     speed: 2
-    m_Value: {x: -21.972012, y: 1.1209605, z: 7.633618}
+    m_Value: {x: 342.26245, y: 392.23282, z: 1.7703841}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1117,9 +1117,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 4.652026
+    m_Target: 569.324
     speed: 2
-    m_Value: 4.652026
+    m_Value: 569.324
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -1174,8 +1174,8 @@ MonoBehaviour:
     m_TextWithWhitespace: "Console\u200B"
   m_Pos:
     serializedVersion: 2
-    x: 591
-    y: 24
+    x: 590
+    y: 652
     width: 446
     height: 334
   m_SerializedDataModeController:
@@ -1210,8 +1210,8 @@ MonoBehaviour:
     m_TextWithWhitespace: "Hierarchy\u200B"
   m_Pos:
     serializedVersion: 2
-    x: 1
-    y: 24
+    x: 1038
+    y: 79
     width: 475
     height: 383
   m_SerializedDataModeController:
@@ -1230,7 +1230,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 04cfffff5ed6ffff70d6ffff2adaffff4adbffff2edcffff10ddffff0cdeffff6ce0ffff2ae2ffffe8e3ffffdae5ffff98e7ffff56e9ffff3aeaffff60ecffffceeefffff8f0ffff2ef3ffff6ef5ffff0cfbffffd6bc0000d6c70000fee20000
+      m_ExpandedIDs: fcc0feff32c3feffeee7feff8eedfeff0cf5feff1ef5feffe2f8feff0cfafefff8fafeffe2fbfeffe6fcfeffca01ffff227bffffee7fffff0cfbffff5eb3000050b40000a8b40000c2b40000e4b400002cb50000f4b500006cbb000024bd000016be000088be0000f2be0000babf0000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1276,8 +1276,8 @@ MonoBehaviour:
     m_TextWithWhitespace: "Project\u200B"
   m_Pos:
     serializedVersion: 2
-    x: 1
-    y: 433
+    x: 1038
+    y: 488
     width: 475
     height: 498
   m_SerializedDataModeController:
@@ -1302,7 +1302,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Packages/com.unity.render-pipelines.universal/Shaders/2D
+    - Assets/Scenes
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -1312,16 +1312,16 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Packages/com.unity.render-pipelines.universal/Shaders/2D
+  - Assets/Scenes
   m_LastFoldersGridSize: 16
   m_LastProjectPath: E:\Unity\Unity\LevelUPRougeBattle
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 770}
-    m_SelectedIDs: eae40000
-    m_LastClickedID: 58602
-    m_ExpandedIDs: 000000008ab900008cb900008eb9000090b9000092b9000094b9000096b9000098b900009ab90000
+    scrollPos: {x: 0, y: 0}
+    m_SelectedIDs: 42ba0000
+    m_LastClickedID: 47682
+    m_ExpandedIDs: 000000008ab900008eb9000090b9000092b9000094b9000096b9000098b9000050ba000052ba0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1350,7 +1350,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000008ab900008cb900008eb9000090b9000092b9000094b9000096b9000098b900009ab90000
+    m_ExpandedIDs: 000000008ab900008eb9000090b9000092b9000094b9000096b9000098b9000050ba000052ba0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1614,8 +1614,8 @@ MonoBehaviour:
     m_TextWithWhitespace: "Inspector\u200B"
   m_Pos:
     serializedVersion: 2
-    x: 1516
-    y: 24
+    x: 1515
+    y: 79
     width: 404
     height: 907
   m_SerializedDataModeController:
