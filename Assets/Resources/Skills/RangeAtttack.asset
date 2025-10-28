@@ -18,6 +18,6 @@ MonoBehaviour:
   skillType: 0
   power: 20
   penetrationPower: 4
-  maxLineRange: 25
+  maxLineRange: 100
   speed: 18
   numberAttacks: 1

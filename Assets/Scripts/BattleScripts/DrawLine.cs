@@ -21,7 +21,7 @@ public class DrawLine : MonoBehaviour
     float currentLineRange;//現在の書いた長さ
     Vector3 lastAddPoint;//最後に追加した点を記憶しておく変数
 
-    float fixedDrawZ = 100f; //z軸を固定
+    float fixedDrawZ = 0f; //z軸を固定
 
     public float MaxLineRange { get => maxLineRange; set => maxLineRange = value; }
 
@@ -70,7 +70,7 @@ public class DrawLine : MonoBehaviour
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                 RaycastHit2D hit = Physics2D.Raycast((Vector2)ray.origin, (Vector2)ray.direction);
 
-                if (hit.collider == null) return;
+                if (hit.collider == null)return;
 
                 else if (hit.collider.CompareTag("StartPoint"))//startPointだったら
                 {
