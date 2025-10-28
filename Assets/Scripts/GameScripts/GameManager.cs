@@ -3,8 +3,8 @@ using UnityEngine.SceneManagement;
 
 //ゲーム全体を管理するスクリプト
 
-public  enum GameState
-{ 
+public enum GameState
+{
     SelectParty,
     Adventure,
     InBattle,
@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
 {
     static GameState currentState;
 
-    public static bool LastBattle { get; set; } = false; 
+    public static bool lastBattle = false;
 
     void Start()
     {
@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
 
         string sceneName = currentScene.name;
 
-        if(sceneName == "TitleScene")
+        if (sceneName == "TitleScene")
         {
             SoundManager.instance.PlayBGM(BGMType.Title);
         }
@@ -32,26 +32,26 @@ public class GameManager : MonoBehaviour
     }
 
 
-    
+
 
     //battleSceneで勝ったら呼び出されるメソッド
-    //勝った後にそれがラストバトルだったらクリアしてタイトルシーンに戻る、違うならアドベンチャーシーンに戻る
+    //敵選択画面シーンに移行するメソッド
     public void AdventureTurnStart()
     {
-        if (LastBattle)
-        {
-            currentState = GameState.GameClear;
-            Debug.Log("ゲームクリア!");            
-            SceneManager.LoadScene("ClearScene");
-            SoundManager.instance.PlaySE(SEType.BattleVictory);
-        }
-        else 
-        {
-            currentState = GameState.Adventure;
-            SoundManager.instance.PlayBGM(BGMType.Title);//BGMをTitleに
-            SceneManager.LoadScene("AdventureScene");//シーンをアドベンチャーシーンに
-        }
-           
+
+        currentState = GameState.Adventure;
+        SoundManager.instance.PlayBGM(BGMType.Title);//BGMをTitleに
+        SceneManager.LoadScene("AdventureScene");//シーンをアドベンチャーシーンに
+
+    }
+    //勝った後にそれがラストバトルだったらクリアシーンに移行するメソッド
+    public void Clear()
+    {
+        currentState = GameState.GameClear;
+        Debug.Log("ゲームクリア!");
+        SceneManager.LoadScene("ClearScene");
+        SoundManager.instance.PlaySE(SEType.BattleVictory);
+        lastBattle = false;
     }
 
     //何かをきっかけに発動(一旦ボタン)
@@ -60,7 +60,7 @@ public class GameManager : MonoBehaviour
     {
         currentState = GameState.InBattle;
         SceneManager.LoadScene("BattleScene");//シーンをバトルシーンに
-                
+
     }
 
 }

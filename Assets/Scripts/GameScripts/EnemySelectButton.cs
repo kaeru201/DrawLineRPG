@@ -16,7 +16,7 @@ public class EnemySelectButton : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (lastBoss) GameManager.LastBattle = true;//ラスボスならGameManagerのLastBattle変数をtrueに
+        if (lastBoss) GameManager.lastBattle = true;//ラスボスならGameManagerのLastBattle変数をtrueに
         SoundManager.instance.PlaySE(SEType.Click);//クリック音
         SoundManager.instance.PlaySE(SEType.BattleStart);
         enemyTeam.SetEnemyUnit();//戦う敵を設定

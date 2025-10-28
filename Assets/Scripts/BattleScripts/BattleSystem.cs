@@ -302,13 +302,16 @@ public class BattleSystem : MonoBehaviour
             case BattleState.LoseTurn:
 
                 CurrentBState = BattleState.LoseTurn;
+                if (GameManager.lastBattle) GameManager.lastBattle = false;//負けたらラストバトルフラグをオフ
                 SceneManager.LoadScene("TitleScene");
                 break;
 
             case BattleState.WinTurn:
 
-                CurrentBState = BattleState.WinTurn;                
-                gameManager.AdventureTurnStart() ;
+                CurrentBState = BattleState.WinTurn;
+                if (GameManager.lastBattle) gameManager.Clear();//もしラストバトルフラグがtrueならClearシーンに
+                else gameManager.AdventureTurnStart();//それ以外なら敵選択画面に戻る
+                
                 break;
 
         }
