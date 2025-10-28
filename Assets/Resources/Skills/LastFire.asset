@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: LastFire
   m_EditorClassIdentifier: 
   name: "\u6700\u5F8C\u306E\u706B"
-  description: "\u30BF\u30A4\u30D7:\u653B\u6483  \u3000 \u5A01\u529B:100 \u8CAB\u901A\u529B:4\n\u8DDD\u96E2:30
+  description: "\u30BF\u30A4\u30D7:\u653B\u6483  \u3000 \u5A01\u529B:100 \u8CAB\u901A\u529B:4\n\u8DDD\u96E2:300
     \u901F\u3055:15 \u653B\u6483\u56DE\u6570:1\n\n\u3053\u308C\u306F\u6700\u5F8C\u306E\u65E5"
   skillType: 0
   power: 100
   penetrationPower: 4
-  maxLineRange: 30
+  maxLineRange: 300
   speed: 15
   numberAttacks: 1

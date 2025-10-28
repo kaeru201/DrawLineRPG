@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: ShockWave
   m_EditorClassIdentifier: 
   name: "\u885D\u6483\u6CE2"
-  description: "\u30BF\u30A4\u30D7:\u653B\u6483  \u3000 \u5A01\u529B:40 \u8CAB\u901A\u529B:2\n\u8DDD\u96E2:10\u901F\u3055:10
-    \u653B\u6483\u56DE\u6570:2\n\n\u885D\u6483\u7684"
+  description: "\u30BF\u30A4\u30D7:\u653B\u6483  \u3000 \u5A01\u529B:40 \u8CAB\u901A\u529B:2\n\u8DDD\u96E2:100
+    \u901F\u3055:10 \u653B\u6483\u56DE\u6570:2\n\n\u885D\u6483\u7684"
   skillType: 0
   power: 40
   penetrationPower: 2
-  maxLineRange: 10
+  maxLineRange: 100
   speed: 10
   numberAttacks: 2

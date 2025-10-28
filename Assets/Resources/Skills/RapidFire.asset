@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: RapidFire
   m_EditorClassIdentifier: 
   name: "\u9023\u5C04"
-  description: "\u30BF\u30A4\u30D7:\u653B\u6483  \u3000 \u5A01\u529B:20 \u8CAB\u901A\u529B:1\n\u8DDD\u96E2:15
+  description: "\u30BF\u30A4\u30D7:\u653B\u6483  \u3000 \u5A01\u529B:20 \u8CAB\u901A\u529B:1\n\u8DDD\u96E2:150
     \u901F\u3055:20 \u653B\u6483\u56DE\u6570:3\n\n\u9B54\u6CD5\u3092\u9023\u5C04\u3059\u308B"
   skillType: 0
   power: 20
   penetrationPower: 1
-  maxLineRange: 15
+  maxLineRange: 150
   speed: 20
   numberAttacks: 3

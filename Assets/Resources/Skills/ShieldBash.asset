@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: ShieldBash
   m_EditorClassIdentifier: 
   name: "\u30B7\u30FC\u30EB\u30C9\u30D0\u30C3\u30B7\u30E5"
-  description: "\u30BF\u30A4\u30D7:\u653B\u6483  \u3000 \u5A01\u529B:40 \u8CAB\u901A\u529B:6\n\u8DDD\u96E2:10
+  description: "\u30BF\u30A4\u30D7:\u653B\u6483  \u3000 \u5A01\u529B:40 \u8CAB\u901A\u529B:6\n\u8DDD\u96E2:100
     \u901F\u3055:10 \u653B\u6483\u56DE\u6570:1\n\n\u8CAB\u901A\u529B\u304C\u9AD8\u3044\u8FD1\u63A5\u6280"
   skillType: 0
   power: 40
   penetrationPower: 6
-  maxLineRange: 10
+  maxLineRange: 100
   speed: 10
   numberAttacks: 1

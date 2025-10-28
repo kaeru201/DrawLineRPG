@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: "\u539F\u521D\u306E\u5149"
   description: "\u30BF\u30A4\u30D7:\u653B\u6483  \u3000 \u5A01\u529B:120 \u8CAB\u901A\u529B:2
-    \n\u8DDD\u96E2:15 \u901F\u3055:20 \u653B\u6483\u56DE\u6570:1\n\n\u6700\u521D\u306E\u5149"
+    \n\u8DDD\u96E2:150\u901F\u3055:20 \u653B\u6483\u56DE\u6570:1\n\n\u6700\u521D\u306E\u5149"
   skillType: 0
   power: 120
   penetrationPower: 2
-  maxLineRange: 15
+  maxLineRange: 150
   speed: 20
   numberAttacks: 1
