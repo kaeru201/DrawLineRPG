@@ -11,7 +11,7 @@ public class DrawLine : MonoBehaviour
     Vector3 startPosition;
 
     [SerializeField] float maxLineRange;//DrawIntelligenceから値を代入
-    int posCount;//    
+    int posCount;//どのくらい線に点を置いたか    
     [SerializeField] bool isDrawing = false;//描き続けられるか
     [SerializeField] bool ready = false;
     public bool Draw { get; set; } = false; //描き始められえるか　DrawIntelligenceから個別にtrueにする変数
@@ -77,7 +77,7 @@ public class DrawLine : MonoBehaviour
                     AddLine(mousePos);//マウスの座標に点を置く                   
                 }
 
-                //AddLine(new Vector3(startPosition.position.x, startPosition.position.y + 0.5f, fixedDrawZ));
+                
 
             }
 
@@ -89,10 +89,10 @@ public class DrawLine : MonoBehaviour
                     audio.Play();//音を出す
                 }
 
+                //もし線を描ける最大距離に達したら
                 if (currentLineRange >= MaxLineRange)
                 {
-
-                    isDrawing = false;
+                    isDrawing = false;//線を描くのをやめる
                     return;
                 }
 
