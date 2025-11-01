@@ -88,5 +88,75 @@ https://pocket-se.info/archives/700/
   
 ## ポートフォリオ制作で実装に苦労した箇所
 * #### 線を引くスクリプトの作成
+線を引くスクリプトは以下の要素を含み作成、調整しました。
+* 線の引き始めはUnitのStartPointオブジェクトの範囲内から始めるように
+* 左クリックを押し続けている間は線を引け、左クリックを離したら線を初期化するように
+* 選択されたスキルに合わせて引ける距離を制限できるように
+* マウスを動かすスピードによって線の引ける距離が変わってしまわないように
+* 選択されたスキルに合わせて線の色を変えられるように
 
-線を引くときはスキルに応じた距離しか引けないようにし、速くマウスを動かすと想定より長い距離線を引けすぎてしまわないよう調整しました  
+左クリックを押した時はRayCastの力を使ってStartPointだったら線を引くメソッドを発動するように
+```C#
+void Update()
+{
+ //マウスのスクリーン座標をワールド座標に変換する
+ Vector3 mousePos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, fixedDrawZ));
+
+ if (Input.GetMouseButtonDown(0))
+  {     
+     //マウスを押した時にStartPointの中だったら
+     Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+     RaycastHit2D hit = Physics2D.Raycast((Vector2)ray.origin, (Vector2)ray.direction);
+
+     if (hit.collider == null)return;
+
+     else if (hit.collider.CompareTag("StartPoint"))//startPointだったら
+     {
+         AddLine(mousePos);//マウスの座標に点を置く                   
+     }
+  }
+}
+```
+まずAddLineメソッドでPosCountの数値を1ずつ増やすことで2つの点で単純な直線な線ではなく細かく曲げたりできる線を引けるようにして、
+```C#
+ void Update()
+{
+ //左クリック押し続けている間かつisDrawがtrueなら
+ if (Input.GetMouseButton(0) && isDrawing)
+ {    
+     //もし線を描ける最大距離に達したら
+     if (currentLineRange >= MaxLineRange)
+     {
+        isDrawing = false;//線を描くのをやめる
+        return;
+     }
+
+     //最後点と今のマウスの位置の差
+     float distanceMouse = Vector2.Distance(lastAddPoint, mousePos);
+
+     //もししきい値よりマウスが離れなかったら、かつしきい値よりマウスが離れたら
+     if (distanceMouse <= 0.3f && distanceMouse >= 0.1f)
+     {
+                            
+        Vector3 newPoint = mousePos; //新しい点をマウスの座標にして
+
+        float lengthToAdd = Vector3.Distance(lastAddPoint, newPoint) * 0.25f;//あとどれくらい描けるかを取得する変数
+
+
+        AddLine(newPoint);//点を追加する
+
+        currentLineRange += lengthToAdd;
+     }
+
+ }
+}
+ //線を引くメソッド(点)
+ void AddLine(Vector3 point)
+ {
+     point.z = fixedDrawZ;//z軸を固定
+     lineRenderer.positionCount = posCount + 1;//繰り返す度に点を増やしていく
+     lineRenderer.SetPosition(posCount, point);//一つ前の点から次の点に線を書く
+     posCount++;
+     lastAddPoint = point;
+ }
+```
