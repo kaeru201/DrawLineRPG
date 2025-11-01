@@ -37,7 +37,7 @@ https://pocket-se.info/archives/700/
 * そのほかの使用ツール：GitHub、SorceTree、Visualstudio
   
 ## サンプルプレイ
-ぜひゲームを体験してください！
+ぜひゲームを体験してください！  
 (https://kaeru201.cheap.jp/)
 
 ## ゲームフロー
